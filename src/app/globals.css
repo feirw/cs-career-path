@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f1f7;
+  --border: #e2e2ec;
+  --text: #16161d;
+  --text-muted: #5f5f72;
+  --accent: #5b4bde;
+  --accent-soft: #ece9ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e14;
+    --surface: #16161f;
+    --surface-2: #1e1e29;
+    --border: #2a2a38;
+    --text: #f0f0f5;
+    --text-muted: #9d9db4;
+    --accent: #8b7cff;
+    --accent-soft: #221f3d;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border-subtle: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Οι μπάρες προόδου και τα bars των αποτελεσμάτων κινούνται ομαλά. */
+.bar-fill {
+  transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .print-block {
+    break-inside: avoid;
+  }
+}
