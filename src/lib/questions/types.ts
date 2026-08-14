@@ -8,21 +8,24 @@ export type CareerWeights = Partial<Record<CareerId, number>>;
 export type TraitWeights = Partial<Record<TraitId, number>>;
 
 export type Option = {
-  /** "a" | "b" | "c" | "d" — σταθερό, το αποθηκεύουμε στη βάση. */
+  /** "a" | "b" | "c" | … — σταθερό, το αποθηκεύουμε στη βάση. */
   id: string;
   label: LS;
   c: CareerWeights;
   t: TraitWeights;
 };
 
-export type QuestionKind = "technical" | "personality";
-
 export type Question = {
-  /** q01 … q50 — σταθερό ID, μη το αλλάξεις μετά την πρώτη υποβολή. */
+  /** q01 … q100 (πλήρες), s01 … s20 (σύντομο) — σταθερό ID, μη το αλλάξεις μετά την πρώτη υποβολή. */
   id: string;
   section: number;
-  kind: QuestionKind;
+  /**
+   * Οι ερωτήσεις είναι καθημερινές καταστάσεις, όχι τεχνικά ερωτήματα, και δεν
+   * χωρίζονται σε κατηγορίες μπροστά στον χρήστη: η ετικέτα «τεχνική» ή
+   * «προσωπικότητας» έλεγε στον απαντώντα τι μετράμε και αλλοίωνε την απάντηση.
+   */
   text: LS;
+  /** 4 έως 6 επιλογές — όσες χρειάζεται η ερώτηση, όχι σταθερός αριθμός. */
   options: Option[];
 };
 

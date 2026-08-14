@@ -6,13 +6,15 @@ import { LanguageToggle, LocaleProvider, useLocale } from "./LocaleProvider";
 import { RadarChart } from "./RadarChart";
 import { CAREER_BY_ID } from "@/lib/careers";
 import { ui } from "@/lib/i18n";
-import type { CareerScore } from "@/lib/scoring";
+import type { TestMode } from "@/lib/questions";
+import { separation, type CareerScore } from "@/lib/scoring";
 import { TRAITS, type TraitId } from "@/lib/traits";
 
 type Props = {
   scores: CareerScore[];
   traits: Record<TraitId, number>;
   createdAt: number;
+  mode: TestMode;
 };
 
 export function ResultView(props: Props) {
@@ -23,12 +25,14 @@ export function ResultView(props: Props) {
   );
 }
 
-function Results({ scores, traits, createdAt }: Props) {
+function Results({ scores, traits, createdAt, mode }: Props) {
   const { tr, locale } = useLocale();
   const [copied, setCopied] = useState(false);
 
   const top3 = scores.slice(0, 3);
   const winner = CAREER_BY_ID[top3[0].careerId];
+  const gap = separation(scores);
+  const isShort = mode === "short";
 
   const copyLink = async () => {
     try {
@@ -53,9 +57,14 @@ function Results({ scores, traits, createdAt }: Props) {
 
       {/* Νικητής */}
       <section className="print-block rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-9">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr(ui.yourTop)}
-        </p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+            {tr(ui.yourTop)}
+          </p>
+          <span className="rounded-full bg-[var(--surface-2)] px-2.5 py-1 text-[11px] font-medium text-[var(--text-muted)]">
+            {tr(isShort ? ui.basedOnShort : ui.basedOnFull)}
+          </span>
+        </div>
         <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-2">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             <span aria-hidden className="mr-2">
@@ -73,7 +82,22 @@ function Results({ scores, traits, createdAt }: Props) {
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
           {tr(winner.description)}
         </p>
+        <p className="mt-4 max-w-2xl text-sm text-[var(--text-muted)]">
+          {gap >= 8 ? tr(ui.clearDirection) : tr(ui.closeCall)}
+        </p>
       </section>
+
+      {isShort && (
+        <section className="print-block mt-5 rounded-2xl border border-[var(--accent)] bg-[var(--accent-soft)] p-5">
+          <p className="text-sm leading-relaxed">{tr(ui.shortResultWarning)}</p>
+          <Link
+            href="/test?mode=full"
+            className="no-print mt-4 inline-block rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white"
+          >
+            {tr(ui.takeFullTest)} →
+          </Link>
+        </section>
+      )}
 
       {/* Ενέργειες */}
       <div className="no-print mt-5 flex flex-wrap gap-3">
@@ -92,7 +116,7 @@ function Results({ scores, traits, createdAt }: Props) {
           🔗 {copied ? tr(ui.linkCopied) : tr(ui.copyLink)}
         </button>
         <Link
-          href="/test"
+          href={`/test?mode=${mode}`}
           className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-sm font-medium hover:bg-[var(--surface-2)]"
         >
           ↺ {tr(ui.retake)}

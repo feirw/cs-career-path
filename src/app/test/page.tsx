@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LanguageToggle, LocaleProvider, useLocale } from "@/components/LocaleProvider";
 import { ui } from "@/lib/i18n";
-import { SECTIONS, TOTAL_QUESTIONS } from "@/lib/questions";
-import { STORAGE_KEY_PROGRESS } from "@/lib/storageKeys";
+import { parseMode, questionCount, sectionsFor, type TestMode } from "@/lib/questions";
+import { progressKey } from "@/lib/storageKeys";
 
 type Progress = {
   answers: Record<string, string>;
@@ -17,14 +17,27 @@ type Progress = {
 export default function TestPage() {
   return (
     <LocaleProvider>
-      <Quiz />
+      <Suspense fallback={null}>
+        <QuizWithMode />
+      </Suspense>
     </LocaleProvider>
   );
 }
 
-function Quiz() {
+function QuizWithMode() {
+  const searchParams = useSearchParams();
+  const mode = parseMode(searchParams.get("mode"));
+  // Το key αναγκάζει καθαρή επανεκκίνηση όταν αλλάζει τεστ.
+  return <Quiz key={mode} mode={mode} />;
+}
+
+function Quiz({ mode }: { mode: TestMode }) {
   const { tr, locale } = useLocale();
   const router = useRouter();
+
+  const sections = useMemo(() => sectionsFor(mode), [mode]);
+  const total = questionCount(mode);
+  const storageKey = progressKey(mode);
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -38,12 +51,12 @@ function Quiz() {
 
   // Επαναφορά προόδου / restore progress
   useEffect(() => {
-    const raw = window.localStorage.getItem(STORAGE_KEY_PROGRESS);
+    const raw = window.localStorage.getItem(storageKey);
     if (raw) {
       try {
         const saved = JSON.parse(raw) as Progress;
         setAnswers(saved.answers ?? {});
-        setSectionIndex(Math.min(saved.sectionIndex ?? 0, SECTIONS.length - 1));
+        setSectionIndex(Math.min(saved.sectionIndex ?? 0, sections.length - 1));
         setStartedAt(saved.startedAt ?? Date.now());
         startReported.current = true; // το start είχε ήδη καταγραφεί
       } catch {
@@ -51,33 +64,33 @@ function Quiz() {
       }
     }
     setLoaded(true);
-  }, []);
+  }, [storageKey, sections.length]);
 
-  // Καταγραφή έναρξης (μία φορά, για το ποσοστό ολοκλήρωσης στο /admin)
+  // Καταγραφή έναρξης (μία φορά ανά τεστ, για το ποσοστό ολοκλήρωσης στο /admin)
   useEffect(() => {
     if (!loaded || startReported.current) return;
     startReported.current = true;
     void fetch("/api/start", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ locale }),
+      body: JSON.stringify({ locale, mode }),
     }).catch(() => {});
-  }, [loaded, locale]);
+  }, [loaded, locale, mode]);
 
   // Autosave
   useEffect(() => {
     if (!loaded) return;
     const progress: Progress = { answers, sectionIndex, startedAt };
-    window.localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(progress));
-  }, [answers, sectionIndex, startedAt, loaded]);
+    window.localStorage.setItem(storageKey, JSON.stringify(progress));
+  }, [answers, sectionIndex, startedAt, loaded, storageKey]);
 
-  const section = SECTIONS[sectionIndex];
+  const section = sections[sectionIndex];
   const answeredCount = Object.keys(answers).length;
   const sectionComplete = useMemo(
     () => section.questions.every((q) => answers[q.id]),
     [section, answers],
   );
-  const isLastSection = sectionIndex === SECTIONS.length - 1;
+  const isLastSection = sectionIndex === sections.length - 1;
 
   const choose = useCallback((questionId: string, optionId: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: optionId }));
@@ -90,7 +103,9 @@ function Quiz() {
       setShowMissing(true);
       const firstMissing = section.questions.find((q) => !answers[q.id]);
       if (firstMissing) {
-        document.getElementById(firstMissing.id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        document
+          .getElementById(firstMissing.id)
+          ?.scrollIntoView({ behavior: "smooth", block: "center" });
       }
       return;
     }
@@ -108,11 +123,11 @@ function Quiz() {
       const response = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, locale, durationMs: Date.now() - startedAt }),
+        body: JSON.stringify({ answers, locale, mode, durationMs: Date.now() - startedAt }),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = (await response.json()) as { id: string };
-      window.localStorage.removeItem(STORAGE_KEY_PROGRESS);
+      window.localStorage.removeItem(storageKey);
       router.push(`/results/${data.id}`);
     } catch (err) {
       console.error(err);
@@ -135,7 +150,7 @@ function Quiz() {
 
   if (!loaded) return null;
 
-  const progressPercent = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+  const progressPercent = Math.round((answeredCount / total) * 100);
 
   return (
     <main className="mx-auto max-w-3xl px-5 py-8 sm:py-12" ref={topRef}>
@@ -143,16 +158,21 @@ function Quiz() {
         <Link href="/" className="text-sm font-semibold text-[var(--accent)]">
           {tr(ui.appName)}
         </Link>
-        <LanguageToggle />
+        <div className="flex items-center gap-3">
+          <span className="rounded-full bg-[var(--surface-2)] px-3 py-1 text-xs font-medium text-[var(--text-muted)]">
+            {tr(mode === "short" ? ui.shortTest : ui.fullTest)}
+          </span>
+          <LanguageToggle />
+        </div>
       </header>
 
       <div className="sticky top-0 z-10 -mx-5 mb-8 bg-[var(--bg)]/90 px-5 py-3 backdrop-blur">
         <div className="flex items-baseline justify-between text-sm text-[var(--text-muted)]">
           <span>
-            {tr(ui.page)} {section.index} {tr(ui.of)} {SECTIONS.length}
+            {tr(ui.page)} {sectionIndex + 1} {tr(ui.of)} {sections.length}
           </span>
           <span>
-            {answeredCount}/{TOTAL_QUESTIONS} {tr(ui.answered)}
+            {answeredCount}/{total} {tr(ui.answered)}
           </span>
         </div>
         <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[var(--surface-2)]">
@@ -177,17 +197,12 @@ function Quiz() {
                 missing ? "border-red-400" : "border-[var(--border)]"
               }`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <h2 className="text-lg font-semibold leading-snug">
-                  <span className="mr-2 text-[var(--text-muted)]">
-                    {(section.index - 1) * 10 + index + 1}.
-                  </span>
-                  {tr(question.text)}
-                </h2>
-                <span className="mt-1 shrink-0 rounded-full bg-[var(--surface-2)] px-2.5 py-1 text-[11px] font-medium text-[var(--text-muted)]">
-                  {question.kind === "technical" ? tr(ui.technical) : tr(ui.nonTechnical)}
+              <h2 className="text-lg font-semibold leading-snug">
+                <span className="mr-2 text-[var(--text-muted)]">
+                  {sectionIndex * 10 + index + 1}.
                 </span>
-              </div>
+                {tr(question.text)}
+              </h2>
 
               <div className="mt-4 space-y-2">
                 {question.options.map((option) => {

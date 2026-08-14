@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { insertSubmission } from "@/lib/db";
-import { QUESTION_BY_ID, TOTAL_QUESTIONS } from "@/lib/questions";
+import { parseMode, questionsFor, QUESTION_BY_ID, type TestMode } from "@/lib/questions";
 import { score, type Answers } from "@/lib/scoring";
 
 export const runtime = "nodejs";
@@ -11,13 +11,16 @@ export async function POST(request: Request) {
     const body = (await request.json()) as {
       answers?: unknown;
       locale?: string;
+      mode?: unknown;
       durationMs?: unknown;
     };
 
-    const answers = sanitiseAnswers(body.answers);
-    if (Object.keys(answers).length !== TOTAL_QUESTIONS) {
+    const mode = parseMode(body.mode);
+    const answers = sanitiseAnswers(body.answers, mode);
+    const expected = questionsFor(mode).length;
+    if (Object.keys(answers).length !== expected) {
       return NextResponse.json(
-        { error: "incomplete", expected: TOTAL_QUESTIONS, got: Object.keys(answers).length },
+        { error: "incomplete", mode, expected, got: Object.keys(answers).length },
         { status: 400 },
       );
     }
@@ -28,7 +31,7 @@ export async function POST(request: Request) {
         ? Math.round(body.durationMs)
         : 0;
 
-    const result = score(answers);
+    const result = score(answers, mode);
     const top = result.ranked[0];
     const id = crypto.randomBytes(9).toString("base64url");
 
@@ -36,6 +39,7 @@ export async function POST(request: Request) {
       id,
       createdAt: Date.now(),
       locale,
+      mode,
       durationMs,
       topCareer: top.careerId,
       topMatch: top.match,
@@ -51,11 +55,16 @@ export async function POST(request: Request) {
   }
 }
 
-/** Κρατάει μόνο έγκυρα ζεύγη ερώτησης/επιλογής — τίποτα άλλο δεν αποθηκεύεται. */
-function sanitiseAnswers(input: unknown): Answers {
+/**
+ * Κρατάει μόνο έγκυρα ζεύγη ερώτησης/επιλογής που ανήκουν στο συγκεκριμένο
+ * τεστ — τίποτα άλλο δεν αποθηκεύεται και δεν βαθμολογείται.
+ */
+function sanitiseAnswers(input: unknown, mode: TestMode): Answers {
   const out: Answers = {};
   if (!input || typeof input !== "object") return out;
+  const allowed = new Set(questionsFor(mode).map((q) => q.id));
   for (const [questionId, optionId] of Object.entries(input as Record<string, unknown>)) {
+    if (!allowed.has(questionId)) continue;
     const question = QUESTION_BY_ID[questionId];
     if (!question || typeof optionId !== "string") continue;
     if (!question.options.some((o) => o.id === optionId)) continue;

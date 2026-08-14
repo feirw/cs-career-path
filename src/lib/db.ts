@@ -3,6 +3,7 @@ import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import type { CareerId } from "./careers";
 import type { Locale } from "./i18n";
+import type { TestMode } from "./questions";
 import type { TraitId } from "./traits";
 import type { CareerScore } from "./scoring";
 
@@ -18,6 +19,8 @@ export type StoredSubmission = {
   id: string;
   createdAt: number;
   locale: Locale;
+  /** "short" (20 ερωτήσεις) ή "full" (100). */
+  mode: TestMode;
   durationMs: number;
   topCareer: CareerId;
   topMatch: number;
@@ -57,25 +60,45 @@ function getDb(): DatabaseSync {
     );
     CREATE INDEX IF NOT EXISTS idx_starts_created ON starts(created_at);
   `);
+
+  // Μετάβαση: οι παλιές υποβολές έγιναν πριν υπάρξουν δύο τεστ — ήταν το πλήρες
+  // της εποχής τους, οπότε τις σημειώνουμε ως "full".
+  addColumnIfMissing(db, "submissions", "mode", "TEXT NOT NULL DEFAULT 'full'");
+  addColumnIfMissing(db, "starts", "mode", "TEXT NOT NULL DEFAULT 'full'");
+
   return db;
 }
 
-export function recordStart(id: string, locale: Locale): void {
+function addColumnIfMissing(
+  database: DatabaseSync,
+  table: string,
+  column: string,
+  definition: string,
+): void {
+  const columns = database.prepare(`PRAGMA table_info(${table})`).all() as unknown as {
+    name: string;
+  }[];
+  if (columns.some((c) => c.name === column)) return;
+  database.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
+}
+
+export function recordStart(id: string, locale: Locale, mode: TestMode): void {
   getDb()
-    .prepare("INSERT OR IGNORE INTO starts (id, created_at, locale) VALUES (?, ?, ?)")
-    .run(id, Date.now(), locale);
+    .prepare("INSERT OR IGNORE INTO starts (id, created_at, locale, mode) VALUES (?, ?, ?, ?)")
+    .run(id, Date.now(), locale, mode);
 }
 
 export function insertSubmission(s: StoredSubmission): void {
   getDb()
     .prepare(
-      `INSERT INTO submissions (id, created_at, locale, duration_ms, top_career, top_match, scores, traits, answers)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO submissions (id, created_at, locale, mode, duration_ms, top_career, top_match, scores, traits, answers)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
     .run(
       s.id,
       s.createdAt,
       s.locale,
+      s.mode,
       s.durationMs,
       s.topCareer,
       s.topMatch,
@@ -89,6 +112,7 @@ type SubmissionRow = {
   id: string;
   created_at: number;
   locale: string;
+  mode: string;
   duration_ms: number;
   top_career: string;
   top_match: number;
@@ -106,6 +130,7 @@ export function getSubmission(id: string): StoredSubmission | null {
     id: row.id,
     createdAt: Number(row.created_at),
     locale: row.locale as Locale,
+    mode: row.mode === "short" ? "short" : "full",
     durationMs: Number(row.duration_ms),
     topCareer: row.top_career as CareerId,
     topMatch: Number(row.top_match),
@@ -129,6 +154,8 @@ export type AdminStats = {
     allTimeSubmissions: number;
   };
   localeSplit: { locale: string; count: number }[];
+  /** Πόσοι έκαναν το σύντομο και πόσοι το πλήρες τεστ. */
+  modeSplit: { mode: string; submissions: number; starts: number; completionRate: number }[];
   topCareerDistribution: { careerId: string; count: number; share: number; avgMatch: number }[];
   /** Μέσο match ανά καριέρα σε όλες τις υποβολές, όχι μόνο όταν βγαίνει πρώτη. */
   avgMatchByCareer: { careerId: string; avgMatch: number }[];
@@ -144,19 +171,18 @@ export function getStats(range: Range): AdminStats {
     .prepare("SELECT * FROM submissions WHERE created_at BETWEEN ? AND ? ORDER BY created_at")
     .all(from, to) as unknown as SubmissionRow[];
 
-  const starts = Number(
-    (
-      d.prepare("SELECT COUNT(*) AS n FROM starts WHERE created_at BETWEEN ? AND ?").get(from, to) as
-        | { n: number }
-        | undefined
-    )?.n ?? 0,
-  );
+  const startRows = d
+    .prepare("SELECT mode, COUNT(*) AS n FROM starts WHERE created_at BETWEEN ? AND ? GROUP BY mode")
+    .all(from, to) as unknown as { mode: string; n: number }[];
+  const startsByMode = new Map(startRows.map((r) => [r.mode, Number(r.n)]));
+  const starts = startRows.reduce((sum, r) => sum + Number(r.n), 0);
 
   const allTime = Number(
     (d.prepare("SELECT COUNT(*) AS n FROM submissions").get() as { n: number } | undefined)?.n ?? 0,
   );
 
   const localeCounts = new Map<string, number>();
+  const modeCounts = new Map<string, number>();
   const topCounts = new Map<string, { count: number; matchSum: number }>();
   const matchSums = new Map<string, number>();
   const answerDistribution: Record<string, Record<string, number>> = {};
@@ -165,6 +191,7 @@ export function getStats(range: Range): AdminStats {
 
   for (const row of submissions) {
     localeCounts.set(row.locale, (localeCounts.get(row.locale) ?? 0) + 1);
+    modeCounts.set(row.mode, (modeCounts.get(row.mode) ?? 0) + 1);
 
     const entry = topCounts.get(row.top_career) ?? { count: 0, matchSum: 0 };
     entry.count++;
@@ -204,6 +231,16 @@ export function getStats(range: Range): AdminStats {
     localeSplit: [...localeCounts.entries()]
       .map(([locale, count]) => ({ locale, count }))
       .sort((a, b) => b.count - a.count),
+    modeSplit: ["short", "full"].map((mode) => {
+      const modeSubmissions = modeCounts.get(mode) ?? 0;
+      const modeStarts = startsByMode.get(mode) ?? 0;
+      return {
+        mode,
+        submissions: modeSubmissions,
+        starts: modeStarts,
+        completionRate: modeStarts > 0 ? Math.round((modeSubmissions / modeStarts) * 100) : 0,
+      };
+    }),
     topCareerDistribution: [...topCounts.entries()]
       .map(([careerId, v]) => ({
         careerId,

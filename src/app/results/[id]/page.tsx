@@ -32,6 +32,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ id: st
       scores={submission.scores}
       traits={submission.traits}
       createdAt={submission.createdAt}
+      mode={submission.mode}
     />
   );
 }

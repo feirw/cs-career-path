@@ -3,19 +3,82 @@ import { section2 } from "./section2";
 import { section3 } from "./section3";
 import { section4 } from "./section4";
 import { section5 } from "./section5";
+import { section6 } from "./section6";
+import { section7 } from "./section7";
+import { section8 } from "./section8";
+import { section9 } from "./section9";
+import { section10 } from "./section10";
+import { SHORT_SECTIONS } from "./short";
 import type { Question, Section } from "./types";
 
-export type { Question, Section, Option, CareerWeights, TraitWeights, QuestionKind } from "./types";
+export type { Question, Section, Option, CareerWeights, TraitWeights } from "./types";
 
-export const SECTIONS: Section[] = [section1, section2, section3, section4, section5];
+/**
+ * Δύο ξεχωριστά τεστ, με δικές τους ερωτήσεις το καθένα.
+ *
+ * - "short": 20 δικές του ερωτήσεις (s01…s20) γρήγορου ενστίκτου, 2-3 λεπτά,
+ *   υποτυπώδες αποτέλεσμα.
+ * - "full": 100 ερωτήσεις σε σενάρια (q01…q100) που ξεκαθαρίζουν την κατεύθυνση.
+ *
+ * Two separate tests with their own question banks: a 2-3 minute gut-reaction
+ * pass and the full scenario-based 100.
+ */
+export type TestMode = "short" | "full";
 
-export const QUESTIONS: Question[] = SECTIONS.flatMap((s) => s.questions);
+export const TEST_MODES = ["short", "full"] as const;
+
+export function parseMode(value: unknown): TestMode {
+  return value === "short" ? "short" : "full";
+}
+
+export const FULL_SECTIONS: Section[] = [
+  section1,
+  section2,
+  section3,
+  section4,
+  section5,
+  section6,
+  section7,
+  section8,
+  section9,
+  section10,
+];
+
+export { SHORT_SECTIONS };
+
+/** Οι 100 ερωτήσεις του πλήρους τεστ. */
+export const ALL_QUESTIONS: Question[] = FULL_SECTIONS.flatMap((s) => s.questions);
+
+/** Οι 20 ερωτήσεις του σύντομου τεστ. */
+export const SHORT_QUESTIONS: Question[] = SHORT_SECTIONS.flatMap((s) => s.questions);
+
+/** Και οι δύο τράπεζες μαζί — το χρειάζεται το /admin και ο έλεγχος υποβολών. */
+export const EVERY_QUESTION: Question[] = [...SHORT_QUESTIONS, ...ALL_QUESTIONS];
 
 export const QUESTION_BY_ID: Record<string, Question> = Object.fromEntries(
-  QUESTIONS.map((q) => [q.id, q]),
+  EVERY_QUESTION.map((q) => [q.id, q]),
 );
 
-export const TOTAL_QUESTIONS = QUESTIONS.length;
+if (Object.keys(QUESTION_BY_ID).length !== EVERY_QUESTION.length) {
+  throw new Error("Δύο ερωτήσεις μοιράζονται το ίδιο id / duplicate question id");
+}
 
-export const TECHNICAL_COUNT = QUESTIONS.filter((q) => q.kind === "technical").length;
-export const PERSONALITY_COUNT = QUESTIONS.filter((q) => q.kind === "personality").length;
+export function sectionsFor(mode: TestMode): Section[] {
+  return mode === "short" ? SHORT_SECTIONS : FULL_SECTIONS;
+}
+
+export function questionsFor(mode: TestMode): Question[] {
+  return mode === "short" ? SHORT_QUESTIONS : ALL_QUESTIONS;
+}
+
+export function questionCount(mode: TestMode): number {
+  return questionsFor(mode).length;
+}
+
+/** Εκτίμηση διάρκειας: το σύντομο απαντιέται με το ένστικτο, το πλήρες θέλει σκέψη. */
+export function estimatedMinutes(mode: TestMode): number {
+  return mode === "short" ? 3 : 18;
+}
+
+export const SHORT_TOTAL = questionCount("short");
+export const FULL_TOTAL = questionCount("full");

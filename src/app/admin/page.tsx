@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { LanguageToggle, LocaleProvider, useLocale } from "@/components/LocaleProvider";
 import { CAREER_BY_ID, type CareerId } from "@/lib/careers";
 import { ui } from "@/lib/i18n";
-import { QUESTIONS } from "@/lib/questions";
+import { EVERY_QUESTION } from "@/lib/questions";
 import type { AdminStats } from "@/lib/db";
 
 const RANGES = [
@@ -133,6 +133,24 @@ function Admin() {
             {stats.localeSplit.map((l) => `${l.locale.toUpperCase()} ${l.count}`).join(" · ") || "—"}
           </p>
 
+          <Panel title={tr({ el: "Σύντομο vs πλήρες τεστ", en: "Quick vs full test" })}>
+            <ul className="space-y-2 text-sm">
+              {stats.modeSplit.map((row) => (
+                <li key={row.mode} className="flex items-center justify-between gap-3">
+                  <span className="font-medium">
+                    {row.mode === "short"
+                      ? tr({ el: "Σύντομο (20)", en: "Quick (20)" })
+                      : tr({ el: "Πλήρες (100)", en: "Full (100)" })}
+                  </span>
+                  <span className="tabular-nums text-[var(--text-muted)]">
+                    {row.submissions} / {row.starts}{" "}
+                    {tr({ el: "εκκινήσεις", en: "starts" })} · {row.completionRate}%
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Panel>
+
           <Panel title={tr({ el: "Ποια καριέρα βγαίνει πρώτη", en: "Which career comes out first" })}>
             {stats.topCareerDistribution.length === 0 ? (
               <Empty />
@@ -208,7 +226,7 @@ function Admin() {
             })}
           >
             <div className="space-y-6">
-              {QUESTIONS.map((question) => {
+              {EVERY_QUESTION.map((question) => {
                 const dist = stats.answerDistribution[question.id] ?? {};
                 const total = Object.values(dist).reduce((sum, n) => sum + n, 0);
                 return (
