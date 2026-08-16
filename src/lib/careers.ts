@@ -19,7 +19,8 @@ export type CareerId = (typeof CAREER_IDS)[number];
 
 export type Career = {
   id: CareerId;
-  emoji: string;
+  /** Σύντομη ετικέτα για το διάγραμμα, όπου δεν χωράει το πλήρες όνομα. */
+  shortName: LS;
   /** Χρώμα για μπάρες/κάρτες. Bar & card accent colour. */
   color: string;
   name: LS;
@@ -29,13 +30,17 @@ export type Career = {
   tech: string[];
   courses: LS[];
   projects: LS[];
+  /** Πιστοποιήσεις που βοηθούν στις συνεντεύξεις, με σειρά χρησιμότητας. */
+  certifications: LS[];
+  /** Πόσο πραγματικά μετράνε στον τομέα — η ειλικρίνεια εδώ αξίζει. */
+  certsNote: LS;
   market: LS;
 };
 
 export const CAREERS: Career[] = [
   {
     id: "frontend",
-    emoji: "🎨",
+    shortName: { el: "Frontend", en: "Frontend" },
     color: "#e0568a",
     name: { el: "Frontend Engineer", en: "Frontend Engineer" },
     tagline: {
@@ -61,6 +66,15 @@ export const CAREERS: Career[] = [
       { el: "Clone γνωστού UI (Spotify/Airbnb) με έμφαση στο responsive", en: "Clone a known UI (Spotify/Airbnb) focusing on responsiveness" },
       { el: "Component library με documentation και tests", en: "A component library with docs and tests" },
     ],
+    certifications: [
+      { el: "freeCodeCamp: Responsive Web Design & JavaScript Algorithms (δωρεάν)", en: "freeCodeCamp: Responsive Web Design & JavaScript Algorithms (free)" },
+      { el: "Meta Front-End Developer Professional Certificate (Coursera)", en: "Meta Front-End Developer Professional Certificate (Coursera)" },
+      { el: "IAAP WAS — πιστοποίηση προσβασιμότητας, σπάνια και ξεχωρίζει", en: "IAAP WAS — accessibility certification, rare and memorable" },
+    ],
+    certsNote: {
+      el: "Εδώ η πιστοποίηση μετράει λίγο: ένα live site που ανοίγει ο συνεντευκτής ζυγίζει περισσότερο από κάθε τίτλο.",
+      en: "Certifications count for little here: a live site the interviewer can open outweighs any title.",
+    },
     market: {
       el: "Πολλές θέσεις junior, έντονος ανταγωνισμός. Ξεχωρίζεις με portfolio που δείχνει προσβασιμότητα και επιδόσεις, όχι μόνο ωραία χρώματα.",
       en: "Plenty of junior roles, heavy competition. You stand out with a portfolio that shows accessibility and performance, not just nice colours.",
@@ -68,7 +82,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "backend",
-    emoji: "⚙️",
+    shortName: { el: "Backend", en: "Backend" },
     color: "#4f7ce0",
     name: { el: "Backend Engineer", en: "Backend Engineer" },
     tagline: {
@@ -95,6 +109,16 @@ export const CAREERS: Career[] = [
       { el: "URL shortener ή booking system με σωστό σχεσιακό σχεδιασμό", en: "A URL shortener or booking system with a proper relational schema" },
       { el: "Load test που δείχνει πού σπάει το σύστημά σου", en: "A load test showing where your system breaks" },
     ],
+    certifications: [
+      { el: "AWS Certified Developer – Associate", en: "AWS Certified Developer – Associate" },
+      { el: "Microsoft Certified: Azure Developer Associate (AZ-204)", en: "Microsoft Certified: Azure Developer Associate (AZ-204)" },
+      { el: "Oracle Certified Professional: Java SE — αν στοχεύεις σε Java εταιρείες", en: "Oracle Certified Professional: Java SE — if you target Java shops" },
+      { el: "Spring Certified Professional", en: "Spring Certified Professional" },
+    ],
+    certsNote: {
+      el: "Περνάνε το πρώτο φίλτρο του HR. Στην τεχνική συνέντευξη θα κριθείς σε SQL, δομές δεδομένων και σχεδιασμό API.",
+      en: "They get you past the HR filter. The technical interview still judges SQL, data structures and API design.",
+    },
     market: {
       el: "Η πιο σταθερή ζήτηση από όλες τις κατηγορίες, σε κάθε μέγεθος εταιρείας. Οι junior θέσεις είναι πολλές αλλά ζητούν στέρεες βάσεις σε SQL και δομές δεδομένων.",
       en: "The steadiest demand of all categories, at every company size. Junior roles are plentiful but expect solid SQL and data-structure fundamentals.",
@@ -102,7 +126,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "mobile",
-    emoji: "📱",
+    shortName: { el: "Mobile", en: "Mobile" },
     color: "#9b5de5",
     name: { el: "Mobile Developer", en: "Mobile Developer" },
     tagline: {
@@ -128,6 +152,15 @@ export const CAREERS: Career[] = [
       { el: "Κάτι που χρησιμοποιεί αισθητήρες: βήματα, GPS, κάμερα", en: "Something using sensors: steps, GPS, camera" },
       { el: "Δημοσίευση μιας μικρής εφαρμογής σε πραγματικό store", en: "Ship one small app to a real store" },
     ],
+    certifications: [
+      { el: "Meta iOS ή Android Developer Professional Certificate (Coursera)", en: "Meta iOS or Android Developer Professional Certificate (Coursera)" },
+      { el: "Google Play Academy — Store Listing Certificate", en: "Google Play Academy — Store Listing Certificate" },
+      { el: "Google Cloud Associate Cloud Engineer — για το backend της εφαρμογής σου", en: "Google Cloud Associate Cloud Engineer — for your app's backend" },
+    ],
+    certsNote: {
+      el: "Η Google απέσυρε το Associate Android Developer. Μια δημοσιευμένη εφαρμογή με πραγματικούς χρήστες αξίζει περισσότερο από κάθε πιστοποίηση.",
+      en: "Google retired the Associate Android Developer exam. One published app with real users beats any certificate.",
+    },
     market: {
       el: "Λιγότερες αλλά πιο εξειδικευμένες θέσεις από το web. Μια δημοσιευμένη εφαρμογή στο store μετράει περισσότερο από δέκα ημιτελή repos.",
       en: "Fewer but more specialised roles than web. One published app counts more than ten half-finished repos.",
@@ -135,7 +168,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "dataeng",
-    emoji: "🚰",
+    shortName: { el: "Data Eng.", en: "Data Eng." },
     color: "#00a6a6",
     name: { el: "Data Engineer", en: "Data Engineer" },
     tagline: {
@@ -161,6 +194,16 @@ export const CAREERS: Career[] = [
       { el: "Μοντέλο αστεριού (star schema) πάνω σε ανοιχτά δεδομένα", en: "A star schema over an open dataset" },
       { el: "Data quality tests που χτυπάνε καμπανάκι όταν χαλάσει η πηγή", en: "Data-quality tests that alert when a source breaks" },
     ],
+    certifications: [
+      { el: "Databricks Certified Data Engineer Associate", en: "Databricks Certified Data Engineer Associate" },
+      { el: "Google Cloud Professional Data Engineer", en: "Google Cloud Professional Data Engineer" },
+      { el: "Microsoft Fabric Data Engineer Associate (DP-700)", en: "Microsoft Fabric Data Engineer Associate (DP-700)" },
+      { el: "dbt Analytics Engineering Certification", en: "dbt Analytics Engineering Certification" },
+    ],
+    certsNote: {
+      el: "Από τους τομείς όπου μετράνε αρκετά: δείχνουν ότι δούλεψες σε πλατφόρμα δεδομένων, όχι μόνο σε notebook. Το DP-700 αντικατέστησε το DP-203 που αποσύρθηκε.",
+      en: "One of the fields where they do count: they show you worked on a data platform, not just in a notebook. DP-700 replaced the retired DP-203.",
+    },
     market: {
       el: "Ζήτηση που μεγαλώνει σταθερά και λιγότερος ανταγωνισμός από το data science. Συχνά καλύτερη είσοδος στον χώρο των δεδομένων για έναν απόφοιτο.",
       en: "Steadily growing demand and less competition than data science. Often the easier entry point into data work for a graduate.",
@@ -168,7 +211,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "datasci",
-    emoji: "📊",
+    shortName: { el: "Data Science", en: "Data Science" },
     color: "#f4a261",
     name: { el: "Data Scientist / Analyst", en: "Data Scientist / Analyst" },
     tagline: {
@@ -195,6 +238,15 @@ export const CAREERS: Career[] = [
       { el: "Σχεδιασμός και ανάλυση ενός A/B test από την αρχή", en: "Design and analyse an A/B test end to end" },
       { el: "Dashboard που θα χρησιμοποιούσε πραγματικά κάποιος", en: "A dashboard someone would actually use" },
     ],
+    certifications: [
+      { el: "Google Advanced Data Analytics Professional Certificate", en: "Google Advanced Data Analytics Professional Certificate" },
+      { el: "Microsoft Certified: Azure Data Scientist Associate (DP-100)", en: "Microsoft Certified: Azure Data Scientist Associate (DP-100)" },
+      { el: "Power BI Data Analyst Associate (PL-300) ή Tableau Desktop Specialist", en: "Power BI Data Analyst Associate (PL-300) or Tableau Desktop Specialist" },
+    ],
+    certsNote: {
+      el: "Ανοίγουν την πόρτα. Στη συνέντευξη θα σου δώσουν ένα dataset και μια ερώτηση — εκεί κρίνεσαι.",
+      en: "They open the door. In the interview you get a dataset and a question — that is where it is decided.",
+    },
     market: {
       el: "Πολύ δημοφιλής προορισμός, άρα πολύς ανταγωνισμός σε junior επίπεδο. Οι θέσεις «analyst» είναι πιο προσιτές από τις «scientist» για αρχή.",
       en: "A very popular destination, so junior competition is fierce. \"Analyst\" roles are more reachable than \"scientist\" ones at the start.",
@@ -202,7 +254,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "ml",
-    emoji: "🤖",
+    shortName: { el: "ML / AI", en: "ML / AI" },
     color: "#7048e8",
     name: { el: "ML / AI Engineer", en: "ML / AI Engineer" },
     tagline: {
@@ -229,6 +281,16 @@ export const CAREERS: Career[] = [
       { el: "Εφαρμογή με LLM που κάνει κάτι χρήσιμο, όχι απλώς chat", en: "An LLM app that does something useful, not just chat" },
       { el: "Μοντέλο σε παραγωγή πίσω από API με monitoring", en: "A model in production behind an API with monitoring" },
     ],
+    certifications: [
+      { el: "AWS Certified Machine Learning Engineer – Associate", en: "AWS Certified Machine Learning Engineer – Associate" },
+      { el: "Microsoft Certified: Azure AI Engineer Associate (AI-102)", en: "Microsoft Certified: Azure AI Engineer Associate (AI-102)" },
+      { el: "DeepLearning.AI: Deep Learning & MLOps specializations", en: "DeepLearning.AI: Deep Learning & MLOps specializations" },
+      { el: "NVIDIA DLI certificates (deep learning, LLMs)", en: "NVIDIA DLI certificates (deep learning, LLMs)" },
+    ],
+    certsNote: {
+      el: "Το TensorFlow Developer Certificate καταργήθηκε το 2024. Εδώ μετράει περισσότερο ένα μοντέλο σε παραγωγή, με τίμια σύγκριση απέναντι σε baseline.",
+      en: "The TensorFlow Developer Certificate was discontinued in 2024. What counts more is a model in production, honestly compared against a baseline.",
+    },
     market: {
       el: "Υψηλοί μισθοί και τεράστιο ενδιαφέρον, αλλά λίγες πραγματικά junior θέσεις — πολλές ζητούν μεταπτυχιακό ή δυνατό portfolio.",
       en: "High salaries and huge interest, but few genuinely junior roles — many expect a master's or a strong portfolio.",
@@ -236,7 +298,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "devops",
-    emoji: "☁️",
+    shortName: { el: "DevOps", en: "DevOps" },
     color: "#2a9d8f",
     name: { el: "DevOps / Cloud Engineer", en: "DevOps / Cloud Engineer" },
     tagline: {
@@ -262,6 +324,16 @@ export const CAREERS: Career[] = [
       { el: "Υποδομή γραμμένη ολόκληρη σε Terraform", en: "Infrastructure fully described in Terraform" },
       { el: "Home lab ή cluster με monitoring και alerts", en: "A home lab or cluster with monitoring and alerts" },
     ],
+    certifications: [
+      { el: "AWS Certified Solutions Architect – Associate", en: "AWS Certified Solutions Architect – Associate" },
+      { el: "Certified Kubernetes Administrator (CKA) — ή KCNA για ξεκίνημα", en: "Certified Kubernetes Administrator (CKA) — or KCNA to start" },
+      { el: "HashiCorp Certified: Terraform Associate", en: "HashiCorp Certified: Terraform Associate" },
+      { el: "Microsoft Azure Administrator (AZ-104) ή Linux Foundation LFCS", en: "Microsoft Azure Administrator (AZ-104) or Linux Foundation LFCS" },
+    ],
+    certsNote: {
+      el: "Ο τομέας όπου οι πιστοποιήσεις μετράνε περισσότερο — και επειδή CKA και Terraform είναι πρακτικές εξετάσεις σε τερματικό, όχι πολλαπλής επιλογής.",
+      en: "The field where certifications count most — partly because CKA and Terraform are hands-on terminal exams, not multiple choice.",
+    },
     market: {
       el: "Σταθερή ζήτηση, αλλά πολύ λίγες καθαρά junior θέσεις: οι περισσότεροι φτάνουν εδώ μετά από 1-2 χρόνια ως developers ή sysadmins.",
       en: "Steady demand but very few pure junior roles: most people arrive after 1-2 years as developers or sysadmins.",
@@ -269,7 +341,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "security",
-    emoji: "🛡️",
+    shortName: { el: "Ασφάλεια", en: "Security" },
     color: "#e63946",
     name: { el: "Cybersecurity Engineer", en: "Cybersecurity Engineer" },
     tagline: {
@@ -295,6 +367,16 @@ export const CAREERS: Career[] = [
       { el: "Security audit σε δικό σου project, με γραπτή αναφορά", en: "A security audit of your own project, with a written report" },
       { el: "Home lab με ευάλωτα VMs (HackTheBox, TryHackMe)", en: "A home lab with vulnerable VMs (HackTheBox, TryHackMe)" },
     ],
+    certifications: [
+      { el: "CompTIA Security+ — το βασικό εισιτήριο εισόδου", en: "CompTIA Security+ — the standard entry ticket" },
+      { el: "eJPT (INE) — πρακτική και προσιτή για φοιτητή", en: "eJPT (INE) — hands-on and affordable for a student" },
+      { el: "Blue Team Level 1 (BTL1) ή Microsoft SC-200 για την πλευρά της άμυνας", en: "Blue Team Level 1 (BTL1) or Microsoft SC-200 for the defensive side" },
+      { el: "OSCP — δύσκολο και ακριβό, αλλά ανοίγει πόρτες σε pentesting", en: "OSCP — hard and expensive, but it opens pentesting doors" },
+    ],
+    certsNote: {
+      el: "Ο τομέας με τη μεγαλύτερη βαρύτητα σε πιστοποιήσεις: πολλές αγγελίες τις ζητούν ονομαστικά, ιδίως σε τράπεζες και συμβουλευτικές.",
+      en: "The field where certifications weigh most: many ads name them explicitly, especially in banking and consulting.",
+    },
     market: {
       el: "Μεγάλη ζήτηση και στην Ελλάδα, ιδίως σε τράπεζες, τηλεπικοινωνίες και συμβουλευτικές. Οι πιστοποιήσεις μετράνε εδώ περισσότερο από αλλού.",
       en: "Strong demand, especially in banking, telecom and consulting. Certifications matter more here than in most other paths.",
@@ -302,7 +384,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "qa",
-    emoji: "🔍",
+    shortName: { el: "QA", en: "QA" },
     color: "#606c38",
     name: { el: "QA / Test Automation Engineer", en: "QA / Test Automation Engineer" },
     tagline: {
@@ -328,6 +410,16 @@ export const CAREERS: Career[] = [
       { el: "Αναφορά bug γραμμένη σωστά, με βήματα αναπαραγωγής", en: "A properly written bug report with reproduction steps" },
       { el: "Load test που εντοπίζει το σημείο κατάρρευσης", en: "A load test that finds the breaking point" },
     ],
+    certifications: [
+      { el: "ISTQB Certified Tester Foundation Level (CTFL)", en: "ISTQB Certified Tester Foundation Level (CTFL)" },
+      { el: "ISTQB Test Automation Engineer (CT-TAE)", en: "ISTQB Test Automation Engineer (CT-TAE)" },
+      { el: "Postman API Fundamentals / API Test Automation", en: "Postman API Fundamentals / API Test Automation" },
+      { el: "ISTQB Agile Tester Extension", en: "ISTQB Agile Tester Extension" },
+    ],
+    certsNote: {
+      el: "Το ISTQB CTFL ζητείται ονομαστικά σε πολλές αγγελίες QA και είναι από τα φθηνότερα και ταχύτερα που μπορείς να πάρεις ως φοιτητής.",
+      en: "ISTQB CTFL is named explicitly in many QA ads and is among the cheapest, fastest certifications a student can get.",
+    },
     market: {
       el: "Από τις πιο προσιτές εισόδους στον κλάδο για απόφοιτο, με σαφή διαδρομή προς automation και μετά προς development ή SDET.",
       en: "One of the most accessible entry points for a graduate, with a clear path into automation and then development or SDET.",
@@ -335,7 +427,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "embedded",
-    emoji: "🔌",
+    shortName: { el: "Embedded", en: "Embedded" },
     color: "#8d6e63",
     name: { el: "Embedded / Systems Engineer", en: "Embedded / Systems Engineer" },
     tagline: {
@@ -362,6 +454,16 @@ export const CAREERS: Career[] = [
       { el: "Οδηγός συσκευής ή μια απλή υλοποίηση scheduler", en: "A device driver or a simple scheduler implementation" },
       { el: "Ρομποτάκι ή drone με έλεγχο σε πραγματικό χρόνο", en: "A small robot or drone with real-time control" },
     ],
+    certifications: [
+      { el: "Linux Foundation: Embedded Linux Development (LFD450) ή LFCS", en: "Linux Foundation: Embedded Linux Development (LFD450) or LFCS" },
+      { el: "Εκπαιδεύσεις κατασκευαστή: STM32, NXP, Espressif", en: "Vendor training: STM32, NXP, Espressif" },
+      { el: "Zephyr RTOS / FreeRTOS επίσημα courses", en: "Zephyr RTOS / FreeRTOS official courses" },
+      { el: "Βασικά ISO 26262 (functional safety), αν κοιτάς αυτοκίνηση", en: "ISO 26262 functional safety basics, if you are eyeing automotive" },
+    ],
+    certsNote: {
+      el: "Ο τομέας με τις λιγότερες αναγνωρίσιμες πιστοποιήσεις. Μια κατασκευή που δουλεύει και μπορείς να την εξηγήσεις γραμμή προς γραμμή αξίζει περισσότερο.",
+      en: "The field with the fewest recognised certifications. A build that works and that you can explain line by line is worth more.",
+    },
     market: {
       el: "Λιγότερες θέσεις αλλά και πολύ λιγότεροι υποψήφιοι. Δυνατή στην Ελλάδα σε αμυντική βιομηχανία, ενέργεια, αυτοκίνηση και ναυτιλία.",
       en: "Fewer roles but far fewer candidates. Strong in defence, energy, automotive and maritime sectors.",
@@ -369,7 +471,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "product",
-    emoji: "🧭",
+    shortName: { el: "Product", en: "Product" },
     color: "#ff8c42",
     name: { el: "Product Manager (tech)", en: "Product Manager (tech)" },
     tagline: {
@@ -395,6 +497,16 @@ export const CAREERS: Career[] = [
       { el: "Ένα δικό σου project με πραγματικούς χρήστες και μετρήσεις", en: "Your own project with real users and measured outcomes" },
       { el: "Γραπτή προδιαγραφή ενός feature με success metrics", en: "A written spec for a feature with success metrics" },
     ],
+    certifications: [
+      { el: "Professional Scrum Product Owner I (PSPO I) — φθηνό και αναγνωρίσιμο", en: "Professional Scrum Product Owner I (PSPO I) — cheap and recognised" },
+      { el: "Google Project Management Professional Certificate", en: "Google Project Management Professional Certificate" },
+      { el: "Google Analytics Certification", en: "Google Analytics Certification" },
+      { el: "Pragmatic Institute: Foundations", en: "Pragmatic Institute: Foundations" },
+    ],
+    certsNote: {
+      el: "Δεν σε κάνουν product manager, αλλά δείχνουν ότι ξέρεις το λεξιλόγιο και τη διαδικασία πριν καν μπεις στη συνέντευξη.",
+      en: "They will not make you a product manager, but they show you know the vocabulary and the process before you walk in.",
+    },
     market: {
       el: "Σπάνια προσλαμβάνουν junior PM κατευθείαν από τη σχολή. Οι περισσότεροι περνάνε πρώτα 1-3 χρόνια σε τεχνικό ρόλο, σε support ή σε associate PM πρόγραμμα.",
       en: "Junior PMs are rarely hired straight out of university. Most spend 1-3 years in a technical role, support, or an associate PM programme first.",
@@ -402,7 +514,7 @@ export const CAREERS: Career[] = [
   },
   {
     id: "research",
-    emoji: "🎓",
+    shortName: { el: "Έρευνα", en: "Research" },
     color: "#3d5a80",
     name: { el: "Έρευνα / Ακαδημαϊκή καριέρα", en: "Research / Academia" },
     tagline: {
@@ -429,6 +541,15 @@ export const CAREERS: Career[] = [
       { el: "Αναπαραγωγή των αποτελεσμάτων ενός paper και δημοσίευση του κώδικα", en: "Reproduce a paper's results and publish the code" },
       { el: "Βοηθητική δουλειά σε εργαστήριο του τμήματος από νωρίς", en: "Get into a department lab as an assistant early" },
     ],
+    certifications: [
+      { el: "Θερινά σχολεία: MLSS, ACAI, ESSLLI", en: "Summer schools: MLSS, ACAI, ESSLLI" },
+      { el: "Πιστοποιημένα μαθήματα πανεπιστημίου με βαθμό, όχι απλά online badges", en: "Graded university courses, not just online badges" },
+      { el: "NVIDIA DLI ή HPC certificates, αν δουλεύεις με υπολογιστικά βαριά προβλήματα", en: "NVIDIA DLI or HPC certificates, if your work is compute-heavy" },
+    ],
+    certsNote: {
+      el: "Στην έρευνα δεν υπάρχει πιστοποίηση που να μετράει. Το αντίστοιχό της είναι το όνομά σου σε ένα paper και ένα repo που αναπαράγει τα αποτελέσματα.",
+      en: "In research no certification counts. Its equivalent is your name on a paper and a repo that reproduces the results.",
+    },
     market: {
       el: "Χαμηλότερες αποδοχές στην αρχή και ανταγωνιστικές θέσεις, αλλά ανοίγει πόρτες σε ερευνητικά εργαστήρια βιομηχανίας που δεν ανοίγουν αλλιώς.",
       en: "Lower early pay and competitive positions, but it opens doors to industrial research labs that stay closed otherwise.",

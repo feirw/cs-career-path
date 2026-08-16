@@ -1,27 +1,26 @@
 "use client";
 
-import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Gauge, ListChecks, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
-import { LanguageToggle, LocaleProvider, useLocale } from "@/components/LocaleProvider";
+import { AppHeader } from "@/components/AppHeader";
+import { CareerSwatch } from "@/components/CareerIcon";
+import { Credit } from "@/components/Credit";
+import { useLocale } from "@/components/LocaleProvider";
+import { ProfileInstrument } from "@/components/ProfileInstrument";
+import { Button, ButtonLink } from "@/components/ui/Button";
+import { Panel, SheetLabel } from "@/components/ui/Card";
 import { CAREERS } from "@/lib/careers";
+import { cn } from "@/lib/cn";
 import { ui } from "@/lib/i18n";
 import { estimatedMinutes, questionCount, type TestMode } from "@/lib/questions";
 import { progressKey } from "@/lib/storageKeys";
 
-export default function HomePage() {
-  return (
-    <LocaleProvider>
-      <Home />
-    </LocaleProvider>
-  );
-}
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-function Home() {
+export default function HomePage() {
   const { tr } = useLocale();
-  const [progress, setProgress] = useState<Record<TestMode, boolean>>({
-    short: false,
-    full: false,
-  });
+  const [progress, setProgress] = useState<Record<TestMode, boolean>>({ short: false, full: false });
 
   useEffect(() => {
     setProgress({
@@ -32,135 +31,258 @@ function Home() {
 
   const clear = (mode: TestMode) => {
     window.localStorage.removeItem(progressKey(mode));
-    setProgress((p) => ({ ...p, [mode]: false }));
+    setProgress((current) => ({ ...current, [mode]: false }));
   };
 
+  const anyProgress = progress.short || progress.full;
+
   return (
-    <main className="mx-auto max-w-4xl px-5 py-10 sm:py-16">
-      <header className="mb-12 flex items-start justify-between gap-4">
-        <div className="text-sm font-semibold tracking-tight text-[var(--accent)]">
-          {tr(ui.appName)}
-        </div>
-        <LanguageToggle />
-      </header>
+    <>
+      <AppHeader />
 
-      <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-        {tr(ui.tagline)}
-      </h1>
-      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-        {tr(ui.heroLead)}
-      </p>
+      <main className="mx-auto max-w-6xl px-5 sm:px-8">
+        {/*
+         * Όλα όσα χρειάζεται κάποιος για να ξεκινήσει χωρούν σε μία οθόνη: τι
+         * είναι, πόσο κρατάει, και τα δύο κουμπιά εκκίνησης.
+         */}
+        <section className="flex min-h-[calc(100svh-4rem)] flex-col justify-center py-8">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <div>
+              {/* Διακριτική ένδειξη: μια κουκκίδα αντί για γεμάτο κύκλο με τσεκ,
+                  που έπιανε όλο το ύψος του πλαισίου και βάραινε τη γωνία. */}
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 text-[13px] text-[var(--ink-3)]"
+              >
+                <span aria-hidden className="size-1.5 rounded-full bg-[var(--accent)]" />
+                {tr(ui.noSignup)}
+                <span aria-hidden className="text-[var(--rule-strong)]">·</span>
+                {tr(ui.anonymous)}
+              </motion.p>
 
-      <section className="mt-10">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr(ui.chooseTest)}
-        </h2>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          <TestCard mode="short" hasProgress={progress.short} onClear={() => clear("short")} />
-          <TestCard mode="full" hasProgress={progress.full} onClear={() => clear("full")} featured />
-        </div>
-      </section>
+              {/* Δύο ελεγχόμενες γραμμές αντί για τρεις που τυλίγονταν μόνες τους. */}
+              <motion.h1
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE, delay: 0.05 }}
+                className="display mt-4 text-[34px] font-extrabold leading-[1.05] tracking-[-0.035em] sm:text-[46px] lg:text-[52px]"
+              >
+                <span className="block">{tr(ui.taglineLead)}</span>
+                <span className="block text-[var(--accent)]">{tr(ui.taglineTail)}</span>
+              </motion.h1>
 
-      <section className="mt-16">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr({ el: "Οι καριέρες που καλύπτονται", en: "The careers covered" })}
-        </h2>
-        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-          {CAREERS.map((career) => (
-            <li
-              key={career.id}
-              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"
-            >
-              <div className="flex items-baseline gap-2">
-                <span aria-hidden>{career.emoji}</span>
-                <span className="font-semibold">{tr(career.name)}</span>
-              </div>
-              <p className="mt-1 text-sm leading-relaxed text-[var(--text-muted)]">
-                {tr(career.tagline)}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE, delay: 0.1 }}
+                className="mt-4 max-w-[48ch] text-[15px] leading-[1.6] text-[var(--ink-2)] sm:text-[16px]"
+              >
+                {tr(ui.heroJob)}
+              </motion.p>
 
-      <footer className="mt-16 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-muted)]">
-        <p>{tr(ui.disclaimer)}</p>
-      </footer>
-    </main>
+              {/* Τα δύο κουμπιά εκκίνησης, ορατά αμέσως */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE, delay: 0.16 }}
+                className="mt-6 flex max-w-[460px] flex-col gap-2.5"
+              >
+                <StartButton mode="full" hasProgress={progress.full} primary />
+                <StartButton mode="short" hasProgress={progress.short} />
+              </motion.div>
+
+              {anyProgress && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {(["full", "short"] as const)
+                    .filter((mode) => progress[mode])
+                    .map((mode) => (
+                      <Button key={mode} variant="quiet" size="sm" onClick={() => clear(mode)}>
+                        <RotateCcw aria-hidden strokeWidth={1.75} className="size-3.5" />
+                        {tr(ui.startOver)} · {tr(mode === "short" ? ui.shortTest : ui.fullTest)}
+                      </Button>
+                    ))}
+                </div>
+              )}
+
+              {/* Τρία βήματα σε μία γραμμή: τι θα συμβεί μόλις πατήσεις */}
+              <motion.ol
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[var(--rule)] pt-5 text-[12.5px] text-[var(--ink-3)]"
+              >
+                {[tr(ui.stepAnswer), tr(ui.stepSee), tr(ui.stepPlan)].map((step, index) => (
+                  <li key={step} className="flex items-center gap-2">
+                    <span className="mono grid size-5 shrink-0 place-items-center rounded-full border border-[var(--rule-strong)] text-[10px] text-[var(--ink-4)]">
+                      {index + 1}
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </motion.ol>
+            </div>
+
+            {/* Το όργανο: κυκλικό, με απαλή λάμψη αντί για πλαίσιο */}
+            <div className="relative hidden justify-center lg:flex">
+              <div aria-hidden className="halo absolute inset-0 scale-110" />
+              <ProfileInstrument className="relative h-auto w-full max-w-[470px]" />
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-[var(--rule)] py-16">
+          <SheetLabel>{tr({ el: "Οι 12 κατευθύνσεις", en: "The 12 directions" })}</SheetLabel>
+
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+            {CAREERS.map((career, index) => (
+              <motion.li
+                key={career.id}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.35, delay: Math.min(index * 0.025, 0.2), ease: EASE }}
+              >
+                <Panel
+                  interactive
+                  className="group/card flex h-full items-center gap-4 p-4 pr-5"
+                  style={{ ["--card-color" as string]: career.color }}
+                >
+                  <CareerSwatch
+                    id={career.id}
+                    color={career.color}
+                    className="transition-transform duration-200 ease-out group-hover/card:scale-110"
+                  />
+                  <div className="min-w-0">
+                    <p className="font-semibold tracking-tight transition-colors duration-200 ease-out group-hover/card:text-[var(--card-color)]">
+                      {tr(career.name)}
+                    </p>
+                    <p className="mt-0.5 text-[13px] leading-relaxed text-[var(--ink-3)]">
+                      {tr(career.tagline)}
+                    </p>
+                  </div>
+                </Panel>
+              </motion.li>
+            ))}
+          </ul>
+        </section>
+
+        <footer className="flex flex-col gap-4 border-t border-[var(--rule)] py-8 sm:flex-row sm:items-end sm:justify-between">
+          <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">
+            {tr(ui.disclaimer)}
+          </p>
+          <Credit className="shrink-0" />
+        </footer>
+      </main>
+    </>
   );
 }
 
-function TestCard({
+/**
+ * Το κουμπί εκκίνησης είναι το βαρύτερο στοιχείο της σελίδας: μεγάλο ύψος, δύο
+ * σειρές (τι είναι + πόσο κρατάει) και βέλος σε δικό του κύκλο, ώστε να διαβάζεται
+ * αμέσως ως «εδώ πατάς».
+ */
+function StartButton({
   mode,
   hasProgress,
-  onClear,
-  featured = false,
+  primary = false,
 }: {
   mode: TestMode;
   hasProgress: boolean;
-  onClear: () => void;
-  featured?: boolean;
+  primary?: boolean;
 }) {
   const { tr } = useLocale();
-  const isShort = mode === "short";
-  const total = questionCount(mode);
+  const reduced = useReducedMotion();
 
   return (
-    <article
-      className={`flex flex-col rounded-2xl border bg-[var(--surface)] p-6 ${
-        featured ? "border-[var(--accent)]" : "border-[var(--border)]"
-      }`}
-    >
-      <h3 className="text-xl font-bold tracking-tight">
-        {tr(isShort ? ui.shortTest : ui.fullTest)}
-      </h3>
-      <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-        {tr(isShort ? ui.shortTestLead : ui.fullTestLead)}
-      </p>
+    <span className="relative inline-flex w-full">
+      {/* Απαλός παλμός μόνο πίσω από την κύρια ενέργεια. */}
+      {primary && !reduced && (
+        <motion.span
+          aria-hidden
+          className="absolute inset-0 -z-10 rounded-full bg-[var(--accent)]"
+          initial={{ opacity: 0.18, scale: 1 }}
+          animate={{ opacity: [0.18, 0.05, 0.18], scale: [1, 1.06, 1] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      )}
 
-      <dl className="mt-5 flex flex-wrap gap-2 text-xs">
-        <Pill>
-          {total} {tr(ui.questions)}
-        </Pill>
-        <Pill>
-          ~{estimatedMinutes(mode)} {tr(ui.minutes)}
-        </Pill>
-        <Pill>{tr(ui.anonymous)}</Pill>
-      </dl>
-
-      <p className="mt-4 text-xs leading-relaxed text-[var(--text-muted)]">
-        {tr(isShort ? ui.shortTestNote : ui.fullTestNote)}
-      </p>
-
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <Link
-          href={`/test?mode=${mode}`}
-          className={`rounded-xl px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] active:scale-[0.99] ${
-            featured
-              ? "bg-[var(--accent)] text-white"
-              : "border border-[var(--border)] hover:bg-[var(--surface-2)]"
-          }`}
-        >
-          {hasProgress ? tr(ui.resumeTest) : tr(ui.startTest)}
-        </Link>
-        {hasProgress && (
-          <button
-            type="button"
-            onClick={onClear}
-            className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)]"
-          >
-            {tr(ui.startOver)}
-          </button>
+      <ButtonLink
+        href={`/test?mode=${mode}`}
+        variant={primary ? "primary" : "outline"}
+        size="xl"
+        className={cn(
+          "group/cta w-full justify-start gap-3.5 py-3 pl-4 pr-3.5",
+          primary ? "h-auto min-h-[80px]" : "h-auto min-h-[72px]",
         )}
-      </div>
-    </article>
-  );
-}
+      >
+        {/* Εικονίδιο που ξεχωρίζει τα δύο τεστ πριν καν διαβάσεις τίτλο */}
+        <span
+          className={cn(
+            "grid size-10 shrink-0 place-items-center rounded-full",
+            primary
+              ? "bg-white/18 text-white dark:bg-black/25 dark:text-[var(--ink-invert)]"
+              : "bg-[var(--accent-soft)] text-[var(--accent)]",
+          )}
+        >
+          {primary ? (
+            <ListChecks aria-hidden strokeWidth={1.75} className="size-5" />
+          ) : (
+            <Gauge aria-hidden strokeWidth={1.75} className="size-5" />
+          )}
+        </span>
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-lg bg-[var(--surface-2)] px-2.5 py-1 text-[var(--text-muted)]">
-      {children}
+        <span className="flex min-w-0 flex-1 flex-col items-start gap-1 text-left">
+          <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="display text-[17px] font-bold tracking-[-0.02em]">
+              {tr(mode === "short" ? ui.shortTest : ui.fullTest)}
+            </span>
+            {primary && (
+              <span className="rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-semibold text-white dark:bg-black/25 dark:text-[var(--ink-invert)]">
+                {tr({ el: "Συνιστάται", en: "Recommended" })}
+              </span>
+            )}
+          </span>
+
+          <span
+            className={cn(
+              "text-[13px] font-normal leading-snug",
+              primary ? "text-white/90 dark:text-[var(--ink-invert)]/85" : "text-[var(--ink-3)]",
+            )}
+          >
+            <span className="mono">{questionCount(mode)}</span> {tr(ui.questions)}
+            {" · "}
+            <span className="mono">{estimatedMinutes(mode)}</span> {tr(ui.minutes)}
+            {" · "}
+            {tr(mode === "short" ? ui.shortTestSpec : ui.fullTestSpec)}
+          </span>
+
+          {hasProgress && (
+            <span
+              className={cn(
+                "text-[12px] font-medium",
+                primary ? "text-white dark:text-[var(--ink-invert)]" : "text-[var(--accent)]",
+              )}
+            >
+              {tr(ui.resumeTest)}
+            </span>
+          )}
+        </span>
+
+        <span
+          className={cn(
+            "grid size-10 shrink-0 place-items-center rounded-full transition-transform duration-200 ease-out",
+            "group-hover/cta:translate-x-0.5",
+            primary
+              ? "bg-white/18 text-white dark:bg-black/25 dark:text-[var(--ink-invert)]"
+              : "bg-[var(--panel-2)] text-[var(--ink-2)]",
+          )}
+        >
+          <ArrowRight aria-hidden strokeWidth={2} className="size-5" />
+        </span>
+      </ButtonLink>
     </span>
   );
 }

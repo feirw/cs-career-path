@@ -11,17 +11,25 @@ export const DEFAULT_LOCALE: Locale = "el";
 
 export const ui = {
   appName: { el: "CS Career Path", en: "CS Career Path" },
-  tagline: {
-    el: "Βρες ποιο μονοπάτι της πληροφορικής σου ταιριάζει",
-    en: "Find the tech career path that fits you",
-  },
+  /** Ο τίτλος σπάει σε δύο ελεγχόμενες γραμμές αντί να τυλίγεται μόνος του. */
+  taglineLead: { el: "Βρες το μονοπάτι σου", en: "Find your path" },
+  taglineTail: { el: "στην πληροφορική", en: "in tech" },
   heroLead: {
     el: "Διάλεξε πόσο βαθιά θέλεις να πας. Χωρίς εγγραφή, χωρίς email. Στο τέλος παίρνεις κατάταξη σε 12 καριέρες, το προφίλ σου και ένα roadmap για να ξεκινήσεις.",
     en: "Choose how deep you want to go. No signup, no email. You get a ranking across 12 careers, your trait profile and a roadmap to get started.",
   },
+  /** Μία πρόταση που εξηγεί τη δουλειά της σελίδας, πάνω από τη γραμμή του folder. */
+  heroJob: {
+    el: "Απαντάς για το πώς σκέφτεσαι και δουλεύεις, και βλέπεις ποιες από τις 12 κατευθύνσεις σου ταιριάζουν — με roadmap για να ξεκινήσεις.",
+    en: "Answer how you think and work, then see which of the 12 directions fit you — with a roadmap to get started.",
+  },
+  stepAnswer: { el: "Απαντάς αυθόρμητα", en: "Answer on instinct" },
+  stepSee: { el: "Βλέπεις το προφίλ σου", en: "See your profile" },
+  stepPlan: { el: "Παίρνεις roadmap", en: "Get a roadmap" },
+  noSignup: { el: "Χωρίς εγγραφή", en: "No signup" },
   // Επιλογή τεστ
   chooseTest: { el: "Διάλεξε τεστ", en: "Choose your test" },
-  shortTest: { el: "Σύντομο τεστ", en: "Quick test" },
+  shortTest: { el: "Γρήγορο τεστ", en: "Quick test" },
   fullTest: { el: "Πλήρες τεστ", en: "Full test" },
   shortTestLead: {
     el: "20 γρήγορες ερωτήσεις που απαντιούνται με το ένστικτο, σε 2-3 λεπτά. Δίνει μια χοντρική εικόνα: ποιες κατευθύνσεις σε αγγίζουν.",
@@ -30,6 +38,15 @@ export const ui = {
   fullTestLead: {
     el: "100 σενάρια από πραγματική δουλειά: τι θα έκανες όταν κάτι σπάει, τι θυσιάζεις, τι αντέχεις. Ξεκαθαρίζει την κατεύθυνση.",
     en: "100 scenarios from real work: what you'd do when things break, what you'd sacrifice, what you can live with. It settles the direction.",
+  },
+  /** Μία γραμμή προδιαγραφών κάτω από κάθε κουμπί, ώστε η διαφορά να είναι σαφής. */
+  fullTestSpec: {
+    el: "ξεκάθαρη κατεύθυνση",
+    en: "a clear direction",
+  },
+  shortTestSpec: {
+    el: "μια πρώτη εικόνα",
+    en: "a first impression",
   },
   shortTestNote: {
     el: "Υποτυπώδες αποτέλεσμα — καλό για να ξεκινήσεις τη σκέψη.",
@@ -92,6 +109,7 @@ export const ui = {
   techToLearn: { el: "Τεχνολογίες να μάθεις", en: "Technologies to learn" },
   coursesToTake: { el: "Μαθήματα / γνώσεις", en: "Courses / knowledge" },
   portfolioProjects: { el: "Projects για portfolio", en: "Portfolio projects" },
+  certifications: { el: "Πιστοποιήσεις για συνεντεύξεις", en: "Certifications for interviews" },
   juniorMarket: { el: "Junior αγορά", en: "Junior market" },
   dayToDay: { el: "Η καθημερινότητα", en: "Day to day" },
   downloadPdf: { el: "Κατέβασε PDF", en: "Download PDF" },

@@ -12,15 +12,15 @@ export const section10: Section = {
       id: "q91",
       section: 10,
       text: {
-        el: "Δύο δουλειές, ίδια αμοιβή. Ποια παίρνεις;",
-        en: "Two jobs, same pay. Which do you take?",
+        el: "Δύο προσφορές εργασίας, ίδιος μισθός. Ποια παίρνεις;",
+        en: "Two job offers, same salary. Which do you take?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Κάτι που βγαίνει στον κόσμο κάθε βδομάδα",
-            en: "Something that reaches the public every week",
+            el: "Ομάδα προϊόντος που βγάζει νέα έκδοση κάθε βδομάδα",
+            en: "A product team shipping a new release every week",
           },
           c: { frontend: 2, product: 3, mobile: 1 },
           t: { product: 3 },
@@ -28,8 +28,8 @@ export const section10: Section = {
         {
           id: "b",
           label: {
-            el: "Κάτι που το πατάνε όλοι χωρίς να το ξέρουν",
-            en: "Something everyone stands on without knowing",
+            el: "Ομάδα υποδομής που την πατάνε όλες οι άλλες ομάδες",
+            en: "An infrastructure team every other team stands on",
           },
           c: { devops: 3, dataeng: 2, backend: 1 },
           t: { ops: 3 },
@@ -37,8 +37,8 @@ export const section10: Section = {
         {
           id: "c",
           label: {
-            el: "Κάτι δύσκολο με αργό ορατό αποτέλεσμα",
-            en: "Something hard with slow visible results",
+            el: "Ερευνητική ομάδα με δύσκολο πρόβλημα και αργό αποτέλεσμα",
+            en: "A research group with a hard problem and slow results",
           },
           c: { research: 3, ml: 2, embedded: 1 },
           t: { research: 3 },
@@ -46,11 +46,20 @@ export const section10: Section = {
         {
           id: "d",
           label: {
-            el: "Κάτι όπου η δουλειά είναι να μη συμβεί κάτι κακό",
-            en: "Something where the job is that nothing bad happens",
+            el: "Ομάδα ασφάλειας που η δουλειά της είναι να μη συμβεί κάτι κακό",
+            en: "A security team whose job is that nothing bad happens",
           },
           c: { security: 3, qa: 2 },
           t: { adversarial: 3 },
+        },
+        {
+          id: "e",
+          label: {
+            el: "Ομάδα που φτιάχνει κάτι φυσικό: συσκευές, ρομπότ, οχήματα",
+            en: "A team building something physical: devices, robots, vehicles",
+          },
+          c: { embedded: 3, mobile: 1 },
+          t: { systems: 3 },
         },
       ],
     },

@@ -1,67 +1,124 @@
 "use client";
 
-import { TRAITS, type TraitId } from "@/lib/traits";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import { useLocale } from "./LocaleProvider";
+import { TRAITS, type TraitId } from "@/lib/traits";
 
 /**
- * Ένα απλό radar chart σε καθαρό SVG — χωρίς εξωτερική βιβλιοθήκη, ώστε να
- * τυπώνεται σωστά και σε PDF.
+ * Το προφίλ ως όργανο μέτρησης: διακεκομμένοι δακτύλιοι βαθμονόμησης, μία ακτίνα
+ * ανά διάσταση, τιμές σε monospace πάνω στον κατακόρυφο άξονα. Καθαρό SVG ώστε
+ * να τυπώνεται σωστά σε PDF.
  */
 export function RadarChart({
   values,
-  size = 320,
+  size = 360,
 }: {
   values: Record<TraitId, number>;
   size?: number;
 }) {
   const { tr } = useLocale();
+  const reduced = useReducedMotion();
+  const ref = useRef<SVGSVGElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
   const cx = size / 2;
   const cy = size / 2;
-  const radius = size * 0.32;
+  const radius = size * 0.29;
   const n = TRAITS.length;
+
+  /** Ίδιος λόγος με το ProfileInstrument: τριγωνομετρία → στρογγυλοποίηση, αλλιώς
+   *  server και browser διαφωνούν στα τελευταία δεκαδικά (hydration mismatch). */
+  const round = (value: number) => Math.round(value * 1000) / 1000;
 
   const pointAt = (index: number, ratio: number) => {
     const angle = (Math.PI * 2 * index) / n - Math.PI / 2;
-    return [cx + Math.cos(angle) * radius * ratio, cy + Math.sin(angle) * radius * ratio] as const;
+    return [
+      round(cx + Math.cos(angle) * radius * ratio),
+      round(cy + Math.sin(angle) * radius * ratio),
+    ] as const;
   };
 
-  const rings = [0.25, 0.5, 0.75, 1];
-
-  const polygon = TRAITS.map((trait, i) => {
-    const ratio = Math.max(0.04, (values[trait.id] ?? 0) / 100);
-    return pointAt(i, ratio).join(",");
-  }).join(" ");
+  const ratioFor = (id: TraitId) => Math.max(0.04, (values[id] ?? 0) / 100);
+  const shape = TRAITS.map((trait, index) => pointAt(index, ratioFor(trait.id)).join(",")).join(" ");
 
   return (
     <svg
+      ref={ref}
       viewBox={`0 0 ${size} ${size}`}
       className="h-auto w-full max-w-[420px]"
       role="img"
-      aria-label={tr({ el: "Το προφίλ σου σε 8 διαστάσεις", en: "Your profile across 8 dimensions" })}
+      aria-label={tr({
+        el: "Το προφίλ σου σε 8 διαστάσεις",
+        en: "Your profile across 8 dimensions",
+      })}
     >
-      {rings.map((ring) => (
-        <polygon
+      {[0.25, 0.5, 0.75, 1].map((ring) => (
+        <circle
           key={ring}
-          points={TRAITS.map((_, i) => pointAt(i, ring).join(",")).join(" ")}
+          cx={cx}
+          cy={cy}
+          r={radius * ring}
           fill="none"
-          stroke="var(--border)"
+          stroke="var(--rule)"
           strokeWidth={1}
+          strokeDasharray={ring === 1 ? undefined : "2 5"}
         />
       ))}
-      {TRAITS.map((_, i) => {
-        const [x, y] = pointAt(i, 1);
-        return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="var(--border)" strokeWidth={1} />;
+
+      {TRAITS.map((_, index) => {
+        const [x, y] = pointAt(index, 1);
+        return (
+          <line key={index} x1={cx} y1={cy} x2={x} y2={y} stroke="var(--rule)" strokeWidth={1} />
+        );
       })}
 
-      <polygon points={polygon} fill="var(--accent)" fillOpacity={0.25} stroke="var(--accent)" strokeWidth={2} />
+      {/* Βαθμονόμηση στον κατακόρυφο άξονα */}
+      {[25, 50, 75, 100].map((value) => (
+        <text
+          key={value}
+          x={cx + 4}
+          y={cy - radius * (value / 100) + 3}
+          fontSize={size * 0.026}
+          className="mono"
+          fill="var(--ink-4)"
+        >
+          {value}
+        </text>
+      ))}
 
-      {TRAITS.map((trait, i) => {
-        const [px, py] = pointAt(i, Math.max(0.04, (values[trait.id] ?? 0) / 100));
-        return <circle key={trait.id} cx={px} cy={py} r={3} fill="var(--accent)" />;
-      })}
+      <motion.g
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+        initial={reduced ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
+        animate={inView ? { scale: 1, opacity: 1 } : undefined}
+        transition={{ duration: 0.75, ease: [0.2, 0.9, 0.25, 1] }}
+      >
+        <polygon
+          points={shape}
+          fill="var(--accent)"
+          fillOpacity={0.14}
+          stroke="var(--accent)"
+          strokeWidth={2}
+          strokeLinejoin="round"
+        />
+        {TRAITS.map((trait, index) => {
+          const [px, py] = pointAt(index, ratioFor(trait.id));
+          return (
+            <circle
+              key={trait.id}
+              cx={px}
+              cy={py}
+              r={3}
+              fill="var(--panel)"
+              stroke="var(--accent)"
+              strokeWidth={1.5}
+            />
+          );
+        })}
+      </motion.g>
 
-      {TRAITS.map((trait, i) => {
-        const [x, y] = pointAt(i, 1.28);
+      {TRAITS.map((trait, index) => {
+        const [x, y] = pointAt(index, 1.32);
         const anchor = x < cx - 8 ? "end" : x > cx + 8 ? "start" : "middle";
         return (
           <text
@@ -70,8 +127,9 @@ export function RadarChart({
             y={y}
             textAnchor={anchor}
             dominantBaseline="middle"
-            fontSize={size * 0.036}
-            fill="var(--text-muted)"
+            fontSize={size * 0.032}
+            fontWeight={500}
+            fill="var(--ink-3)"
           >
             {tr(trait.name)}
           </text>

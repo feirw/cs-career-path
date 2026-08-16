@@ -2,25 +2,25 @@ import type { Section } from "./types";
 
 export const section5: Section = {
   index: 5,
-  title: { el: "Όταν μαθαίνεις κάτι καινούριο", en: "Learning something new" },
+  title: { el: "Πώς μαθαίνεις", en: "How you learn" },
   subtitle: {
-    el: "Ο τρόπος που πλησιάζεις κάτι άγνωστο — μια γλώσσα, ένα όργανο, έναν χάρτη — δείχνει πώς θα δουλεύεις για δεκαετίες.",
-    en: "How you approach something unfamiliar — a language, an instrument, a map — predicts how you'll work for decades.",
+    el: "Στην πληροφορική μαθαίνεις για πάντα. Το πώς το κάνεις μετράει περισσότερο από το τι ξέρεις σήμερα.",
+    en: "In this field you never stop learning. How you do it matters more than what you know today.",
   },
   questions: [
     {
       id: "q41",
       section: 5,
       text: {
-        el: "Αποφασίζεις να μάθεις ένα μουσικό όργανο. Πώς ξεκινάς;",
-        en: "You decide to learn a musical instrument. How do you start?",
+        el: "Πρέπει να μάθεις ένα καινούριο framework μέσα σε μια βδομάδα.",
+        en: "You need to learn a new framework within a week.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Μαθαίνω ένα κομμάτι που μου αρέσει, με το αυτί",
-            en: "Learn one song I love, by ear",
+            el: "Ξεκινάω να φτιάχνω κάτι δικό μου και ψάχνω όποτε κολλήσω",
+            en: "Start building something of mine and look things up when stuck",
           },
           c: { frontend: 3, mobile: 2 },
           t: { creative: 3 },
@@ -28,38 +28,38 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Ξεκινάω από τη θεωρία: κλίμακες, πώς δένουν οι νότες",
-            en: "Start with theory: scales, why notes fit together",
+            el: "Διαβάζω την τεκμηρίωση από την αρχή ως το τέλος",
+            en: "Read the documentation front to back",
           },
-          c: { research: 3, ml: 2 },
-          t: { research: 3 },
+          c: { embedded: 2, backend: 2, qa: 1 },
+          t: { systems: 3 },
         },
         {
           id: "c",
           label: {
-            el: "Ορίζω πρόγραμμα εξάσκησης και το κρατάω",
-            en: "Set a practice schedule and keep it",
+            el: "Ψάχνω γιατί φτιάχτηκε και τι πρόβλημα λύνει",
+            en: "Find out why it exists and what problem it solves",
           },
-          c: { devops: 2, qa: 3 },
-          t: { ops: 3 },
+          c: { research: 3, product: 2 },
+          t: { research: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Βρίσκω δάσκαλο. Μόνος μου θα μάθω λάθος",
-            en: "Find a teacher. Alone I'd learn it wrong",
+            el: "Ανοίγω τον κώδικά του να δω πώς είναι φτιαγμένο",
+            en: "Open its source to see how it's built",
           },
-          c: { product: 3, qa: 1 },
-          t: { people: 3 },
+          c: { research: 2, security: 2, embedded: 1 },
+          t: { research: 1, systems: 2 },
         },
         {
           id: "e",
           label: {
-            el: "Ανοίγω το όργανο να δω πώς βγαίνει ο ήχος",
-            en: "Open the instrument up to see how the sound is made",
+            el: "Βρίσκω κάποιον που το ξέρει και τον ρωτάω τα δύσκολα",
+            en: "Find someone who knows it and ask them the hard parts",
           },
-          c: { embedded: 3, security: 1 },
-          t: { systems: 3 },
+          c: { product: 3, frontend: 1 },
+          t: { people: 3 },
         },
       ],
     },
@@ -67,15 +67,15 @@ export const section5: Section = {
       id: "q42",
       section: 5,
       text: {
-        el: "Ξεκινάς κάτι δικό σου από το μηδέν. Ποιο κομμάτι πιάνεις πρώτο;",
-        en: "You start something of your own from zero. Which part first?",
+        el: "Ξεκινάς ένα δικό σου project. Ποιο κομμάτι πιάνεις πρώτο;",
+        en: "You start a project of your own. Which part first?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Αυτό που θα φαίνεται. Θέλω κάτι να δείξω σήμερα",
-            en: "The visible part. I want something to show today",
+            el: "Την οθόνη· θέλω να δω κάτι να δουλεύει σήμερα",
+            en: "The screen; I want to see something working today",
           },
           c: { frontend: 3, mobile: 2 },
           t: { creative: 3 },
@@ -83,8 +83,8 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Τα θεμέλια. Τα υπόλοιπα χτίζονται πάνω τους",
-            en: "The foundations. Everything else sits on them",
+            el: "Το μοντέλο δεδομένων· όλα τα άλλα χτίζονται πάνω του",
+            en: "The data model; everything else builds on it",
           },
           c: { backend: 3, dataeng: 2 },
           t: { systems: 3 },
@@ -92,8 +92,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Το πιο δύσκολο, να δω αν γίνεται καν",
-            en: "The hardest bit, to see if it's even possible",
+            el: "Το πιο δύσκολο τεχνικά, να δω αν γίνεται καν",
+            en: "The hardest technical bit, to see if it's even possible",
           },
           c: { ml: 3, research: 2, embedded: 1 },
           t: { research: 2, analytical: 2 },
@@ -101,17 +101,17 @@ export const section5: Section = {
         {
           id: "d",
           label: {
-            el: "Τον τρόπο να το δοκιμάζω και να το επαναλαμβάνω εύκολα",
-            en: "The way to test it and repeat it easily",
+            el: "Το να ανεβαίνει και να τρέχει κάπου από την πρώτη μέρα",
+            en: "Getting it deployed and running somewhere from day one",
           },
-          c: { devops: 3, qa: 2 },
+          c: { devops: 3, qa: 1 },
           t: { ops: 3 },
         },
         {
           id: "e",
           label: {
-            el: "Ρωτάω πρώτα αν το θέλει κανείς",
-            en: "First ask whether anyone wants it",
+            el: "Ρωτάω πρώτα δύο-τρεις αν θα το χρησιμοποιούσαν",
+            en: "First ask two or three people whether they'd use it",
           },
           c: { product: 3, datasci: 1 },
           t: { product: 3 },
@@ -122,15 +122,15 @@ export const section5: Section = {
       id: "q43",
       section: 5,
       text: {
-        el: "Τελείωσε και δουλεύει. Τι σε τραβάει αμέσως μετά;",
-        en: "It's finished and it works. What pulls you right after?",
+        el: "Το project σου δουλεύει. Τι σε τραβάει αμέσως μετά;",
+        en: "Your project works. What pulls you immediately after?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Να το δώσω σε κόσμο και να δω πώς το χρησιμοποιεί",
-            en: "Putting it in front of people and watching them use it",
+            el: "Να το δώσω σε κόσμο και να δω πού κολλάνε",
+            en: "Give it to people and watch where they get stuck",
           },
           c: { product: 3, frontend: 1 },
           t: { product: 3 },
@@ -138,8 +138,8 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Να το κάνω τρεις φορές πιο γρήγορο για την ίδια δουλειά",
-            en: "Making it three times faster for the same job",
+            el: "Να το κάνω τρεις φορές πιο γρήγορο",
+            en: "Make it three times faster",
           },
           c: { embedded: 3, backend: 2 },
           t: { systems: 3 },
@@ -147,8 +147,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Να δω τι νούμερα βγάζει και τι μαθαίνω από αυτά",
-            en: "Seeing what numbers it produces and what they tell me",
+            el: "Να δω τι δεδομένα βγάζει και τι μαθαίνω από αυτά",
+            en: "See what data it produces and what I learn from it",
           },
           c: { datasci: 3, dataeng: 1 },
           t: { analytical: 3 },
@@ -156,8 +156,8 @@ export const section5: Section = {
         {
           id: "d",
           label: {
-            el: "Να προσπαθήσω να το χαλάσω μόνος μου",
-            en: "Trying to break it myself",
+            el: "Να του επιτεθώ μόνος μου, να δω πόσο εύκολα πέφτει",
+            en: "Attack it myself and see how easily it falls",
           },
           c: { security: 3, qa: 2 },
           t: { adversarial: 3 },
@@ -165,11 +165,11 @@ export const section5: Section = {
         {
           id: "e",
           label: {
-            el: "Να ξεκινήσω κάτι εντελώς άλλο",
-            en: "Starting something completely different",
+            el: "Να το βάλω να ανεβαίνει μόνο του με κάθε αλλαγή",
+            en: "Make it deploy itself on every change",
           },
-          c: { mobile: 2, ml: 2, frontend: 1 },
-          t: { creative: 2 },
+          c: { devops: 3, dataeng: 1 },
+          t: { ops: 3 },
         },
       ],
     },
@@ -177,15 +177,15 @@ export const section5: Section = {
       id: "q44",
       section: 5,
       text: {
-        el: "Έχεις έναν ελεύθερο μήνα για να μάθεις κάτι σε βάθος.",
-        en: "You have a free month to learn something properly.",
+        el: "Ένας ελεύθερος μήνας για να μάθεις κάτι σε βάθος. Τι διαλέγεις;",
+        en: "One free month to learn something deeply. What do you pick?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Πώς είναι φτιαγμένο από μέσα κάτι που χρησιμοποιώ κάθε μέρα",
-            en: "How something I use daily is built inside",
+            el: "Λειτουργικά συστήματα και μνήμη: τι γίνεται κάτω από τη γλώσσα σου",
+            en: "Operating systems and memory: what happens under your language",
           },
           c: { embedded: 3, security: 2, backend: 1 },
           t: { systems: 3 },
@@ -193,8 +193,8 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Πώς βγάζεις σωστά συμπεράσματα από ελλιπή στοιχεία",
-            en: "How to reach sound conclusions from incomplete evidence",
+            el: "Στατιστική και πιθανότητες, να μη με ξεγελάνε τα νούμερα",
+            en: "Statistics and probability, so numbers stop fooling me",
           },
           c: { datasci: 3, ml: 2, research: 1 },
           t: { analytical: 3 },
@@ -202,8 +202,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Πώς φτιάχνεις κάτι που το καταλαβαίνει ο κόσμος χωρίς οδηγίες",
-            en: "How to make something people understand without instructions",
+            el: "Σχεδίαση διεπαφών και πώς σκέφτεται ο χρήστης",
+            en: "Interface design and how users actually think",
           },
           c: { frontend: 3, product: 2, mobile: 1 },
           t: { creative: 3 },
@@ -211,8 +211,8 @@ export const section5: Section = {
         {
           id: "d",
           label: {
-            el: "Πώς κρατιέται κάτι μεγάλο σε λειτουργία χωρίς εκπλήξεις",
-            en: "How something large keeps running without surprises",
+            el: "Δίκτυα, cloud και πώς κρατιέται κάτι ζωντανό",
+            en: "Networks, cloud and how something stays alive",
           },
           c: { devops: 3, dataeng: 2 },
           t: { ops: 3 },
@@ -220,11 +220,20 @@ export const section5: Section = {
         {
           id: "e",
           label: {
-            el: "Πώς πείθεις ανθρώπους που ξεκινούν με άλλη άποψη",
-            en: "How to persuade people who start out disagreeing",
+            el: "Κρυπτογραφία και πώς σπάνε τα συστήματα",
+            en: "Cryptography and how systems get broken",
           },
-          c: { product: 3 },
-          t: { people: 3 },
+          c: { security: 3, qa: 1 },
+          t: { adversarial: 3 },
+        },
+        {
+          id: "f",
+          label: {
+            el: "Θεωρία υπολογισμού και αλγόριθμοι σε βάθος",
+            en: "Theory of computation and algorithms in depth",
+          },
+          c: { research: 3, ml: 1 },
+          t: { research: 3 },
         },
       ],
     },
@@ -232,15 +241,15 @@ export const section5: Section = {
       id: "q45",
       section: 5,
       text: {
-        el: "Βλέπεις κάποιον να δουλεύει και ζηλεύεις λίγο. Τι κάνει;",
-        en: "You watch someone work and feel a little envious. What are they doing?",
+        el: "Βλέπεις έναν συμφοιτητή σου και ζηλεύεις λίγο. Τι κάνει;",
+        en: "You watch a classmate and feel a bit envious. What are they doing?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Δείχνει κάτι που έφτιαξε και η αίθουσα το θέλει",
-            en: "Showing something they built while the room wants it",
+            el: "Παρουσιάζει κάτι που έφτιαξε και όλοι θέλουν να το δοκιμάσουν",
+            en: "Demoing something they built that everyone wants to try",
           },
           c: { product: 3, frontend: 2 },
           t: { product: 2, people: 2 },
@@ -248,8 +257,8 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Καταλαβαίνει σε δέκα λεπτά κάτι που άλλοι κοιτούν μέρες",
-            en: "Understanding in ten minutes what others stare at for days",
+            el: "Καταλαβαίνει σε δέκα λεπτά κώδικα που άλλοι κοιτούν μέρες",
+            en: "Understanding in ten minutes code others stare at for days",
           },
           c: { backend: 2, embedded: 2, security: 2 },
           t: { systems: 3 },
@@ -257,8 +266,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Απαντά με ένα γράφημα σε κάτι που μάλωναν μήνες",
-            en: "Answering with one chart what people argued about for months",
+            el: "Απαντά με ένα γράφημα σε κάτι που όλοι μάντευαν",
+            en: "Answering with one chart what everyone was guessing about",
           },
           c: { datasci: 3, ml: 1 },
           t: { analytical: 3 },
@@ -266,8 +275,8 @@ export const section5: Section = {
         {
           id: "d",
           label: {
-            el: "Δουλεύει χρόνια σε κάτι που δεν έχει λύσει κανείς",
-            en: "Working for years on something nobody has cracked",
+            el: "Δουλεύει μήνες σε ένα πρόβλημα που δεν έχει λυθεί",
+            en: "Working for months on an unsolved problem",
           },
           c: { research: 3, ml: 2 },
           t: { research: 3 },
@@ -275,8 +284,8 @@ export const section5: Section = {
         {
           id: "e",
           label: {
-            el: "Έχει φτιάξει κάτι που δουλεύει μόνο του χωρίς αυτόν",
-            en: "Has built something that runs itself without them",
+            el: "Έχει στήσει κάτι που τρέχει μόνο του και δεν το ακουμπάει",
+            en: "Has set up something that runs itself and needs no touching",
           },
           c: { devops: 3, dataeng: 2 },
           t: { ops: 3 },
@@ -294,8 +303,8 @@ export const section5: Section = {
         {
           id: "a",
           label: {
-            el: "Να πετύχω ακριβώς την αίσθηση που έχω στο μυαλό μου",
-            en: "Nailing exactly the feel I have in my head",
+            el: "Να πετύχω ακριβώς την κίνηση και την αίσθηση που έχω στο μυαλό μου",
+            en: "Nailing exactly the motion and feel I have in my head",
           },
           c: { frontend: 3, mobile: 2 },
           t: { creative: 3 },
@@ -303,8 +312,8 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Να καταλάβω γιατί ένα νούμερο βγαίνει λίγο διαφορετικό απ' ό,τι περίμενα",
-            en: "Working out why a number comes out slightly off",
+            el: "Να καταλάβω γιατί ένα νούμερο βγαίνει 3% διαφορετικό",
+            en: "Working out why a number comes out 3% off",
           },
           c: { datasci: 3, ml: 2, research: 1 },
           t: { analytical: 3 },
@@ -312,7 +321,7 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Να μπω κάπου που δεν έπρεπε να μπορώ να μπω",
+            el: "Να μπω κάπου που δεν θα έπρεπε να μπορώ να μπω",
             en: "Getting into somewhere I shouldn't be able to",
           },
           c: { security: 3, qa: 1 },
@@ -321,8 +330,8 @@ export const section5: Section = {
         {
           id: "d",
           label: {
-            el: "Να κάνω κάτι να δουλεύει μόνο του, χωρίς κανένα χέρι",
-            en: "Making something run entirely by itself",
+            el: "Να τρέχει η διαδικασία μόνη της, χωρίς κανένα χέρι",
+            en: "Getting the whole thing to run itself, hands off",
           },
           c: { devops: 3, dataeng: 2 },
           t: { ops: 3 },
@@ -330,11 +339,11 @@ export const section5: Section = {
         {
           id: "e",
           label: {
-            el: "Να διαβάζω για κάτι που άνοιξε τυχαία και με ρούφηξε",
-            en: "Reading about something I opened by accident and fell into",
+            el: "Να τελειώσω ένα δύσκολο κομμάτι κώδικα που επιτέλους δένει",
+            en: "Finishing a hard piece of code that finally clicks",
           },
-          c: { research: 3, ml: 1 },
-          t: { research: 3 },
+          c: { backend: 3, embedded: 2 },
+          t: { systems: 3 },
         },
       ],
     },
@@ -342,54 +351,45 @@ export const section5: Section = {
       id: "q47",
       section: 5,
       text: {
-        el: "Δεν έχεις καθόλου διάθεση αλλά πρέπει να κάνεις κάτι.",
-        en: "You have zero motivation but you have to do something.",
+        el: "Ένα μήνυμα σφάλματος που δεν έχεις ξαναδεί, δέκα γραμμές ακαταλαβίστικες.",
+        en: "An error message you've never seen, ten unreadable lines.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Κάτι επαναλαμβανόμενο που τελειώνει και φαίνεται",
-            en: "Something repetitive that finishes and shows",
+            el: "Το διαβάζω προσεκτικά· συνήθως λέει ακριβώς τι φταίει",
+            en: "Read it carefully; it usually says exactly what's wrong",
           },
-          c: { qa: 3, dataeng: 2 },
-          t: { ops: 3 },
+          c: { embedded: 2, backend: 2, qa: 2 },
+          t: { systems: 2, analytical: 1 },
         },
         {
           id: "b",
           label: {
-            el: "Κάτι μικρό και οπτικό που θα με ξαναβάλει σε ρυθμό",
-            en: "Something small and visual to get me moving",
+            el: "Το κάνω αντιγραφή-επικόλληση σε αναζήτηση",
+            en: "Copy-paste it into a search",
           },
-          c: { frontend: 3, mobile: 2 },
-          t: { creative: 3 },
+          c: { frontend: 2, mobile: 2, product: 1 },
+          t: { product: 1, creative: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Διάβασμα. Δεν παράγω, αλλά μαζεύω",
-            en: "Reading. I produce nothing but I take things in",
+            el: "Ψάχνω από πού ξεκίνησε, ακολουθώντας τη στοίβα προς τα πίσω",
+            en: "Trace where it began, following the stack backwards",
           },
-          c: { research: 3, ml: 1, product: 1 },
-          t: { research: 3 },
+          c: { backend: 2, research: 2, security: 1 },
+          t: { analytical: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Τακτοποίηση: να φύγει κάτι που με ενοχλούσε",
-            en: "Tidying: getting rid of something that was bugging me",
+            el: "Απλοποιώ τον κώδικα μέχρι να μείνει το ελάχιστο που το προκαλεί",
+            en: "Strip the code down to the minimum that still triggers it",
           },
-          c: { devops: 2, backend: 2, embedded: 1 },
-          t: { ops: 2, systems: 1 },
-        },
-        {
-          id: "e",
-          label: {
-            el: "Μιλάω με κάποιον. Θα βρω διάθεση μέσα από τη συζήτηση",
-            en: "Talk to someone. The conversation restarts me",
-          },
-          c: { product: 3 },
-          t: { people: 3 },
+          c: { qa: 3, research: 1 },
+          t: { adversarial: 2, analytical: 1 },
         },
       ],
     },
@@ -397,15 +397,15 @@ export const section5: Section = {
       id: "q48",
       section: 5,
       text: {
-        el: "Ποιο θα ήθελες να μπορείς να πεις ότι έκανες;",
-        en: "Which of these would you want to be able to say you did?",
+        el: "Ποιο θα ήθελες να μπορείς να πεις ότι έκανες μέχρι να πάρεις πτυχίο;",
+        en: "What would you want to have done by graduation?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Έφτιαξα κάτι που το κρατάει κόσμος στα χέρια του",
-            en: "Built something people hold in their hands",
+            el: "Κάτι που το κρατάει κόσμος στα χέρια του",
+            en: "Something people hold in their hands",
           },
           c: { mobile: 3, frontend: 2, embedded: 1 },
           t: { creative: 3 },
@@ -413,8 +413,8 @@ export const section5: Section = {
         {
           id: "b",
           label: {
-            el: "Έστησα κάτι που αντέχει τεράστια χρήση",
-            en: "Built something that survives enormous use",
+            el: "Κάτι που άντεξε πολλούς χρήστες ταυτόχρονα",
+            en: "Something that survived many users at once",
           },
           c: { backend: 3, devops: 2 },
           t: { systems: 3 },
@@ -422,8 +422,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Βρήκα κάτι που δεν το ήξερε κανείς πριν",
-            en: "Found something nobody knew before",
+            el: "Μια δημοσίευση ή μια εργασία που την αναφέρουν άλλοι",
+            en: "A publication or piece of work others cite",
           },
           c: { research: 3, ml: 2 },
           t: { research: 3 },
@@ -431,20 +431,20 @@ export const section5: Section = {
         {
           id: "d",
           label: {
-            el: "Εντόπισα ένα κενό πριν το εκμεταλλευτεί κάποιος",
-            en: "Spotted a hole before anyone exploited it",
+            el: "Καλή θέση σε διαγωνισμό CTF ή προγραμματισμού",
+            en: "A good placing in a CTF or programming contest",
           },
-          c: { security: 3, qa: 1 },
-          t: { adversarial: 3 },
+          c: { security: 3, ml: 1, research: 1 },
+          t: { adversarial: 2, analytical: 1 },
         },
         {
           id: "e",
           label: {
-            el: "Έκανα κάτι δύσκολο κατανοητό για χιλιάδες ανθρώπους",
-            en: "Made something hard understandable to thousands",
+            el: "Συνεισφορά σε γνωστό project ανοιχτού κώδικα",
+            en: "A contribution to a well-known open-source project",
           },
-          c: { product: 3, datasci: 1 },
-          t: { people: 2, product: 2 },
+          c: { devops: 2, backend: 2, qa: 2 },
+          t: { ops: 2, people: 1 },
         },
       ],
     },
@@ -477,8 +477,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Δύσκολο, αλλά θα τα καταφέρω αν βλέπω πού χρησιμεύουν",
-            en: "Hard, but I'll manage if I can see where they're used",
+            el: "Δύσκολο, αλλά εντάξει αν βλέπω πού χρησιμεύουν",
+            en: "Hard, but fine if I can see where they're used",
           },
           c: { dataeng: 2, qa: 2, devops: 1 },
           t: { ops: 2 },
@@ -498,8 +498,8 @@ export const section5: Section = {
       id: "q50",
       section: 5,
       text: {
-        el: "Σου ζητούν βοήθεια σε κάτι πρακτικό. Πότε λες ναι με χαρά;",
-        en: "Someone asks you for practical help. When do you gladly say yes?",
+        el: "Ένας φίλος σού ζητάει βοήθεια σε κάτι τεχνικό. Πότε λες ναι με χαρά;",
+        en: "A friend asks for technical help. When do you gladly say yes?",
       },
       options: [
         {
@@ -523,8 +523,8 @@ export const section5: Section = {
         {
           id: "c",
           label: {
-            el: "Όταν έχουν ένα σωρό στοιχεία και δεν βγάζουν άκρη",
-            en: "When they have a pile of information and can't make sense of it",
+            el: "Όταν έχει δεδομένα και δεν ξέρει τι να τα κάνει",
+            en: "When they have data and no idea what to do with it",
           },
           c: { datasci: 3, dataeng: 2 },
           t: { analytical: 3 },
@@ -541,10 +541,10 @@ export const section5: Section = {
         {
           id: "e",
           label: {
-            el: "Όταν χρειάζονται κάποιον να συντονίσει τους υπόλοιπους",
-            en: "When they need someone to coordinate everyone else",
+            el: "Όταν χρειάζεται κάποιος να τους εξηγήσει τι να ζητήσουν",
+            en: "When someone needs to explain to them what to even ask for",
           },
-          c: { product: 3 },
+          c: { product: 3, research: 1 },
           t: { people: 3 },
         },
       ],

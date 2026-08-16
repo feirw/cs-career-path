@@ -12,15 +12,15 @@ export const section4: Section = {
       id: "q31",
       section: 4,
       text: {
-        el: "Σου δείχνουν κάτι που έφτιαξαν και ζητούν τη γνώμη σου.",
-        en: "Someone shows you something they made and asks what you think.",
+        el: "Ανοίγεις ένα pull request συναδέλφου. Τι κοιτάς πρώτο;",
+        en: "You open a colleague's pull request. What do you look at first?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ρωτάω πρώτα τι ήθελαν να πετύχουν",
-            en: "First I ask what they were trying to achieve",
+            el: "Αν λύνει το σωστό πρόβλημα, πριν καν δω πώς",
+            en: "Whether it solves the right problem, before how it does it",
           },
           c: { product: 3, research: 1 },
           t: { product: 2, people: 1 },
@@ -28,32 +28,41 @@ export const section4: Section = {
         {
           id: "b",
           label: {
-            el: "Βλέπω αμέσως τι θα σπάσει σε πραγματικές συνθήκες",
-            en: "I immediately see what will break in real conditions",
+            el: "Τι γίνεται όταν αποτύχει στη μέση: μισοτελειωμένες εγγραφές, κολλημένα αιτήματα",
+            en: "What happens when it fails halfway: half-written records, stuck requests",
           },
-          c: { qa: 3, security: 2 },
-          t: { adversarial: 3 },
+          c: { backend: 2, devops: 2, qa: 1 },
+          t: { systems: 2, ops: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Παρατηρώ τι θα το έκανε πιο ωραίο",
-            en: "I notice what would make it nicer",
+            el: "Πού μπορεί να μπει είσοδος που δεν την περιμένει κανείς",
+            en: "Where input nobody expects could get in",
+          },
+          c: { security: 3, qa: 2 },
+          t: { adversarial: 3 },
+        },
+        {
+          id: "d",
+          label: {
+            el: "Αν θα το καταλαβαίνει κάποιος καινούριος σε έξι μήνες",
+            en: "Whether a newcomer will understand it in six months",
+          },
+          c: { dataeng: 2, backend: 2, qa: 1 },
+          t: { systems: 2, ops: 1 },
+        },
+        {
+          id: "e",
+          label: {
+            el: "Πώς φαίνεται το αποτέλεσμα στην οθόνη, όχι μόνο ο κώδικας",
+            en: "How the result looks on screen, not just the code",
           },
           c: { frontend: 3, mobile: 1 },
           t: { creative: 3 },
         },
         {
-          id: "d",
-          label: {
-            el: "Σκέφτομαι αν θα το καταλαβαίνει κάποιος σε έξι μήνες",
-            en: "I think about whether anyone will understand it in six months",
-          },
-          c: { backend: 2, dataeng: 2, qa: 1 },
-          t: { systems: 2, ops: 1 },
-        },
-        {
-          id: "e",
+          id: "f",
           label: {
             el: "Λέω κάτι καλό πρώτα. Τους κόστισε κόπο",
             en: "I say something good first. It cost them effort",
@@ -205,8 +214,8 @@ export const section4: Section = {
       id: "q35",
       section: 4,
       text: {
-        el: "Κάποιος αρχάριος κολλάει στο ίδιο σημείο για τρίτη φορά.",
-        en: "A beginner gets stuck at the same point for the third time.",
+        el: "Ένας πρωτοετής κολλάει τρίτη φορά στο ίδιο σημείο στο στήσιμο του περιβάλλοντος.",
+        en: "A first-year gets stuck for the third time setting up the same environment.",
       },
       options: [
         {

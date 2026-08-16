@@ -1,6 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { cn } from "@/lib/cn";
 import { DEFAULT_LOCALE, type LS, type Locale } from "@/lib/i18n";
 
 const STORAGE_KEY = "cscp_locale";
@@ -46,29 +48,46 @@ export function useLocale() {
   return useContext(LocaleContext);
 }
 
-export function LanguageToggle({ className = "" }: { className?: string }) {
+/** Segmented control· ο δείκτης μετακινείται με shared layout animation. */
+export function LanguageToggle({ className }: { className?: string }) {
   const { locale, setLocale } = useLocale();
+
   return (
     <div
-      className={`no-print inline-flex overflow-hidden rounded-full border border-[var(--border)] text-xs font-medium ${className}`}
+      className={cn(
+        "no-print relative inline-flex items-center rounded-full border border-[var(--rule)]",
+        "bg-[var(--panel)] p-0.5 text-[11px] font-semibold",
+        className,
+      )}
       role="group"
       aria-label="Language"
     >
-      {(["el", "en"] as const).map((code) => (
-        <button
-          key={code}
-          type="button"
-          onClick={() => setLocale(code)}
-          aria-pressed={locale === code}
-          className={`px-3 py-1.5 transition-colors ${
-            locale === code
-              ? "bg-[var(--accent)] text-white"
-              : "bg-[var(--surface)] text-[var(--text-muted)] hover:text-[var(--text)]"
-          }`}
-        >
-          {code === "el" ? "ΕΛ" : "EN"}
-        </button>
-      ))}
+      {(["el", "en"] as const).map((code) => {
+        const active = locale === code;
+        return (
+          <button
+            key={code}
+            type="button"
+            onClick={() => setLocale(code)}
+            aria-pressed={active}
+            className={cn(
+              "relative rounded-full px-2.5 py-1.5 transition-colors duration-200 ease-out",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+              active ? "text-white dark:text-[var(--ink-invert)]" : "text-[var(--ink-4)] hover:text-[var(--ink-2)]",
+            )}
+          >
+            {active && (
+              <motion.span
+                layoutId="locale-pill"
+                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                className="absolute inset-0 rounded-full bg-[var(--accent)]"
+                aria-hidden
+              />
+            )}
+            <span className="relative">{code === "el" ? "ΕΛ" : "EN"}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

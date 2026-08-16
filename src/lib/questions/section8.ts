@@ -2,25 +2,25 @@ import type { Section } from "./types";
 
 export const section8: Section = {
   index: 8,
-  title: { el: "Τι σημαίνει «σωστό» για σένα", en: "What \"right\" means to you" },
+  title: { el: "Ποιότητα, δοκιμές, ασφάλεια", en: "Quality, testing, security" },
   subtitle: {
-    el: "Ο καθένας έχει τη δική του εμμονή για την ποιότητα, και η εμμονή αυτή ταιριάζει σε διαφορετική δουλειά. Δες ποια είναι η δική σου.",
-    en: "Everyone has their own obsession about quality, and each obsession fits a different job. See which one is yours.",
+    el: "Ο καθένας έχει τη δική του εμμονή για το τι σημαίνει «σωστό». Κάθε εμμονή ταιριάζει σε διαφορετική δουλειά.",
+    en: "Everyone has their own obsession about what \"correct\" means, and each fits a different job.",
   },
   questions: [
     {
       id: "q71",
       section: 8,
       text: {
-        el: "Τι θα σε ενοχλούσε αρκετά ώστε να το φτιάξεις χωρίς να σου το ζητήσει κανείς;",
-        en: "What would bother you enough to fix it without being asked?",
+        el: "Τι θα σε ενοχλούσε αρκετά ώστε να το φτιάξεις χωρίς να σου το ζητήσουν;",
+        en: "What would bother you enough to fix it unasked?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ένα κάδρο στραβό στον τοίχο",
-            en: "A crooked picture on the wall",
+            el: "Ένα κουμπί δύο pixel πιο κάτω απ' ό,τι πρέπει",
+            en: "A button two pixels lower than it should be",
           },
           c: { frontend: 3, mobile: 1 },
           t: { creative: 3 },
@@ -28,8 +28,8 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "Οδηγίες που δεν εξηγούν τίποτα όταν κάτι πάει στραβά",
-            en: "Instructions that explain nothing when something goes wrong",
+            el: "Ένα μήνυμα σφάλματος που λέει μόνο «κάτι πήγε στραβά»",
+            en: "An error message that only says \"something went wrong\"",
           },
           c: { devops: 2, backend: 2, qa: 2 },
           t: { ops: 2, systems: 1 },
@@ -37,8 +37,8 @@ export const section8: Section = {
         {
           id: "c",
           label: {
-            el: "Μια λίστα όπου το ίδιο πράγμα είναι γραμμένο με τρεις τρόπους",
-            en: "A list where the same thing is written three different ways",
+            el: "Μια στήλη που άλλοτε έχει κείμενο και άλλοτε αριθμό",
+            en: "A column that's sometimes text and sometimes a number",
           },
           c: { dataeng: 3, datasci: 1 },
           t: { ops: 2, analytical: 1 },
@@ -46,20 +46,29 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Ένα κλειδί κάτω από το χαλάκι",
-            en: "A key under the doormat",
+            el: "Έναν κωδικό γραμμένο μέσα στον κώδικα",
+            en: "A password written inside the source code",
           },
-          c: { security: 3, qa: 1 },
+          c: { security: 3, devops: 1 },
           t: { adversarial: 3 },
         },
         {
           id: "e",
           label: {
-            el: "Κάτι που το χρησιμοποιούν όλοι λάθος επειδή είναι μπερδεμένο",
-            en: "Something everyone uses wrong because it's confusing",
+            el: "Μια λειτουργία που όλοι τη χρησιμοποιούν λάθος",
+            en: "A feature everyone uses wrongly",
           },
           c: { product: 3, frontend: 2 },
           t: { product: 2, people: 1 },
+        },
+        {
+          id: "f",
+          label: {
+            el: "Ένα build που θέλει τρία λεπτά ενώ θα μπορούσε τριάντα δευτερόλεπτα",
+            en: "A build taking three minutes that could take thirty seconds",
+          },
+          c: { embedded: 2, devops: 2, backend: 1 },
+          t: { systems: 2, ops: 1 },
         },
       ],
     },
@@ -67,15 +76,15 @@ export const section8: Section = {
       id: "q72",
       section: 8,
       text: {
-        el: "Φτιάχνεις κάτι που θα το χρησιμοποιήσουν άλλοι. Τι προσέχεις πιο πολύ;",
-        en: "You're making something others will use. What do you care about most?",
+        el: "Γράφεις κώδικα που θα τον χρησιμοποιήσουν άλλοι προγραμματιστές.",
+        en: "You're writing code other developers will use.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Να είναι δύσκολο να το χρησιμοποιήσουν λάθος",
-            en: "That it's hard to use wrongly",
+            el: "Να είναι δύσκολο να τον χρησιμοποιήσουν λάθος",
+            en: "It should be hard to use wrongly",
           },
           c: { embedded: 2, qa: 2, security: 2 },
           t: { adversarial: 2, systems: 1 },
@@ -83,8 +92,8 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "Να το καταλαβαίνουν χωρίς να ρωτήσουν",
-            en: "That they understand it without asking",
+            el: "Να τον καταλαβαίνουν χωρίς να με ρωτήσουν",
+            en: "They should understand it without asking me",
           },
           c: { frontend: 2, product: 2, devops: 1 },
           t: { people: 2, creative: 1 },
@@ -92,8 +101,8 @@ export const section8: Section = {
         {
           id: "c",
           label: {
-            el: "Να μη χαλάει όταν αλλάξω κάτι σε έξι μήνες",
-            en: "That it survives me changing something in six months",
+            el: "Να μη σπάει όταν αλλάξω κάτι σε έξι μήνες",
+            en: "It shouldn't break when I change something in six months",
           },
           c: { backend: 3, dataeng: 1 },
           t: { systems: 3 },
@@ -101,8 +110,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Να φαίνεται τι έγινε όταν πάει στραβά",
-            en: "That you can see what happened when it goes wrong",
+            el: "Να αφήνει ίχνη ώστε να φαίνεται τι έγινε όταν σκάσει",
+            en: "It should leave traces so you can see what happened when it blows up",
           },
           c: { devops: 3, qa: 1 },
           t: { ops: 3 },
@@ -110,10 +119,10 @@ export const section8: Section = {
         {
           id: "e",
           label: {
-            el: "Να είναι ωραίο. Το χρησιμοποιείς πιο ευχάριστα",
-            en: "That it's beautiful. You use it more happily",
+            el: "Να είναι κομψός. Θα τον διαβάσουν πιο ευχάριστα",
+            en: "It should be elegant. People will read it more happily",
           },
-          c: { frontend: 3, mobile: 2 },
+          c: { frontend: 2, research: 2, mobile: 1 },
           t: { creative: 3 },
         },
       ],
@@ -122,15 +131,15 @@ export const section8: Section = {
       id: "q73",
       section: 8,
       text: {
-        el: "Κάποιος χρησιμοποίησε κάτι δικό σου με τρόπο που δεν φαντάστηκες και χάλασε.",
-        en: "Someone used something of yours in a way you never imagined and broke it.",
+        el: "Ένας χρήστης έκανε κάτι που δεν φαντάστηκε κανείς και η εφαρμογή έσκασε.",
+        en: "A user did something nobody imagined and the app crashed.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "«Καλά έκανε. Έπρεπε να το είχα προβλέψει»",
-            en: "\"Fair enough. I should have foreseen it\"",
+            el: "«Καλά έκανε. Έπρεπε να το είχαμε προβλέψει»",
+            en: "\"Fair enough. We should have foreseen it\"",
           },
           c: { qa: 3, security: 2 },
           t: { adversarial: 3 },
@@ -138,8 +147,8 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "«Γιατί το έκανε έτσι; Μάλλον φταίει πώς το παρουσίασα»",
-            en: "\"Why did they do that? Probably how I presented it\"",
+            el: "«Γιατί το έκανε; Μάλλον φταίει η οθόνη μας»",
+            en: "\"Why did they do it? Probably our screen misled them\"",
           },
           c: { frontend: 2, product: 3 },
           t: { creative: 1, product: 2 },
@@ -147,8 +156,8 @@ export const section8: Section = {
         {
           id: "c",
           label: {
-            el: "«Πόσοι άλλοι μπορεί να κάνουν το ίδιο;»",
-            en: "\"How many others might do the same?\"",
+            el: "«Πόσοι άλλοι μπορεί να το κάνουν; Ας το μετρήσω»",
+            en: "\"How many others might do it? Let me measure\"",
           },
           c: { datasci: 3, dataeng: 1 },
           t: { analytical: 3 },
@@ -156,8 +165,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "«Δεν θα έπρεπε να του το επιτρέπει καν»",
-            en: "\"It shouldn't have allowed that in the first place\"",
+            el: "«Ο κώδικας δεν έπρεπε να δέχεται καν τέτοια είσοδο»",
+            en: "\"The code shouldn't have accepted that input at all\"",
           },
           c: { backend: 2, embedded: 2, security: 1 },
           t: { systems: 3 },
@@ -168,15 +177,15 @@ export const section8: Section = {
       id: "q74",
       section: 8,
       text: {
-        el: "Πόσο ελέγχεις κάτι δικό σου που δεν θα το δει κανείς;",
-        en: "How much do you check something of yours that nobody will see?",
+        el: "Πόσες δοκιμές γράφεις για κάτι δικό σου που δεν θα το δει κανείς;",
+        en: "How many tests do you write for something of yours nobody will see?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Καθόλου. Το κάνω και προχωράω",
-            en: "Not at all. I do it and move on",
+            el: "Καμία. Το τρέχω και βλέπω",
+            en: "None. I run it and look",
           },
           c: { frontend: 2, mobile: 2, product: 1 },
           t: { creative: 2 },
@@ -184,8 +193,8 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "Στα σημεία που φοβάμαι",
-            en: "At the parts that scare me",
+            el: "Λίγες, στα σημεία που φοβάμαι",
+            en: "A few, at the parts that scare me",
           },
           c: { backend: 2, datasci: 2, devops: 1 },
           t: { systems: 1, analytical: 1 },
@@ -193,8 +202,8 @@ export const section8: Section = {
         {
           id: "c",
           label: {
-            el: "Πολύ. Δεν εμπιστεύομαι τον εαυτό μου μετά από τρεις μέρες",
-            en: "A lot. I don't trust myself three days later",
+            el: "Πολλές. Δεν εμπιστεύομαι τον εαυτό μου μετά από τρεις μέρες",
+            en: "Plenty. I don't trust myself three days later",
           },
           c: { qa: 3, embedded: 2 },
           t: { ops: 2, adversarial: 1 },
@@ -202,8 +211,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Στήνω κάτι που το ελέγχει συνεχώς για μένα",
-            en: "I set up something that keeps checking it for me",
+            el: "Δεν γράφω δοκιμές· βάζω ελέγχους που τρέχουν συνέχεια όσο ζει",
+            en: "Not tests; checks that run continuously while it's alive",
           },
           c: { devops: 3, dataeng: 2 },
           t: { ops: 3 },
@@ -221,8 +230,8 @@ export const section8: Section = {
         {
           id: "a",
           label: {
-            el: "Να διαρρεύσουν πράγματα που σου εμπιστεύτηκαν",
-            en: "Leaking something people trusted you with",
+            el: "Να διαρρεύσουν στοιχεία χρηστών από κάτι που έγραψες",
+            en: "User data leaking from something you wrote",
           },
           c: { security: 3, backend: 1 },
           t: { adversarial: 3 },
@@ -230,8 +239,8 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "Να δουλέψεις τρεις μήνες σε κάτι που δεν το ήθελε κανείς",
-            en: "Spending three months on something nobody wanted",
+            el: "Να δουλέψεις τρεις μήνες σε κάτι που δεν χρησιμοποίησε κανείς",
+            en: "Spending three months on something nobody used",
           },
           c: { product: 3, datasci: 1 },
           t: { product: 3 },
@@ -239,8 +248,8 @@ export const section8: Section = {
         {
           id: "c",
           label: {
-            el: "Να χαθεί κάτι για πάντα επειδή δεν κράτησες αντίγραφο",
-            en: "Losing something forever because you kept no copy",
+            el: "Να σβηστεί η βάση και να μην υπάρχει αντίγραφο",
+            en: "Wiping the database with no backup",
           },
           c: { devops: 3, dataeng: 2 },
           t: { ops: 3 },
@@ -248,8 +257,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Να πεις κάτι με σιγουριά και να είναι λάθος",
-            en: "Saying something confidently that turns out wrong",
+            el: "Να παρουσιάσεις συμπέρασμα που ήταν στατιστικά λάθος",
+            en: "Presenting a conclusion that was statistically wrong",
           },
           c: { datasci: 3, research: 2, ml: 1 },
           t: { analytical: 2, research: 2 },
@@ -257,8 +266,8 @@ export const section8: Section = {
         {
           id: "e",
           label: {
-            el: "Να παραδώσεις κάτι πρόχειρο με το όνομά σου πάνω",
-            en: "Shipping something sloppy with your name on it",
+            el: "Να βγει κάτι με το όνομά σου γεμάτο πρόχειρες λύσεις",
+            en: "Shipping something with your name on it, full of hacks",
           },
           c: { embedded: 2, qa: 2, frontend: 2 },
           t: { systems: 2, creative: 1 },
@@ -269,15 +278,15 @@ export const section8: Section = {
       id: "q76",
       section: 8,
       text: {
-        el: "Πρέπει να κάνεις κάτι με πολύ λίγα μέσα: λίγο χώρο, λίγα λεφτά, λίγο χρόνο.",
-        en: "You must do something with very little: little space, money or time.",
+        el: "Ο κώδικάς σου πρέπει να τρέχει σε μηχάνημα με ελάχιστη μνήμη και χωρίς δίκτυο.",
+        en: "Your code must run on a machine with minimal memory and no network.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ενδιαφέρον. Ο περιορισμός είναι μισό γρίφος",
-            en: "Interesting. The constraint is half the puzzle",
+            el: "Ενδιαφέρον. Θα μετρήσω κάθε byte",
+            en: "Interesting. I'll count every byte",
           },
           c: { embedded: 3, backend: 1 },
           t: { systems: 3 },
@@ -285,17 +294,17 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "Εντάξει, αρκεί να βλέπω πού φεύγει ο πόρος",
-            en: "Fine, as long as I can see where the resource goes",
+            el: "Εντάξει, αρκεί να βλέπω πού φεύγει η μνήμη",
+            en: "Fine, as long as I can see where memory goes",
           },
-          c: { devops: 2, dataeng: 2, qa: 1 },
+          c: { devops: 2, backend: 2, qa: 1 },
           t: { ops: 3 },
         },
         {
           id: "c",
           label: {
-            el: "Θα έλεγα να βρούμε περισσότερα μέσα· κοστίζουν λιγότερο από τον χρόνο μου",
-            en: "I'd say find more resources; they cost less than my time",
+            el: "Θα έλεγα ας πάρουμε μεγαλύτερο μηχάνημα· κοστίζει λιγότερο από τον χρόνο μου",
+            en: "I'd say get a bigger machine; it costs less than my time",
           },
           c: { product: 3, datasci: 1 },
           t: { product: 3 },
@@ -303,8 +312,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Θα με άγχωνε. Προτιμώ να μην έχω τέτοιο κεφάλι",
-            en: "It would stress me. I'd rather not think at that level",
+            el: "Θα με άγχωνε. Προτιμώ να μην ασχολούμαι σε αυτό το επίπεδο",
+            en: "It would stress me. I'd rather not work at that level",
           },
           c: { frontend: 3, product: 1, mobile: 1 },
           t: { creative: 2 },
@@ -315,15 +324,15 @@ export const section8: Section = {
       id: "q77",
       section: 8,
       text: {
-        el: "Ελέγχεις τη δουλειά κάποιου και δεν δέχεται εύκολα παρατηρήσεις.",
-        en: "You're reviewing someone's work and they don't take notes well.",
+        el: "Κάνεις review σε κώδικα συναδέλφου και δεν δέχεται εύκολα παρατηρήσεις.",
+        en: "You review a colleague's code and they don't take notes well.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Δείχνω με παράδειγμα πού σπάει, όχι με γνώμη",
-            en: "Show where it breaks with an example, not an opinion",
+            el: "Γράφω ένα test που αποδεικνύει πού σπάει",
+            en: "Write a test that proves where it breaks",
           },
           c: { qa: 3, security: 2 },
           t: { adversarial: 2, analytical: 1 },
@@ -340,8 +349,8 @@ export const section8: Section = {
         {
           id: "c",
           label: {
-            el: "Το συζητάω από κοντά αντί για γραπτά",
-            en: "Talk it through in person instead of in writing",
+            el: "Το συζητάμε από κοντά αντί για σχόλια στο PR",
+            en: "Talk it through in person instead of PR comments",
           },
           c: { product: 3, frontend: 1 },
           t: { people: 3 },
@@ -349,8 +358,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Επιμένω. Αν είναι λάθος, είναι λάθος",
-            en: "Hold my ground. Wrong is wrong",
+            el: "Επιμένω. Αν είναι λάθος, θα το πληρώσουμε αργότερα",
+            en: "Hold my ground. If it's wrong, we pay later",
           },
           c: { embedded: 2, security: 2, research: 1 },
           t: { systems: 2, adversarial: 1 },
@@ -361,8 +370,8 @@ export const section8: Section = {
       id: "q78",
       section: 8,
       text: {
-        el: "Ποια λέξη σε περιγράφει καλύτερα όταν καταπιάνεσαι με κάτι;",
-        en: "Which word describes you best when you get into something?",
+        el: "Ποια λέξη σε περιγράφει καλύτερα όταν δουλεύεις;",
+        en: "Which word describes you best while working?",
       },
       options: [
         {
@@ -407,45 +416,45 @@ export const section8: Section = {
       id: "q79",
       section: 8,
       text: {
-        el: "Πόσο σε νοιάζει η εμφάνιση, όταν το πράγμα δουλεύει σωστά;",
-        en: "How much do looks matter to you once the thing works?",
+        el: "Βλέπεις ότι το σύστημα στέλνει στο κινητό περισσότερα δεδομένα απ' όσα χρειάζεται.",
+        en: "You notice the system sends more data to the phone than it needs.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Πολύ. Αν είναι άσχημο, δεν το θεωρώ τελειωμένο",
-            en: "A lot. If it's ugly, it isn't finished",
+            el: "Με ανησυχεί τι ακριβώς φεύγει και ποιος μπορεί να το δει",
+            en: "I worry about exactly what leaves and who could see it",
           },
-          c: { frontend: 3, mobile: 2, product: 1 },
-          t: { creative: 3 },
+          c: { security: 3, backend: 1 },
+          t: { adversarial: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Μόνο όσο βοηθάει κάποιον να καταλάβει τι συμβαίνει",
-            en: "Only as far as it helps someone understand what's happening",
+            el: "Με ενοχλεί που καίει μπαταρία και δεδομένα του χρήστη",
+            en: "It bothers me that it burns battery and the user's data plan",
           },
-          c: { datasci: 2, devops: 2, qa: 1 },
-          t: { analytical: 1, ops: 2 },
+          c: { mobile: 3, embedded: 2 },
+          t: { systems: 2, ops: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Ελάχιστα. Η ομορφιά είναι στο πώς είναι φτιαγμένο μέσα",
-            en: "Barely. The beauty is in how it's built inside",
+            el: "Με ενοχλεί το κόστος σε κίνηση και servers",
+            en: "It bothers me as bandwidth and server cost",
           },
-          c: { embedded: 3, backend: 2, research: 1 },
-          t: { systems: 3 },
+          c: { devops: 3, dataeng: 1 },
+          t: { ops: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Καθόλου, αρκεί να μη σε ξεγελάει για την κατάστασή του",
-            en: "Not at all, as long as it doesn't mislead you about its state",
+            el: "Δεν με απασχολεί αν δεν το νιώθει ο χρήστης",
+            en: "It doesn't concern me if the user can't feel it",
           },
-          c: { security: 2, dataeng: 2, devops: 1 },
-          t: { adversarial: 2, ops: 1 },
+          c: { frontend: 2, product: 3 },
+          t: { product: 3 },
         },
       ],
     },
@@ -453,8 +462,8 @@ export const section8: Section = {
       id: "q80",
       section: 8,
       text: {
-        el: "Τελειώνεις κάτι. Πότε νιώθεις ότι έγινε καλή δουλειά;",
-        en: "You finish something. When does it feel like good work?",
+        el: "Παραδίδεις κάτι. Πότε νιώθεις ότι έκανες καλή δουλειά;",
+        en: "You deliver something. When does it feel like good work?",
       },
       options: [
         {
@@ -469,7 +478,7 @@ export const section8: Section = {
         {
           id: "b",
           label: {
-            el: "Όταν δεν χρειάστηκε να το ξαναπιάσω",
+            el: "Όταν δεν χρειάστηκε να το ξαναπιάσω ποτέ",
             en: "When I never had to touch it again",
           },
           c: { backend: 2, embedded: 2, devops: 2 },
@@ -487,8 +496,8 @@ export const section8: Section = {
         {
           id: "d",
           label: {
-            el: "Όταν έμαθα κάτι που δεν ήξερα φτιάχνοντάς το",
-            en: "When I learned something I didn't know by making it",
+            el: "Όταν έμαθα κάτι φτιάχνοντάς το",
+            en: "When I learned something by building it",
           },
           c: { research: 3, ml: 2 },
           t: { research: 3 },

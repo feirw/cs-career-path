@@ -1,10 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { LanguageToggle, LocaleProvider, useLocale } from "./LocaleProvider";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { ArrowRight, BadgeCheck, Link2, Printer, RotateCcw } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AppHeader } from "./AppHeader";
+import { CareerSwatch } from "./CareerIcon";
+import { Credit } from "./Credit";
+import { useLocale } from "./LocaleProvider";
 import { RadarChart } from "./RadarChart";
+import { Button, ButtonLink } from "./ui/Button";
+import { Panel, SheetLabel } from "./ui/Card";
+import { useToast } from "./ui/Toast";
 import { CAREER_BY_ID } from "@/lib/careers";
+import { cn } from "@/lib/cn";
 import { ui } from "@/lib/i18n";
 import type { TestMode } from "@/lib/questions";
 import { separation, type CareerScore } from "@/lib/scoring";
@@ -17,286 +25,451 @@ type Props = {
   mode: TestMode;
 };
 
-export function ResultView(props: Props) {
-  return (
-    <LocaleProvider>
-      <Results {...props} />
-    </LocaleProvider>
-  );
-}
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-function Results({ scores, traits, createdAt, mode }: Props) {
+export function ResultView({ scores, traits, createdAt, mode }: Props) {
   const { tr, locale } = useLocale();
-  const [copied, setCopied] = useState(false);
+  const toast = useToast();
+  const [tab, setTab] = useState(0);
 
   const top3 = scores.slice(0, 3);
   const winner = CAREER_BY_ID[top3[0].careerId];
   const gap = separation(scores);
   const isShort = mode === "short";
+  const selected = CAREER_BY_ID[top3[tab].careerId];
 
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      toast({ tone: "success", title: tr(ui.linkCopied) });
     } catch {
-      /* ο χρήστης μπορεί πάντα να αντιγράψει το URL από τη μπάρα */
+      toast({
+        tone: "error",
+        title: tr({ el: "Δεν έγινε αντιγραφή", en: "Couldn't copy" }),
+        description: tr({
+          el: "Αντίγραψε το URL από τη μπάρα διευθύνσεων.",
+          en: "Copy the URL from the address bar.",
+        }),
+      });
     }
   };
 
   return (
-    <main className="mx-auto max-w-4xl px-5 py-8 sm:py-12">
-      <header className="mb-8 flex items-center justify-between gap-4">
-        <Link href="/" className="text-sm font-semibold text-[var(--accent)]">
-          {tr(ui.appName)}
-        </Link>
-        <div className="flex items-center gap-2">
-          <LanguageToggle />
-        </div>
-      </header>
+    <>
+      <AppHeader />
 
-      {/* Νικητής */}
-      <section className="print-block rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-9">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-            {tr(ui.yourTop)}
-          </p>
-          <span className="rounded-full bg-[var(--surface-2)] px-2.5 py-1 text-[11px] font-medium text-[var(--text-muted)]">
-            {tr(isShort ? ui.basedOnShort : ui.basedOnFull)}
-          </span>
-        </div>
-        <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            <span aria-hidden className="mr-2">
-              {winner.emoji}
-            </span>
-            {tr(winner.name)}
-          </h1>
-          <span
-            className="rounded-full px-3 py-1 text-sm font-bold text-white"
-            style={{ backgroundColor: winner.color }}
-          >
-            {top3[0].match}% {tr(ui.match)}
-          </span>
-        </div>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-          {tr(winner.description)}
-        </p>
-        <p className="mt-4 max-w-2xl text-sm text-[var(--text-muted)]">
-          {gap >= 8 ? tr(ui.clearDirection) : tr(ui.closeCall)}
-        </p>
-      </section>
-
-      {isShort && (
-        <section className="print-block mt-5 rounded-2xl border border-[var(--accent)] bg-[var(--accent-soft)] p-5">
-          <p className="text-sm leading-relaxed">{tr(ui.shortResultWarning)}</p>
-          <Link
-            href="/test?mode=full"
-            className="no-print mt-4 inline-block rounded-xl bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white"
-          >
-            {tr(ui.takeFullTest)} →
-          </Link>
-        </section>
-      )}
-
-      {/* Ενέργειες */}
-      <div className="no-print mt-5 flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={() => window.print()}
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-sm font-medium hover:bg-[var(--surface-2)]"
+      <main className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
+        {/* Το αποτέλεσμα: κυκλικός δείκτης δίπλα στο όνομα της καριέρας */}
+        <motion.section
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: EASE }}
+          className="print-block mt-10"
         >
-          ⬇︎ {tr(ui.downloadPdf)}
-        </button>
-        <button
-          type="button"
-          onClick={copyLink}
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-sm font-medium hover:bg-[var(--surface-2)]"
-        >
-          🔗 {copied ? tr(ui.linkCopied) : tr(ui.copyLink)}
-        </button>
-        <Link
-          href={`/test?mode=${mode}`}
-          className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-sm font-medium hover:bg-[var(--surface-2)]"
-        >
-          ↺ {tr(ui.retake)}
-        </Link>
-      </div>
+          <Panel className="overflow-hidden p-7 sm:p-10">
+            <p className="eyebrow">{tr(ui.yourTop)}</p>
 
-      {/* Top 3 */}
-      <section className="mt-12">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr(ui.topThree)}
-        </h2>
-        <div className="mt-5 grid gap-4 sm:grid-cols-3">
-          {top3.map((entry, index) => {
-            const career = CAREER_BY_ID[entry.careerId];
-            return (
-              <article
-                key={entry.careerId}
-                className="print-block rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl" aria-hidden>
-                    {career.emoji}
-                  </span>
-                  <span className="text-xs font-bold text-[var(--text-muted)]">#{index + 1}</span>
+            <div className="mt-6 flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
+              <Gauge value={top3[0].match} color={winner.color} />
+
+              <div className="min-w-0">
+                <div className="flex items-center gap-3">
+                  <CareerSwatch id={winner.id} color={winner.color} size="lg" />
+                  <h1 className="display text-balance text-[30px] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[42px]">
+                    {tr(winner.name)}
+                  </h1>
                 </div>
-                <h3 className="mt-3 font-semibold leading-tight">{tr(career.name)}</h3>
-                <p className="mt-1 text-sm text-[var(--text-muted)]">{tr(career.tagline)}</p>
-                <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[var(--surface-2)]">
-                  <div
-                    className="bar-fill h-full rounded-full"
-                    style={{ width: `${entry.match}%`, backgroundColor: career.color }}
-                  />
-                </div>
-                <p className="mt-2 text-sm font-semibold">{entry.match}%</p>
-              </article>
-            );
-          })}
+                <p className="mt-5 max-w-[58ch] text-[16px] leading-[1.65] text-[var(--ink-2)]">
+                  {tr(winner.description)}
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-[var(--rule)] pt-5 text-[13px] text-[var(--ink-3)]">
+              <span className="rounded-full bg-[var(--panel-2)] px-2.5 py-1 text-[11px]">
+                {tr(isShort ? ui.basedOnShort : ui.basedOnFull)}
+              </span>
+              {gap >= 8 ? tr(ui.clearDirection) : tr(ui.closeCall)}
+            </p>
+          </Panel>
+        </motion.section>
+
+        {isShort && (
+          <Panel className="print-block mt-4 border-[var(--accent)]/35 bg-[var(--accent-soft)] p-6">
+            <p className="max-w-[80ch] text-sm leading-relaxed text-[var(--ink-2)]">
+              {tr(ui.shortResultWarning)}
+            </p>
+            <ButtonLink href="/test?mode=full" size="md" className="no-print group/cta mt-5">
+              {tr(ui.takeFullTest)}
+              <ArrowRight
+                aria-hidden
+                strokeWidth={1.75}
+                className="size-4 transition-transform duration-200 ease-out group-hover/cta:translate-x-1"
+              />
+            </ButtonLink>
+          </Panel>
+        )}
+
+        <div className="no-print mt-5 flex flex-wrap gap-2">
+          <Button variant="outline" onClick={() => window.print()}>
+            <Printer aria-hidden strokeWidth={1.75} className="size-4" />
+            {tr(ui.downloadPdf)}
+          </Button>
+          <Button variant="outline" onClick={copyLink}>
+            <Link2 aria-hidden strokeWidth={1.75} className="size-4" />
+            {tr(ui.copyLink)}
+          </Button>
+          <ButtonLink href={`/test?mode=${mode}`} variant="quiet">
+            <RotateCcw aria-hidden strokeWidth={1.75} className="size-4" />
+            {tr(ui.retake)}
+          </ButtonLink>
         </div>
-      </section>
 
-      {/* Όλες οι καριέρες */}
-      <section className="print-block mt-12">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr(ui.allCareers)}
-        </h2>
-        <ul className="mt-5 space-y-2.5">
-          {scores.map((entry) => {
-            const career = CAREER_BY_ID[entry.careerId];
-            return (
-              <li key={entry.careerId} className="flex items-center gap-3">
-                <span className="w-6 shrink-0 text-center" aria-hidden>
-                  {career.emoji}
-                </span>
-                <span className="w-44 shrink-0 truncate text-sm sm:w-56">{tr(career.name)}</span>
-                <span className="h-2.5 flex-1 overflow-hidden rounded-full bg-[var(--surface-2)]">
-                  <span
-                    className="bar-fill block h-full rounded-full"
-                    style={{ width: `${entry.match}%`, backgroundColor: career.color }}
-                  />
-                </span>
-                <span className="w-10 shrink-0 text-right text-sm font-semibold tabular-nums">
-                  {entry.match}%
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      {/* Προφίλ */}
-      <section className="print-block mt-14">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr(ui.yourProfile)}
-        </h2>
-        <p className="mt-2 max-w-xl text-sm text-[var(--text-muted)]">{tr(ui.profileLead)}</p>
-        <div className="mt-6 grid items-center gap-8 sm:grid-cols-2">
-          <div className="flex justify-center">
-            <RadarChart values={traits} />
-          </div>
-          <ul className="space-y-3">
-            {[...TRAITS]
-              .sort((a, b) => (traits[b.id] ?? 0) - (traits[a.id] ?? 0))
-              .map((trait) => (
-                <li key={trait.id}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span className="text-sm font-semibold">{tr(trait.name)}</span>
-                    <span className="text-sm tabular-nums text-[var(--text-muted)]">
-                      {traits[trait.id] ?? 0}%
+        {/* Κατάταξη */}
+        <section className="print-block pt-16">
+          <SheetLabel>{tr(ui.allCareers)}</SheetLabel>
+          <Panel className="mt-6 p-2 sm:p-3">
+            <ul>
+              {scores.map((entry, index) => {
+                const career = CAREER_BY_ID[entry.careerId];
+                const isTop3 = index < 3;
+                return (
+                  <li
+                    key={entry.careerId}
+                    className={cn(
+                      "group/row flex items-center gap-3 rounded-2xl px-3 py-2.5 sm:gap-4",
+                      "transition-colors duration-200 ease-out hover:bg-[var(--panel-2)]",
+                    )}
+                  >
+                    <CareerSwatch
+                      id={career.id}
+                      color={career.color}
+                      size="sm"
+                      className="transition-transform duration-200 ease-out group-hover/row:scale-110"
+                    />
+                    <span
+                      className={cn(
+                        "w-32 shrink-0 truncate text-[14px] transition-colors duration-200 ease-out sm:w-48 sm:text-[15px]",
+                        isTop3 ? "font-semibold text-[var(--ink)]" : "text-[var(--ink-2)]",
+                        "group-hover/row:text-[var(--ink)]",
+                      )}
+                    >
+                      {tr(career.name)}
                     </span>
-                  </div>
-                  <p className="text-xs leading-relaxed text-[var(--text-muted)]">
-                    {tr(trait.description)}
-                  </p>
-                </li>
-              ))}
-          </ul>
-        </div>
-      </section>
+                    <SoftBar value={entry.match} color={career.color} muted={!isTop3} />
+                    <span className="mono w-10 shrink-0 text-right text-[13px] text-[var(--ink-3)]">
+                      {entry.match}%
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </Panel>
+        </section>
 
-      {/* Roadmaps */}
-      <section className="mt-14">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-          {tr(ui.roadmap)}
-        </h2>
-        <div className="mt-5 space-y-5">
-          {top3.map((entry) => {
-            const career = CAREER_BY_ID[entry.careerId];
-            return (
-              <article
-                key={entry.careerId}
-                className="print-block rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6"
-              >
-                <h3 className="text-xl font-bold">
-                  <span aria-hidden className="mr-2">
-                    {career.emoji}
-                  </span>
-                  {tr(career.name)}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-                  <strong className="text-[var(--text)]">{tr(ui.dayToDay)}: </strong>
-                  {tr(career.dayToDay)}
+        {/* Προφίλ */}
+        <section className="print-block pt-16">
+          <SheetLabel>{tr(ui.yourProfile)}</SheetLabel>
+          <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-[var(--ink-3)]">
+            {tr(ui.profileLead)}
+          </p>
+
+          <div className="mt-8 grid items-center gap-10 lg:grid-cols-[minmax(0,440px)_1fr]">
+            <div className="relative flex justify-center">
+              <div aria-hidden className="halo absolute inset-0" />
+              <RadarChart values={traits} />
+            </div>
+
+            <ul className="space-y-4">
+              {[...TRAITS]
+                .sort((a, b) => (traits[b.id] ?? 0) - (traits[a.id] ?? 0))
+                .map((trait) => (
+                  <li key={trait.id}>
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="text-[15px] font-semibold">{tr(trait.name)}</span>
+                      <span className="mono text-[13px] text-[var(--ink-3)]">
+                        {traits[trait.id] ?? 0}%
+                      </span>
+                    </div>
+                    <SoftBar
+                      value={traits[trait.id] ?? 0}
+                      color="var(--accent)"
+                      className="mt-2"
+                    />
+                    <p className="mt-1.5 max-w-[60ch] text-[13px] leading-relaxed text-[var(--ink-4)]">
+                      {tr(trait.description)}
+                    </p>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Roadmap */}
+        <section className="pt-16">
+          <SheetLabel>{tr(ui.roadmap)}</SheetLabel>
+
+          <div className="no-print mt-6 inline-flex rounded-full border border-[var(--rule)] bg-[var(--panel)] p-1">
+            {top3.map((entry, index) => {
+              const career = CAREER_BY_ID[entry.careerId];
+              const active = index === tab;
+              return (
+                <button
+                  key={entry.careerId}
+                  type="button"
+                  onClick={() => setTab(index)}
+                  aria-pressed={active}
+                  className={cn(
+                    "relative rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ease-out",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+                    active
+                      ? "text-white dark:text-[var(--ink-invert)]"
+                      : "text-[var(--ink-3)] hover:text-[var(--ink)]",
+                  )}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="roadmap-tab"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      className="absolute inset-0 rounded-full bg-[var(--accent)]"
+                      aria-hidden
+                    />
+                  )}
+                  <span className="relative">{tr(career.name)}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selected.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.22, ease: EASE }}
+            >
+              <Panel className="print-block mt-5 p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <CareerSwatch id={selected.id} color={selected.color} />
+                  <h3 className="display text-xl font-bold tracking-tight">{tr(selected.name)}</h3>
+                </div>
+
+                <p className="mt-5 max-w-[75ch] text-sm leading-relaxed text-[var(--ink-2)]">
+                  <span className="font-medium text-[var(--ink)]">{tr(ui.dayToDay)}: </span>
+                  {tr(selected.dayToDay)}
                 </p>
 
-                <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-                      {tr(ui.techToLearn)}
-                    </h4>
-                    <ul className="mt-2 flex flex-wrap gap-1.5">
-                      {career.tech.map((item) => (
+                <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                  <Block label={tr(ui.techToLearn)}>
+                    <ul className="flex flex-wrap gap-1.5">
+                      {selected.tech.map((item) => (
                         <li
                           key={item}
-                          className="rounded-lg bg-[var(--surface-2)] px-2.5 py-1 text-xs"
+                          className="rounded-full border border-[var(--rule)] bg-[var(--panel-2)] px-3 py-1 text-xs text-[var(--ink-2)]"
                         >
                           {item}
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-                      {tr(ui.coursesToTake)}
-                    </h4>
-                    <ul className="mt-2 space-y-1 text-sm">
-                      {career.courses.map((course) => (
-                        <li key={course.en}>· {tr(course)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-                      {tr(ui.portfolioProjects)}
-                    </h4>
-                    <ul className="mt-2 space-y-1 text-sm">
-                      {career.projects.map((project) => (
-                        <li key={project.en}>· {tr(project)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-                      {tr(ui.juniorMarket)}
-                    </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-                      {tr(career.market)}
+                  </Block>
+
+                  <Block label={tr(ui.coursesToTake)}>
+                    <NumberedList items={selected.courses.map((course) => tr(course))} />
+                  </Block>
+
+                  <Block label={tr(ui.portfolioProjects)}>
+                    <NumberedList items={selected.projects.map((project) => tr(project))} />
+                  </Block>
+
+                  <Block label={tr(ui.juniorMarket)}>
+                    <p className="max-w-[52ch] text-sm leading-relaxed text-[var(--ink-2)]">
+                      {tr(selected.market)}
                     </p>
+                  </Block>
+
+                  {/* Οι πιστοποιήσεις πιάνουν όλο το πλάτος: είναι λίστα με σειρά
+                      χρησιμότητας και συνοδεύεται από το πόσο μετράνε στ' αλήθεια. */}
+                  <div className="sm:col-span-2">
+                    <Block label={tr(ui.certifications)}>
+                      <ol className="grid gap-2.5 sm:grid-cols-2">
+                        {selected.certifications.map((certification, index) => (
+                          <li
+                            key={certification.en}
+                            className="flex items-start gap-3 rounded-2xl border border-[var(--rule)] bg-[var(--panel-2)] px-3.5 py-2.5"
+                          >
+                            <span className="mono mt-px grid size-5 shrink-0 place-items-center rounded-full bg-[var(--accent)] text-[10px] font-semibold text-white dark:text-[var(--ink-invert)]">
+                              {index + 1}
+                            </span>
+                            <span className="text-[13px] leading-snug text-[var(--ink-2)]">
+                              {tr(certification)}
+                            </span>
+                          </li>
+                        ))}
+                      </ol>
+                      <p className="mt-3 flex items-start gap-2 text-[13px] leading-relaxed text-[var(--ink-3)]">
+                        <BadgeCheck
+                          aria-hidden
+                          strokeWidth={1.75}
+                          className="mt-0.5 size-4 shrink-0 text-[var(--accent)]"
+                        />
+                        {tr(selected.certsNote)}
+                      </p>
+                    </Block>
                   </div>
                 </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
+              </Panel>
+            </motion.div>
+          </AnimatePresence>
+        </section>
 
-      <footer className="mt-14 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-muted)]">
-        <p>{tr(ui.disclaimer)}</p>
-        <p className="mt-2 text-xs">
-          {new Date(createdAt).toLocaleString(locale === "el" ? "el-GR" : "en-GB")}
-        </p>
-      </footer>
-    </main>
+        <footer className="mt-16 border-t border-[var(--rule)] pt-8">
+          <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">
+            {tr(ui.disclaimer)}
+          </p>
+          <LocalTimestamp value={createdAt} locale={locale} />
+          <Credit className="mt-5" />
+        </footer>
+      </main>
+    </>
+  );
+}
+
+/**
+ * Η ώρα μορφοποιείται μόνο στον browser: ο server τρέχει σε άλλη ζώνη ώρας και σε
+ * άλλο ICU, οπότε το ίδιο timestamp έβγαινε διαφορετικό στις δύο πλευρές και η
+ * React το ανέφερε ως hydration mismatch.
+ */
+function LocalTimestamp({ value, locale }: { value: number; locale: "el" | "en" }) {
+  const [text, setText] = useState<string | null>(null);
+
+  useEffect(() => {
+    setText(new Date(value).toLocaleString(locale === "el" ? "el-GR" : "en-GB"));
+  }, [value, locale]);
+
+  return (
+    <p className="mono mt-3 min-h-[1em] text-[11px] text-[var(--ink-4)]" suppressHydrationWarning>
+      {text}
+    </p>
+  );
+}
+
+function Block({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h4 className="eyebrow">{label}</h4>
+      <div className="mt-3.5">{children}</div>
+    </div>
+  );
+}
+
+/** Η σειρά εδώ σημαίνει προτεραιότητα, γι' αυτό είναι αριθμημένη. */
+function NumberedList({ items }: { items: string[] }) {
+  return (
+    <ol className="space-y-2.5">
+      {items.map((item, index) => (
+        <li key={item} className="flex gap-3 text-sm leading-relaxed text-[var(--ink-2)]">
+          <span className="mono grid size-5 shrink-0 place-items-center rounded-full bg-[var(--panel-2)] text-[10px] text-[var(--ink-3)]">
+            {index + 1}
+          </span>
+          <span className="max-w-[48ch]">{item}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** Κυκλικός δείκτης ταιριάσματος: δακτύλιος με το ποσοστό στο κέντρο. */
+function Gauge({ value, color }: { value: number; color: string }) {
+  const { tr } = useLocale();
+  const [display, setDisplay] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  const size = 148;
+  const stroke = 10;
+  const radius = (size - stroke) / 2;
+  const circumference = 2 * Math.PI * radius;
+
+  useEffect(() => {
+    if (!inView) return;
+    let frame = 0;
+    const start = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min(1, (now - start) / 900);
+      setDisplay(Math.round(value * (1 - Math.pow(1 - progress, 3))));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, value]);
+
+  return (
+    <div ref={ref} className="relative grid shrink-0 place-items-center">
+      <svg width={size} height={size} className="-rotate-90" aria-hidden>
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="var(--panel-2)"
+          strokeWidth={stroke}
+        />
+        <motion.circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth={stroke}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          initial={{ strokeDashoffset: circumference }}
+          animate={{ strokeDashoffset: inView ? circumference * (1 - value / 100) : circumference }}
+          transition={{ duration: 1, ease: EASE }}
+        />
+      </svg>
+      <div className="absolute text-center">
+        <span className="mono block text-[34px] font-bold leading-none tracking-tight">
+          {display}%
+        </span>
+        <span className="mt-1 block text-[11px] text-[var(--ink-4)]">{tr(ui.match)}</span>
+      </div>
+    </div>
+  );
+}
+
+function SoftBar({
+  value,
+  color,
+  muted = false,
+  className,
+}: {
+  value: number;
+  color: string;
+  muted?: boolean;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10px" });
+
+  return (
+    <span
+      ref={ref}
+      className={cn(
+        "block h-2 flex-1 overflow-hidden rounded-full bg-[var(--panel-2)]",
+        "transition-[height] duration-200 ease-out group-hover/row:h-2.5",
+        className,
+      )}
+      aria-hidden
+    >
+      <motion.span
+        className="block h-full rounded-full transition-opacity duration-200 ease-out group-hover/row:!opacity-100"
+        style={{ backgroundColor: color, opacity: muted ? 0.4 : 1 }}
+        initial={{ width: 0 }}
+        animate={{ width: inView ? `${value}%` : 0 }}
+        transition={{ duration: 0.8, ease: EASE }}
+      />
+    </span>
   );
 }
