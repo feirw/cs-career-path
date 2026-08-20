@@ -5,7 +5,6 @@ import { ArrowLeft, ArrowRight, CircleAlert } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AppHeader } from "@/components/AppHeader";
-import { Credit } from "@/components/Credit";
 import { useLocale } from "@/components/LocaleProvider";
 import { Button } from "@/components/ui/Button";
 import { Panel } from "@/components/ui/Card";
@@ -323,8 +322,6 @@ function Quiz({ mode }: { mode: TestMode }) {
             </ol>
           </motion.div>
         </AnimatePresence>
-
-        <Credit className="mt-12 text-center" />
 
         <AnimatePresence>
           {showMissing && !sectionComplete && (

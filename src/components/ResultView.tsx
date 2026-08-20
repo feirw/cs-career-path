@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "./AppHeader";
 import { CareerSwatch } from "./CareerIcon";
 import { CommunityInsights } from "./CommunityInsights";
-import { Credit } from "./Credit";
 import { useLocale } from "./LocaleProvider";
 import { RadarChart } from "./RadarChart";
 import { Button, ButtonLink } from "./ui/Button";
@@ -335,7 +334,6 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
             {tr(ui.disclaimer)}
           </p>
           <LocalTimestamp value={createdAt} locale={locale} />
-          <Credit className="mt-5" />
         </footer>
       </main>
     </>

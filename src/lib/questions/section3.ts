@@ -114,7 +114,7 @@ export const section3: Section = {
       id: "q28",
       section: 3,
       text: {
-        el: "Τα χρήματα είναι πολύ σημαντικά — θέλω μια καλή-αμοιβή δουλειά.",
+        el: "Τα χρήματα είναι πολύ σημαντικά, θέλω μια καλά αμοιβόμενη δουλειά.",
         en: "Money is very important—want good salary"
       },
       options: [
