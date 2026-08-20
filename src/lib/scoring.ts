@@ -59,7 +59,7 @@ function computeMaxima(questions: Question[]): Maxima {
       careerBaseline[careerId] += weights.reduce((a, b) => a + b, 0) / weights.length;
     }
     for (const traitId of TRAIT_IDS) {
-      const weights = q.options.map((o) => o.t[traitId] ?? 0);
+      const weights = q.options.map((o) => o.t?.[traitId] ?? 0);
       traits[traitId] += Math.max(0, ...weights);
       traitBaseline[traitId] += weights.reduce((a, b) => a + b, 0) / weights.length;
     }
@@ -88,7 +88,7 @@ export function score(answers: Answers, mode: TestMode): ScoreResult {
     for (const [careerId, weight] of Object.entries(option.c)) {
       rawCareers[careerId as CareerId] += weight ?? 0;
     }
-    for (const [traitId, weight] of Object.entries(option.t)) {
+    for (const [traitId, weight] of Object.entries(option.t ?? {})) {
       rawTraits[traitId as TraitId] += weight ?? 0;
     }
   }

@@ -12,7 +12,7 @@ export type Option = {
   id: string;
   label: LS;
   c: CareerWeights;
-  t: TraitWeights;
+  t?: TraitWeights;
 };
 
 export type Question = {

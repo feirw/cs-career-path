@@ -1,5 +1,8 @@
 import { section1 } from "./section1";
 import { section2 } from "./section2";
+import { section3 } from "./section3";
+import { section4 } from "./section4";
+import { section5 } from "./section5";
 import { SHORT_SECTIONS } from "./short";
 import type { Question, Section } from "./types";
 
@@ -26,6 +29,9 @@ export function parseMode(value: unknown): TestMode {
 export const FULL_SECTIONS: Section[] = [
   section1,
   section2,
+  section3,
+  section4,
+  section5,
 ];
 
 export { SHORT_SECTIONS };
