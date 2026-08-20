@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Gauge, ListChecks, RotateCcw } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, Gauge, ListChecks, RotateCcw } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { CareerSwatch } from "@/components/CareerIcon";
 import { Credit } from "@/components/Credit";
@@ -21,6 +21,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function HomePage() {
   const { tr } = useLocale();
   const [progress, setProgress] = useState<Record<TestMode, boolean>>({ short: false, full: false });
+  const careersRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setProgress({
@@ -32,6 +33,10 @@ export default function HomePage() {
   const clear = (mode: TestMode) => {
     window.localStorage.removeItem(progressKey(mode));
     setProgress((current) => ({ ...current, [mode]: false }));
+  };
+
+  const scrollToCareers = () => {
+    careersRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const anyProgress = progress.short || progress.full;
@@ -107,21 +112,33 @@ export default function HomePage() {
               )}
 
               {/* Τρία βήματα σε μία γραμμή: τι θα συμβεί μόλις πατήσεις */}
-              <motion.ol
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[var(--rule)] pt-5 text-[12.5px] text-[var(--ink-3)]"
               >
-                {[tr(ui.stepAnswer), tr(ui.stepSee), tr(ui.stepPlan)].map((step, index) => (
-                  <li key={step} className="flex items-center gap-2">
-                    <span className="mono grid size-5 shrink-0 place-items-center rounded-full border border-[var(--rule-strong)] text-[10px] text-[var(--ink-4)]">
-                      {index + 1}
-                    </span>
-                    {step}
-                  </li>
-                ))}
-              </motion.ol>
+                <ol className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  {[tr(ui.stepAnswer), tr(ui.stepSee), tr(ui.stepPlan)].map((step, index) => (
+                    <li key={step} className="flex items-center gap-2">
+                      <span className="mono grid size-5 shrink-0 place-items-center rounded-full border border-[var(--rule-strong)] text-[10px] text-[var(--ink-4)]">
+                        {index + 1}
+                      </span>
+                      {step}
+                    </li>
+                  ))}
+                </ol>
+
+                {/* Βέλος δεξιά του roadmap */}
+                <button
+                  onClick={scrollToCareers}
+                  className="ml-auto flex items-center gap-1.5 px-2 py-1 rounded-full transition-colors duration-200 hover:text-[var(--accent)] hover:bg-[var(--accent-soft)]"
+                  aria-label="Scroll to careers"
+                >
+                  <span className="text-[12.5px] font-medium">Δες τις 12</span>
+                  <ArrowDown aria-hidden strokeWidth={2} className="size-4" />
+                </button>
+              </motion.div>
             </div>
 
             {/* Το όργανο: κυκλικό, με απαλή λάμψη αντί για πλαίσιο */}
@@ -132,7 +149,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-t border-[var(--rule)] py-16">
+        <section ref={careersRef} className="border-t border-[var(--rule)] py-16">
           <SheetLabel>{tr({ el: "Οι 12 κατευθύνσεις", en: "The 12 directions" })}</SheetLabel>
 
           <ul className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -143,6 +160,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.35, delay: Math.min(index * 0.025, 0.2), ease: EASE }}
+                whileHover={{ y: -4 }}
               >
                 <Panel
                   interactive

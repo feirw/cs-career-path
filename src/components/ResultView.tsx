@@ -5,6 +5,7 @@ import { ArrowRight, BadgeCheck, Link2, Printer, RotateCcw } from "lucide-react"
 import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "./AppHeader";
 import { CareerSwatch } from "./CareerIcon";
+import { CommunityInsights } from "./CommunityInsights";
 import { Credit } from "./Credit";
 import { useLocale } from "./LocaleProvider";
 import { RadarChart } from "./RadarChart";
@@ -134,8 +135,9 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
                 const career = CAREER_BY_ID[entry.careerId];
                 const isTop3 = index < 3;
                 return (
-                  <li
+                  <motion.li
                     key={entry.careerId}
+                    whileHover={{ x: 2 }}
                     className={cn(
                       "group/row flex items-center gap-3 rounded-2xl px-3 py-2.5 sm:gap-4",
                       "transition-colors duration-200 ease-out hover:bg-[var(--panel-2)]",
@@ -160,7 +162,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
                     <span className="mono w-10 shrink-0 text-right text-[13px] text-[var(--ink-3)]">
                       {entry.match}%
                     </span>
-                  </li>
+                  </motion.li>
                 );
               })}
             </ul>
@@ -184,7 +186,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
               {[...TRAITS]
                 .sort((a, b) => (traits[b.id] ?? 0) - (traits[a.id] ?? 0))
                 .map((trait) => (
-                  <li key={trait.id}>
+                  <motion.li key={trait.id} whileHover={{ x: 4 }} className="group/trait">
                     <div className="flex items-baseline justify-between gap-4">
                       <span className="text-[15px] font-semibold">{tr(trait.name)}</span>
                       <span className="mono text-[13px] text-[var(--ink-3)]">
@@ -199,7 +201,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
                     <p className="mt-1.5 max-w-[60ch] text-[13px] leading-relaxed text-[var(--ink-4)]">
                       {tr(trait.description)}
                     </p>
-                  </li>
+                  </motion.li>
                 ))}
             </ul>
           </div>
@@ -321,6 +323,11 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
               </Panel>
             </motion.div>
           </AnimatePresence>
+        </section>
+
+        {/* Community Insights */}
+        <section className="pt-8">
+          <CommunityInsights />
         </section>
 
         <footer className="mt-16 border-t border-[var(--rule)] pt-8">

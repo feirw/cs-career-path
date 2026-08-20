@@ -271,8 +271,9 @@ function Quiz({ mode }: { mode: TestMode }) {
                         {question.options.map((option, optionIndex) => {
                           const selected = answers[question.id] === option.id;
                           return (
-                            <label
+                            <motion.label
                               key={option.id}
+                              whileHover={{ scale: 1.01, y: -1 }}
                               className={cn(
                                 "group flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3",
                                 "transition-all duration-200 ease-out",
@@ -311,7 +312,7 @@ function Quiz({ mode }: { mode: TestMode }) {
                               >
                                 {tr(option.label)}
                               </span>
-                            </label>
+                            </motion.label>
                           );
                         })}
                       </div>

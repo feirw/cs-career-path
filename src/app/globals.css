@@ -79,6 +79,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  overflow-x: hidden;
 }
 
 html.dark {
@@ -184,6 +185,63 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── SMOOTH INTERACTIONS ────────────────────────────────────────────────────── */
+
+/* Smooth hover effects στα κουμπιά και interactive elements */
+button,
+[role="button"],
+a {
+  transition: all 200ms var(--ease-soft);
+}
+
+button:hover,
+[role="button"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(74, 114, 184, 0.15);
+}
+
+.dark button:hover,
+.dark [role="button"]:hover {
+  box-shadow: 0 8px 16px rgba(143, 178, 232, 0.15);
+}
+
+button:active,
+[role="button"]:active {
+  transform: translateY(0);
+}
+
+/* Smooth color transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: var(--ease-soft);
+  transition-duration: 200ms;
+}
+
+/* Floating animation για cards και panels */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.group/card:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Smooth scale για cards */
+.group/card {
+  transition: transform 200ms var(--ease-soft), box-shadow 200ms var(--ease-soft);
+}
+
+.group/card:hover {
+  transform: scale(1.02);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────── */
 
 @media print {
   .no-print {

@@ -17,12 +17,12 @@ const base =
 const variants: Record<Variant, string> = {
   primary:
     "bg-[var(--accent)] text-white shadow-[0_6px_20px_-8px_rgba(74,114,184,0.65)] " +
-    "hover:bg-[var(--accent-strong)] hover:shadow-[0_10px_28px_-8px_rgba(74,114,184,0.7)] " +
+    "hover:bg-[var(--accent-strong)] hover:shadow-[0_10px_28px_-8px_rgba(74,114,184,0.7)] hover:translate-y-[-2px] " +
     "dark:text-[var(--ink-invert)]",
   outline:
     "border border-[var(--rule-strong)] bg-[var(--panel)] text-[var(--ink)] " +
-    "hover:border-[var(--accent)] hover:text-[var(--accent)]",
-  quiet: "text-[var(--ink-3)] hover:bg-[var(--panel-2)] hover:text-[var(--ink)]",
+    "hover:border-[var(--accent)] hover:text-[var(--accent)] hover:translate-y-[-2px] hover:shadow-[0_4px_12px_rgba(74,114,184,0.1)]",
+  quiet: "text-[var(--ink-3)] hover:bg-[var(--panel-2)] hover:text-[var(--ink)] hover:translate-y-[-2px]",
 };
 
 const sizes: Record<Size, string> = {
