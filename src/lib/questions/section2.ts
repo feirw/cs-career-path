@@ -9,90 +9,91 @@ export const section2: Section = {
   },
   questions: [
     {
-      id: "q11",
+      id: "q26",
       section: 2,
       text: {
-        el: "Κάποιος δεν συμφωνεί με τη δική σου λύση. Πώς αντιδράς;",
-        en: "Someone disagrees with your solution. What do you do?",
+        el: "Κάποιος λέει ότι η λύση σου είναι λάθος. Αντίδρασή σου;",
+        en: "Someone says your idea is wrong. How do you react?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Του δείχνω γιατί η δική μου είναι καλύτερη",
-            en: "Show them why mine is better",
+            el: "Ακούω τη λογική — ίσως έχει δίκαιο",
+            en: "Listen to their logic—maybe right",
           },
-          c: { backend: 2, product: 1 },
-          t: { systems: 2, people: 0 },
+          c: { product: 3, frontend: 2 },
+          t: { people: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Ακούω το σκεπτικό του — ίσως έχει δίκαιο",
-            en: "Listen to their reasoning—maybe they're right",
+            el: "Εξηγώ γιατί δουλεύει",
+            en: "Explain why it works",
           },
-          c: { frontend: 2, product: 2 },
-          t: { people: 3 },
+          c: { backend: 2, devops: 1 },
+          t: { systems: 2 },
         },
         {
           id: "c",
           label: {
-            el: "Σχεδιάζω να δοκιμάσουμε και τις δύο",
-            en: "Suggest we try both and see",
+            el: "Δοκιμάζουμε και τις δύο λύσεις",
+            en: "Test both approaches",
           },
           c: { research: 2, qa: 2 },
-          t: { analytical: 2, creative: 1 },
+          t: { analytical: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Ζητάω απόψεις και από άλλα άτομα",
-            en: "Ask others what they think",
+            el: "Δεν με χαλάει — ας πάμε με αυτή που δουλεύει",
+            en: "Doesn't matter—let's use what works",
           },
-          c: { product: 2, devops: 1 },
-          t: { people: 2, ops: 1 },
+          c: { mobile: 2, product: 1 },
+          t: { creative: 1 },
         },
       ],
     },
     {
-      id: "q12",
+      id: "q27",
       section: 2,
       text: {
-        el: "Πρέπει να κάνεις κάτι νέο και δεν ξέρεις από πού να ξεκινήσεις.",
-        en: "You need to do something new and don't know where to start.",
+        el: "Πρέπει να κάνεις κάτι που δεν έχεις ξανακάνει. Ξεκινάς πώς;",
+        en: "You need to do something new. How do you start?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ψάχνω αν κάποιος άλλος έχει κάνει κάτι παρόμοιο",
-            en: "Look for similar work someone's done",
+            el: "Ψάχνω παραδείγματα ή παρόμοια έργα",
+            en: "Look for examples",
+
           },
-          c: { research: 2, frontend: 1 },
+          c: { research: 3, frontend: 1 },
           t: { research: 2 },
         },
         {
           id: "b",
           label: {
-            el: "Κάνω ένα σχέδιο βήμα-προς-βήμα πρώτα",
-            en: "Make a step-by-step plan first",
+            el: "Κάνω ένα σχέδιο πρώτα",
+            en: "Make a plan first",
           },
-          c: { backend: 2, devops: 2 },
+          c: { backend: 3, devops: 2 },
           t: { ops: 3 },
         },
         {
           id: "c",
           label: {
-            el: "Ξεκινάω και μαθαίνω ενώ το κάνω",
-            en: "Start and learn as I go",
+            el: "Ξεκινάω και μαθαίνω ενώ κάνω",
+            en: "Just start and learn",
           },
           c: { frontend: 2, mobile: 2 },
-          t: { creative: 2 },
+          t: { creative: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Ζητάω βοήθεια από κάποιον που ξέρει",
+            el: "Ζητάω κάποιον που ξέρει",
             en: "Ask someone experienced",
           },
           c: { product: 2, qa: 1 },
@@ -101,64 +102,64 @@ export const section2: Section = {
       ],
     },
     {
-      id: "q13",
+      id: "q28",
       section: 2,
       text: {
-        el: "Δουλεύεις σε ένα μεγάλο αρχείο που δεν καταλαβαίνεις. Τι κάνεις;",
-        en: "You need to edit a large file you don't understand. What's your approach?",
+        el: "Ένα κοινό αρχείο που κανείς δεν κατάλαβε. Τι κάνεις;",
+        en: "A shared file nobody understands. What do you do?",
       },
       options: [
         {
           id: "a",
           label: {
             el: "Το διαβάζω αργά και κάνω σημειώσεις",
-            en: "Read it slowly, take notes",
+            en: "Read slowly, take notes",
           },
-          c: { research: 3, embedded: 1 },
+          c: { research: 3, backend: 1 },
           t: { research: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Κοιτάω τι είναι τα σφάλματα πρώτα",
-            en: "Look for what's broken first",
+            el: "Ψάχνω για τα λάθη πρώτα",
+            en: "Look for bugs first",
           },
-          c: { qa: 2, backend: 1 },
-          t: { systems: 2, ops: 1 },
+          c: { qa: 3, security: 1 },
+          t: { adversarial: 2 },
         },
         {
           id: "c",
           label: {
-            el: "Γράφω tests πρώτα, μετά κάνω αλλαγές",
-            en: "Write tests first, then change it",
+            el: "Γράφω tests γύρω του",
+            en: "Write tests around it",
           },
-          c: { qa: 3, devops: 1 },
-          t: { ops: 2, adversarial: 1 },
+          c: { qa: 3, backend: 1 },
+          t: { ops: 2 },
         },
         {
           id: "d",
           label: {
-            el: "Ψάχνω για κρυμμένα προβλήματα πριν αλλάξω κάτι",
-            en: "Check for hidden problems before changing",
+            el: "Το ξαναγράφω καθαρό",
+            en: "Rewrite it clean",
           },
-          c: { security: 3, qa: 1 },
-          t: { adversarial: 3 },
+          c: { backend: 3, frontend: 1 },
+          t: { systems: 3 },
         },
       ],
     },
     {
-      id: "q14",
+      id: "q29",
       section: 2,
       text: {
-        el: "Δύο ανθρώποι δουλεύουν μαζί και συχνά έχουν conflicting αλλαγές. Τι λύση;",
-        en: "Two people keep making changes that conflict. How to fix?",
+        el: "Δύο άτομα δουλεύουν στο ίδιο κομμάτι και συγκρούονται. Λύση;",
+        en: "Two people keep conflicting edits. How to fix?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Σχεδιάζουν ποιος κάνει τι και πότε",
-            en: "Plan who does what and when",
+            el: "Σχεδιάζουν ποιος κάνει τι",
+            en: "Plan who does what",
           },
           c: { product: 3, frontend: 1 },
           t: { people: 3 },
@@ -166,8 +167,8 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Χωρίζουν τον κώδικα ώστε να δουλεύουν χωριστά",
-            en: "Split the code so they work separately",
+            el: "Χωρίζουν τον κώδικα",
+            en: "Split the code",
           },
           c: { backend: 3, embedded: 1 },
           t: { systems: 3 },
@@ -175,36 +176,27 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Κάνουν συχνότερα και μικρότερα commits",
-            en: "Make smaller, more frequent updates",
+            el: "Μικρότερα, πιο συχνά updates",
+            en: "Smaller, frequent updates",
           },
           c: { devops: 3, qa: 1 },
           t: { ops: 3 },
         },
-        {
-          id: "d",
-          label: {
-            el: "Ο καθένας δουλεύει στη δική του κλάδο",
-            en: "Each works on their own branch",
-          },
-          c: { frontend: 2, mobile: 1 },
-          t: { creative: 1, ops: 1 },
-        },
       ],
     },
     {
-      id: "q15",
+      id: "q30",
       section: 2,
       text: {
-        el: "Βρίσκεις ένα μέρος του κώδικα που είναι σπαγγέτι. Το καθαρίζεις;",
-        en: "You find messy code. Do you clean it up?",
+        el: "Ακατάστατος κώδικας που δουλεύει. Το καθαρίζεις ή το αφήνεις;",
+        en: "Messy code that works. Clean it or leave it?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ναι, το ξαναγράφω καθαρό",
-            en: "Yes, rewrite it clean",
+            el: "Ναι — ο καθαρός κώδικας είναι σημαντικός",
+            en: "Yes—clean code matters",
           },
           c: { backend: 3, embedded: 1 },
           t: { systems: 3 },
@@ -212,25 +204,25 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Όχι, απλώς το τεκμηριώνω",
-            en: "No, just document what it does",
-          },
-          c: { research: 2, qa: 1 },
-          t: { research: 2, ops: 1 },
-        },
-        {
-          id: "c",
-          label: {
-            el: "Μόνο αν έχω χρόνο και εάν κανείς δεν χρειάζεται",
-            en: "Only if I have time and nobody needs it",
+            el: "Όχι — αν δουλεύει, δεν το αγγίζω",
+            en: "No—if it works, leave it",
           },
           c: { product: 3, frontend: 1 },
           t: { product: 3 },
         },
         {
+          id: "c",
+          label: {
+            el: "Μόνο αν έχω χρόνο",
+            en: "Only if I have time",
+          },
+          c: { qa: 2, mobile: 1 },
+          t: { creative: 1 },
+        },
+        {
           id: "d",
           label: {
-            el: "Ελέγχω αν κρύβει προβλήματα πρώτα",
+            el: "Ελέγχω πρώτα αν κρύβει προβλήματα",
             en: "Check if it hides bugs first",
           },
           c: { security: 3, qa: 1 },
@@ -239,18 +231,18 @@ export const section2: Section = {
       ],
     },
     {
-      id: "q16",
+      id: "q31",
       section: 2,
       text: {
-        el: "Κάποιος λέει «σε μένα δουλεύει». Σε εσένα όχι. Πώς ξεκινάς;",
-        en: "Someone says \"works for me.\" It doesn't work for you. Start with what?",
+        el: "«Σε μένα δουλεύει» αλλά σε εσένα όχι. Ξεκινάς πώς;",
+        en: "\"Works for me\" but not for you. How to debug?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Συγκρίνω τι έχουν δεδομένο διαφορετικό",
-            en: "Compare what's different in their setup",
+            el: "Συγκρίνω περιβάλλοντα",
+            en: "Compare environments",
           },
           c: { devops: 3, backend: 1 },
           t: { ops: 3 },
@@ -258,17 +250,17 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Το βάζω σε ένα container ώστε να είναι ίδιο παντού",
-            en: "Put it in a container so it's the same everywhere",
+            el: "Το βάζω σε container",
+            en: "Put in container",
           },
           c: { devops: 3, backend: 2 },
-          t: { ops: 2, systems: 1 },
+          t: { ops: 2 },
         },
         {
           id: "c",
           label: {
-            el: "Καθομαι δίπλα του και δουλεύουμε μαζί",
-            en: "Sit together and work through it",
+            el: "Δουλεύουμε μαζί",
+            en: "Work together",
           },
           c: { product: 2, frontend: 2 },
           t: { people: 3 },
@@ -276,8 +268,8 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Σκέφτομαι τι υποθέσεις κάνει ο κώδικας",
-            en: "Think about what assumptions the code makes",
+            el: "Σκέφτομαι τι υποθέσεις κάνει",
+            en: "Think what it assumes",
           },
           c: { backend: 3, security: 1 },
           t: { systems: 3 },
@@ -285,44 +277,44 @@ export const section2: Section = {
       ],
     },
     {
-      id: "q17",
+      id: "q32",
       section: 2,
       text: {
-        el: "Έχεις προθεσμία αύριο. Τι είδους κώδικα γράφεις;",
-        en: "Deadline is tomorrow. What kind of code do you write?",
+        el: "Έχεις προθεσμία αύριο. Τι κώδικα γράφεις;",
+        en: "Deadline tomorrow. What code do you write?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Γρήγορα και πρόχειρα — θα το καθαρίσω μετά",
-            en: "Fast and rough—I'll clean up later",
+            el: "Γρήγορα και πρόχειρα",
+            en: "Fast and rough",
           },
           c: { frontend: 2, mobile: 2 },
-          t: { creative: 2, product: 1 },
+          t: { creative: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Τόσο προσεκτικά όσο πάντα — αν όχι, θα το ζήσω",
-            en: "As careful as always—or I'll regret it",
+            el: "Προσεκτικά όπως πάντα",
+            en: "Careful as always",
           },
           c: { embedded: 3, qa: 2 },
-          t: { systems: 2, ops: 1 },
+          t: { systems: 3, ops: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Κόβω λειτουργίες αν χρειάζεται, αλλά όχι ποιότητα",
-            en: "Cut features if needed, not quality",
+            el: "Κόβω λειτουργίες, όχι ποιότητα",
+            en: "Cut features, not quality",
           },
           c: { backend: 2, product: 2 },
-          t: { product: 2, ops: 1 },
+          t: { product: 2 },
         },
         {
           id: "d",
           label: {
-            el: "Πρώτα τα tests, μετά τον κώδικα",
+            el: "Tests πρώτα, μετά κώδικα",
             en: "Tests first, code second",
           },
           c: { qa: 3, backend: 1 },
@@ -331,18 +323,18 @@ export const section2: Section = {
       ],
     },
     {
-      id: "q18",
+      id: "q33",
       section: 2,
       text: {
-        el: "Θέλεις να μάθεις μία εξειδίκευση βαθιά ή πολλά πράγματα λίγο;",
-        en: "Deep expertise in one thing or broad knowledge in many?",
+        el: "Μία ειδικότητα απόλυτη ή πολλές δεξιότητες;",
+        en: "Deep expertise or broad skills?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ένα πράγμα — θέλω να γίνω εξπέρ",
-            en: "One thing—I want to be expert",
+            el: "Απόλυτη ειδικότητα — να είμαι εξπέρ",
+            en: "Deep—become expert",
           },
           c: { embedded: 3, backend: 2 },
           t: { systems: 3 },
@@ -350,17 +342,17 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Πολλά πράγματα — μου αρέσει η ποικιλία",
-            en: "Many things—I like variety",
+            el: "Πολλές δεξιότητες — ποικιλία",
+            en: "Broad—lots of variety",
           },
-          c: { frontend: 2, mobile: 2 },
-          t: { creative: 2, research: 1 },
+          c: { frontend: 3, mobile: 2 },
+          t: { creative: 3 },
         },
         {
           id: "c",
           label: {
-            el: "Κύρια δεξιότητα + γενική γνώση",
-            en: "One main skill + general knowledge",
+            el: "Ένα κύριο + γενικές γνώσεις",
+            en: "One main + general knowledge",
           },
           c: { backend: 2, product: 2 },
           t: { systems: 2, analytical: 1 },
@@ -368,102 +360,592 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Εξαρτάται από τα ενδιαφέροντά μου",
-            en: "Depends on my interests",
+            el: "Εξαρτάται από ενδιαφέρει με",
+            en: "Depends on interests",
           },
-          c: { research: 2, datasci: 2 },
-          t: { research: 2, analytical: 1 },
+          c: { research: 3, datasci: 2 },
+          t: { research: 3 },
         },
       ],
     },
     {
-      id: "q19",
+      id: "q34",
       section: 2,
       text: {
-        el: "Κάποιος ανακοινώνει δημόσια το λάθος σου. Πώς αντιδράς;",
-        en: "Someone publicly calls out your mistake. How do you react?",
+        el: "Κάποιος σχολιάζει δημόσια το λάθος σου. Νιώθεις πώς;",
+        en: "Someone publicly calls out your mistake. How do you feel?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Με ενοχλεί αλλά του εξηγώ",
-            en: "Bothers me but I explain",
+            el: "Ευχαριστώ — συνεισφέρει στη μάθησή μου",
+            en: "Thanks—helps me learn",
           },
-          c: { product: 2, frontend: 1 },
-          t: { people: 2, ops: 0 },
+          c: { backend: 2, qa: 2 },
+          t: { systems: 2, research: 1 },
         },
         {
           id: "b",
           label: {
-            el: "Ευχαριστώ — καλό που το ανακάλυψε",
-            en: "Thank them—good they caught it",
+            el: "Λίγο ντροπή αλλά καταλαβαίνω",
+            en: "Embarrassed but I understand",
           },
-          c: { backend: 2, research: 2 },
-          t: { systems: 2, research: 1 },
+          c: { frontend: 2, product: 1 },
+          t: { creative: 1, people: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Δεν με ενδιαφέρει — ό,τι για να μάθω",
-            en: "Doesn't bother me—whatever to learn",
+            el: "Δεν με χαλάει — πάμε στο σημαντικό",
+            en: "Doesn't bother me—move on",
           },
-          c: { qa: 2, security: 2 },
-          t: { adversarial: 2, ops: 1 },
-        },
-        {
-          id: "d",
-          label: {
-            el: "Θα προτιμούσα να το μάθω ιδιωτικά",
-            en: "Would prefer to hear it privately",
-          },
-          c: { devops: 2, embedded: 1 },
-          t: { ops: 2, systems: 1 },
+          c: { research: 2, devops: 1 },
+          t: { systems: 1, ops: 1 },
         },
       ],
     },
     {
-      id: "q20",
+      id: "q35",
       section: 2,
       text: {
-        el: "Τι θα ήθελες να κάνεις πιο πολύ στη δουλειά σου;",
-        en: "What would you want to do more of at work?",
+        el: "Θέλεις εργαλεία που δοκιμάσεις ή που ξέρεις ότι δουλεύουν;",
+        en: "Try new tools or use proven ones?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Να κτίσω χαρακτηριστικά που άνθρωποι χρησιμοποιούν",
-            en: "Build features people use",
+            el: "Δοκιμάζω νέα — η ανακάλυψη είναι διασκεδαστική",
+            en: "Try new—fun to discover",
           },
-          c: { frontend: 3, product: 2 },
+          c: { frontend: 2, mobile: 2 },
           t: { creative: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Να λύσω τεχνικά προβλήματα",
-            en: "Solve technical problems",
+            el: "Ξέρω τι δουλεύει — δεν αλλάζω",
+            en: "Use proven—no unnecessary risk",
           },
-          c: { backend: 2, security: 2 },
+          c: { backend: 2, embedded: 2 },
           t: { systems: 3 },
         },
         {
           id: "c",
           label: {
-            el: "Να δουλεύω με άτομα και ιδέες",
-            en: "Work with people and ideas",
+            el: "Δοκιμάζω νέα αν έχουν όφελος",
+            en: "Try if there's clear benefit",
           },
-          c: { product: 2, research: 2 },
+          c: { research: 2, devops: 2 },
+          t: { analytical: 2, creative: 1 },
+        },
+      ],
+    },
+    {
+      id: "q36",
+      section: 2,
+      text: {
+        el: "Μαθαίνεις από σφάλματα ή προτιμάς να τα αποφεύγεις;",
+        en: "Learn from mistakes or avoid them?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Μαθαίνω από αυτά — πολύτιμη εμπειρία",
+            en: "Learn from them—valuable",
+          },
+          c: { research: 2, frontend: 2 },
+          t: { research: 2, creative: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Αποφεύγω — καλύτερο να μη συμβούν",
+            en: "Avoid—better they don't happen",
+          },
+          c: { security: 3, qa: 2 },
+          t: { adversarial: 3, ops: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Και τα δύο — αποφεύγω αλλά μαθαίνω αν συμβούν",
+            en: "Both—avoid but learn if they happen",
+          },
+          c: { backend: 2, product: 2 },
+          t: { systems: 2, analytical: 1 },
+        },
+      ],
+    },
+    {
+      id: "q37",
+      section: 2,
+      text: {
+        el: "Έχεις 2 δουλειές — μία ενδιαφέρουσα αλλά ανασφαλής, μία σταθερή αλλά βαρετή;",
+        en: "Interesting but risky job or boring but stable?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Ενδιαφέρουσα — θέλω να μαθαίνω",
+            en: "Interesting—love learning",
+          },
+          c: { research: 3, mobile: 2 },
+          t: { creative: 3, research: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Σταθερή — θέλω ασφάλεια",
+            en: "Stable—want security",
+          },
+          c: { qa: 2, embedded: 2 },
+          t: { ops: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Ενδιαφέρουσα αν μπορώ να κρατήσω ασφάλεια",
+            en: "Interesting if I can stay safe",
+          },
+          c: { product: 2, backend: 2 },
+          t: { systems: 2, people: 1 },
+        },
+      ],
+    },
+    {
+      id: "q38",
+      section: 2,
+      text: {
+        el: "Ένα μεγάλο project που θέλει δουλειά με τη δική σου ομάδα. Προτιμάς να κάνεις;",
+        en: "Big project needing teamwork. What do you do?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Παίρνω το κομμάτι που με ενδιαφέρει",
+            en: "Pick the part I like",
+          },
+          c: { frontend: 2, mobile: 2 },
+          t: { creative: 2 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Αναλαμβάνω ευθύνη και συντονίζω",
+            en: "Take lead and coordinate",
+          },
+          c: { product: 3, backend: 1 },
           t: { people: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Κάνω οποιοδήποτε κομμάτι χρειάζεται",
+            en: "Do whatever's needed",
+          },
+          c: { qa: 2, backend: 2 },
+          t: { systems: 2, people: 1 },
         },
         {
           id: "d",
           label: {
-            el: "Να μάθω καινούργια πράγματα",
-            en: "Learn new things",
+            el: "Δουλεύω μόνος σε ένα μέρος",
+            en: "Work alone on my part",
           },
-          c: { research: 3, datasci: 2 },
+          c: { embedded: 2, research: 2 },
+          t: { systems: 2, research: 1 },
+        },
+      ],
+    },
+    {
+      id: "q39",
+      section: 2,
+      text: {
+        el: "Δουλειά που αλλάζει συχνά ή όπου τα πράγματα παραμένουν σταθερά;",
+        en: "Constantly changing or stable work?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Αλλάζει — μου αρέσει η δυναμική",
+            en: "Changing—I like dynamic",
+          },
+          c: { product: 3, mobile: 2 },
+          t: { creative: 3, product: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Σταθερή — καλύτερο να σχεδιάζω",
+            en: "Stable—I can plan ahead",
+          },
+          c: { backend: 2, embedded: 2 },
+          t: { systems: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Αργή αλλαγή — εξισορρόπηση",
+            en: "Slow change—balance",
+          },
+          c: { research: 2, devops: 2 },
+          t: { analytical: 2, systems: 1 },
+        },
+      ],
+    },
+    {
+      id: "q40",
+      section: 2,
+      text: {
+        el: "Κάποιος που δεν αρέσει σου προσωπικά. Μπορείς να δουλέψεις μαζί;",
+        en: "Someone you don't like personally. Can you work together?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Ναι — το προσωπικό είναι ξεχωριστό",
+            en: "Yes—separate personal from work",
+          },
+          c: { backend: 2, qa: 2 },
+          t: { systems: 2, ops: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Δύσκολο — χρειάζεται χημεία",
+            en: "Hard—need chemistry",
+          },
+          c: { product: 2, frontend: 2 },
+          t: { people: 2, creative: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Εξαρτάται από το πόσο διαφορετικοί είμαστε",
+            en: "Depends on how different we are",
+          },
+          c: { research: 2, devops: 2 },
+          t: { analytical: 2, people: 1 },
+        },
+      ],
+    },
+    {
+      id: "q41",
+      section: 2,
+      text: {
+        el: "Κάποιος καλό σχέδιο αλλά εκτέλεση μέτρια. Τι κρίνεις;",
+        en: "Good plan but poor execution. What's worse?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Το σχέδιο — αν δεν ξέρεις που πας",
+            en: "Plan—if you don't know where to go",
+          },
+          c: { backend: 2, devops: 2 },
+          t: { ops: 3 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Η εκτέλεση — λεπτομέρειες σημαίνουν",
+            en: "Execution—details matter",
+          },
+          c: { qa: 3, embedded: 1 },
+          t: { systems: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Και τα δύο είναι σημαντικά",
+            en: "Both matter equally",
+          },
+          c: { product: 2, frontend: 2 },
+          t: { systems: 1, creative: 1 },
+        },
+      ],
+    },
+    {
+      id: "q42",
+      section: 2,
+      text: {
+        el: "Έχεις ένα εργαλείο που αγαπάς ή προτιμάς να μαθαίνεις νέα;",
+        en: "Stick with tools you love or learn new ones?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Αγαπώ μ' εργαλεία μου — έχει νόημα",
+            en: "Love my tools—makes sense",
+          },
+          c: { backend: 2, embedded: 2 },
+          t: { systems: 2 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Μαθαίνω νέα — το κτισμό δεν είναι το εργαλείο",
+            en: "Learn new—the build, not the tool",
+          },
+          c: { frontend: 3, mobile: 2 },
+          t: { creative: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Χρησιμοποιώ το καλύτερο για κάθε δουλειά",
+            en: "Use best tool for job",
+          },
+          c: { research: 2, devops: 2 },
+          t: { analytical: 2 },
+        },
+      ],
+    },
+    {
+      id: "q43",
+      section: 2,
+      text: {
+        el: "Προφέρεις κύκλος κοντής διάρκειας ή εκτενή projects;",
+        en: "Short cycles or long projects?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Κύκλος κοντής διάρκειας — γρήγορα αποτελέσματα",
+            en: "Short—quick wins",
+          },
+          c: { product: 3, mobile: 2 },
+          t: { creative: 2, product: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Εκτενή — βαθιά κατανόηση",
+            en: "Long—deep understanding",
+          },
+          c: { research: 3, backend: 2 },
+          t: { research: 3, systems: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Και τα δύο — εξαρτάται από το έργο",
+            en: "Both—depends on project",
+          },
+          c: { frontend: 2, qa: 2 },
+          t: { creative: 1, analytical: 1 },
+        },
+      ],
+    },
+    {
+      id: "q44",
+      section: 2,
+      text: {
+        el: "Ένας boss που κατευθύνει ή ελευθερία χωρίς επίβλεψη;",
+        en: "Boss directing or freedom without oversight?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Boss κατευθύνει — ξέρω τι περιμένεται",
+            en: "Boss directs—I know expectations",
+          },
+          c: { qa: 2, embedded: 2 },
+          t: { ops: 3 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Ελευθερία — αποφασίζω μόνος",
+            en: "Freedom—I decide",
+          },
+          c: { research: 3, backend: 2 },
+          t: { systems: 2, creative: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Καθοδήγηση με ελευθερία",
+            en: "Guidance with freedom",
+          },
+          c: { product: 2, frontend: 2 },
+          t: { creative: 2, people: 1 },
+        },
+      ],
+    },
+    {
+      id: "q45",
+      section: 2,
+      text: {
+        el: "Δουλειά που είναι ορατή (άλλοι βλέπουν ό,τι κάνεις) ή κρυμμένη;",
+        en: "Visible work or invisible infrastructure?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Ορατή — θέλω να δουν τη δουλειά μου",
+            en: "Visible—want recognition",
+          },
+          c: { frontend: 3, product: 2 },
+          t: { creative: 2, people: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Κρυμμένη — αρκεί να δουλεύει",
+            en: "Invisible—as long as it works",
+          },
+          c: { backend: 3, embedded: 2 },
+          t: { systems: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Και τα δύο — πολλά συστήματα έχουν visible interface",
+            en: "Both—systems have visible part too",
+          },
+          c: { devops: 2, research: 2 },
+          t: { systems: 1, analytical: 1 },
+        },
+      ],
+    },
+    {
+      id: "q46",
+      section: 2,
+      text: {
+        el: "Πόσο σημαντικές οι δοκιμές στη δουλειά σου;",
+        en: "How important is testing to you?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Πολύ — δεν κρέμω κώδικα χωρίς tests",
+            en: "Very—no code without tests",
+          },
+          c: { qa: 3, backend: 2 },
+          t: { ops: 3, systems: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Σημαντική αλλά όχι απόλυτη",
+            en: "Important but not absolute",
+          },
+          c: { frontend: 2, product: 2 },
+          t: { creative: 1, systems: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Λιγότερο — κωδικά δουλεύει μετά",
+            en: "Less—ship and fix",
+          },
+          c: { mobile: 2, research: 1 },
+          t: { creative: 2 },
+        },
+      ],
+    },
+    {
+      id: "q47",
+      section: 2,
+      text: {
+        el: "Ένα feature που σου ζητούν αλλά δεν έχει νόημα. Τι κάνεις;",
+        en: "Asked to build something that doesn't make sense. What do you do?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Το κάνω — έτσι πληρώνομαι",
+            en: "Build it—that's the job",
+          },
+          c: { frontend: 2, mobile: 2 },
+          t: { creative: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Ρωτάω γιατί — ίσως δεν καταλαβαίνω",
+            en: "Ask why—maybe I don't understand",
+          },
+          c: { product: 3, backend: 1 },
+          t: { people: 2, analytical: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Προτείνω κάτι καλύτερο",
+            en: "Suggest something better",
+          },
+          c: { research: 2, product: 2 },
+          t: { creative: 2 },
+        },
+        {
+          id: "d",
+          label: {
+            el: "Δεν το κάνω — αν δεν έχει νόημα",
+            en: "Don't—if it doesn't make sense",
+          },
+          c: { security: 2, research: 1 },
+          t: { adversarial: 1 },
+        },
+      ],
+    },
+    {
+      id: "q48",
+      section: 2,
+      text: {
+        el: "Τελευταία — τι σας κάνει να αισθάνεστε ότι έκανε μια καλή δουλειά;",
+        en: "Last: what makes you feel like you did good work?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Κάποιος το χρησιμοποιεί και είναι ευχαριστημένος",
+            en: "Someone uses it and is happy",
+          },
+          c: { product: 3, frontend: 2 },
+          t: { people: 2, creative: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Ο κώδικας είναι καθαρός και ωραίος",
+            en: "Code is clean and elegant",
+          },
+          c: { backend: 3, embedded: 1 },
+          t: { systems: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Δεν σπάει όταν χρησιμοποιείται",
+            en: "Doesn't break when used",
+          },
+          c: { qa: 3, security: 2 },
+          t: { ops: 3 },
+        },
+        {
+          id: "d",
+          label: {
+            el: "Έμαθα κάτι νέο",
+            en: "I learned something new",
+          },
+          c: { research: 3, mobile: 1 },
           t: { research: 3 },
         },
       ],
