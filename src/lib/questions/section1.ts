@@ -342,7 +342,7 @@ export const section1: Section = {
       id: "q07",
       section: 1,
       text: {
-        el: "Κάποιος βασίζεται σε εσένα για κάτι σημαντικό και το περνάς ή όχι.",
+        el: "Κάποιος βασίζεται σε εσένα για κάτι σημαντικό—καταφέρνεις ή αποτυγχάνεις.",
         en: "Someone is counting on you for something important—pass or fail.",
       },
       options: [
@@ -440,7 +440,7 @@ export const section1: Section = {
         {
           id: "e",
           label: {
-            el: "Ζητάω βοήθεια και άσχημα δεν μπορώ",
+            el: "Ζητάω βοήθεια ώστε να μην κάνω κακή δουλειά",
             en: "Ask for help—I can't do bad work",
           },
           c: { qa: 2, product: 1 },

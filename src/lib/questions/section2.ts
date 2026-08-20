@@ -46,17 +46,17 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Σβήνω τα πάντα και ξαναστήνω το περιβάλλον από την αρχή",
-            en: "Wipe everything and rebuild the environment from scratch",
+            el: "Ξαναρχίζω το περιβάλλον — δεν έχω χρόνο να σκάβω",
+            en: "Restart everything — no time to dig",
           },
-          c: { devops: 2, mobile: 2 },
-          t: { ops: 2 },
+          c: { product: 2, frontend: 2 },
+          t: { product: 2 },
         },
         {
           id: "e",
           label: {
-            el: "Ρωτάω κάποιον· μπορεί να το έχει ξαναδεί",
-            en: "Ask someone; they may have seen it before",
+            el: "Ρωτάω κάποιον που έχει ξαναδεί κάτι παρόμοιο",
+            en: "Ask someone who's seen something like it before",
           },
           c: { product: 2, frontend: 2 },
           t: { people: 3 },
@@ -67,53 +67,53 @@ export const section2: Section = {
       id: "q12",
       section: 2,
       text: {
-        el: "Μια σελίδα που φτιάξατε αργεί έξι δευτερόλεπτα να φορτώσει. Από πού ξεκινάς;",
-        en: "A page you built takes six seconds to load. Where do you start?",
+        el: "Έχεις μια λίστα με 1000 items που στον browser παγώνει. Πού θα ψάξεις πρώτα;",
+        en: "A list of 1000 items freezes the browser. Where do you look first?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Ανοίγω τα εργαλεία του browser να δω τι φορτώνει και πόσο",
-            en: "Open the browser tools to see what loads and how long it takes",
+            el: "Βάζω loading indicator και φορτώνω σταδιακά",
+            en: "Add loading and load in batches",
           },
           c: { frontend: 3, mobile: 1 },
-          t: { creative: 1, analytical: 2 },
+          t: { creative: 2, analytical: 1 },
         },
         {
           id: "b",
           label: {
-            el: "Κοιτάω τι ζητάει από τη βάση και πόσες φορές",
-            en: "Look at what it asks the database and how many times",
+            el: "Ποια είναι τα προβλήματα της βάσης — κατάσταση, indexes, queries",
+            en: "Database status — state, indexes, queries",
           },
-          c: { backend: 3, dataeng: 2 },
+          c: { backend: 2, dataeng: 3 },
           t: { systems: 2, analytical: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Μετράω πόσο αργεί για ποιους χρήστες πριν υποθέσω οτιδήποτε",
-            en: "Measure how slow it is, for which users, before assuming anything",
+            el: "Μετράω ακριβώς για πόσους χρήστες είναι πρόβλημα",
+            en: "Measure exactly for which users it's a problem",
           },
-          c: { datasci: 3, devops: 1 },
+          c: { datasci: 3, product: 1 },
           t: { analytical: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Κοιτάω αν φταίει ο server: μνήμη, δίκτυο, φόρτος",
-            en: "Check whether it's the server: memory, network, load",
+            el: "Περνάω μόνο τα απαραίτητα δεδομένα στον browser",
+            en: "Send only what's really needed to the browser",
           },
-          c: { devops: 3, embedded: 1 },
+          c: { devops: 2, backend: 1 },
           t: { ops: 3 },
         },
         {
           id: "e",
           label: {
-            el: "Ρωτάω αν έχει σημασία — μήπως αφορά ελάχιστους;",
-            en: "Ask whether it matters — maybe it affects almost nobody?",
+            el: "Ρωτάω τι χρειάζονται να δουν πραγματικά οι χρήστες",
+            en: "Ask what users actually need to see",
           },
-          c: { product: 3, research: 1 },
+          c: { product: 3, frontend: 1 },
           t: { product: 3 },
         },
       ],
@@ -122,15 +122,15 @@ export const section2: Section = {
       id: "q13",
       section: 2,
       text: {
-        el: "Σου δίνουν ένα αρχείο 800 γραμμών χωρίς σχόλια που πρέπει να αλλάξεις.",
-        en: "You're handed an 800-line file with no comments that you must change.",
+        el: "Σου δίνουν ένα αρχείο που κανείς δεν κατάλαβε για πόσο καιρό και πρέπει να το αλλάξεις.",
+        en: "Handed an 800-line file nobody understood in ages—you need to change it.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Το διαβάζω ολόκληρο πριν αγγίξω μία γραμμή",
-            en: "Read all of it before touching a single line",
+            el: "Το διαβάζω συστηματικά, κάνω σημειώσεις, τμηματοποιώ",
+            en: "Read it systematically, annotate, break it into parts",
           },
           c: { research: 3, embedded: 1 },
           t: { research: 3 },
@@ -138,8 +138,8 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Το τρέχω με breakpoints να δω τη ροή στην πράξη",
-            en: "Run it with breakpoints to watch the flow in practice",
+            el: "Το τρέχω με debugger και παρακολουθώ τι γίνεται",
+            en: "Run it with a debugger and watch it step by step",
           },
           c: { backend: 2, embedded: 2, qa: 1 },
           t: { systems: 3 },
@@ -147,8 +147,8 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Γράφω πρώτα δοκιμές γύρω του, μετά αλλάζω με άνεση",
-            en: "Write tests around it first, then change it comfortably",
+            el: "Πρώτα γράφω tests γύρω του, μετά κάνω τη αλλαγή",
+            en: "Write tests around it first, then make the change",
           },
           c: { qa: 3, devops: 1 },
           t: { ops: 2, adversarial: 1 },
@@ -156,8 +156,8 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Αλλάζω μόνο το ελάχιστο και δεν ανακατεύω τίποτα άλλο",
-            en: "Change the bare minimum and stir nothing else",
+            el: "Κάνω μόνο τη μικρή αλλαγή που χρειάζομαι",
+            en: "Make only the small change I need",
           },
           c: { product: 2, frontend: 2, mobile: 1 },
           t: { product: 2 },
@@ -165,8 +165,8 @@ export const section2: Section = {
         {
           id: "e",
           label: {
-            el: "Ψάχνω τι κακό μπορεί να κρύβεται εκεί μέσα τόσο καιρό",
-            en: "Look for what nasty thing has been hiding in there",
+            el: "Ψάχνω πρώτα για κρυμμένα bugs ή ευπάθειες",
+            en: "Look first for hidden bugs or weaknesses",
           },
           c: { security: 3, qa: 1 },
           t: { adversarial: 3 },
@@ -177,24 +177,24 @@ export const section2: Section = {
       id: "q14",
       section: 2,
       text: {
-        el: "Δουλεύετε τρεις στο ίδιο repo και τα conflicts έχουν γίνει καθημερινά.",
-        en: "Three of you share a repo and merge conflicts have become a daily event.",
+        el: "Τρεις δουλεύετε στο ίδιο repo και merge conflicts είναι καθημερινά.",
+        en: "Three of you share a repo and merge conflicts happen every day.",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Προτείνω κανόνες: μικρά commits, συχνά merges",
-            en: "Propose rules: small commits, frequent merges",
+            el: "Ετήσια σχέδιο: ποιος κάνει τι και πότε",
+            en: "Planning: who does what and when",
           },
-          c: { devops: 3, qa: 1 },
-          t: { ops: 3 },
+          c: { product: 3 },
+          t: { people: 3 },
         },
         {
           id: "b",
           label: {
             el: "Χωρίζουμε τον κώδικα ώστε να μην πατάει ο ένας στον άλλο",
-            en: "Split the code so we stop stepping on each other",
+            en: "Refactor so you're not stepping on each other",
           },
           c: { backend: 3, embedded: 1 },
           t: { systems: 3 },
@@ -202,29 +202,20 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Κάθε πρωί δέκα λεπτά να λέμε ποιος αγγίζει τι",
-            en: "Ten minutes each morning saying who's touching what",
+            el: "Μικρά commits, συχνά merges, μηχανοποίηση των ελέγχων",
+            en: "Smaller commits, frequent merges, automate checks",
           },
-          c: { product: 3 },
-          t: { people: 3 },
+          c: { devops: 3, qa: 1 },
+          t: { ops: 3 },
         },
         {
           id: "d",
           label: {
             el: "Τα λύνω όποτε προκύπτουν, δεν με χαλάει",
-            en: "I just resolve them as they come, it doesn't bother me",
+            en: "I just resolve them, it doesn't bother me",
           },
           c: { frontend: 2, mobile: 2 },
           t: { creative: 1, ops: 1 },
-        },
-        {
-          id: "e",
-          label: {
-            el: "Στήνω έλεγχο που δεν αφήνει να περάσει κώδικας που σπάει το build",
-            en: "Set up a check that blocks anything breaking the build",
-          },
-          c: { devops: 2, qa: 3 },
-          t: { ops: 2, adversarial: 1 },
         },
       ],
     },
@@ -232,45 +223,54 @@ export const section2: Section = {
       id: "q15",
       section: 2,
       text: {
-        el: "«Σε μένα δουλεύει.» Στου συμφοιτητή σου δεν δουλεύει.",
-        en: "\"Works on my machine.\" On your classmate's it doesn't.",
+        el: "Ο κώδικας είναι ανάγνωστος ή δεν δουλεύει (ή και τα δύο). Τι κάνεις;",
+        en: "Code is unreadable or it doesn't work (or both). What do you do?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Συγκρίνω εκδόσεις και ρυθμίσεις γραμμή γραμμή",
-            en: "Compare versions and settings line by line",
+            el: "Το ξαναγράφω όσο πιο καθάριο γίνεται",
+            en: "Rewrite it as clean as possible",
           },
-          c: { devops: 3, dataeng: 1 },
-          t: { ops: 3 },
+          c: { embedded: 2, backend: 3 },
+          t: { systems: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Το βάζω σε container ώστε να τρέχει παντού το ίδιο",
-            en: "Put it in a container so it runs the same everywhere",
+            el: "Το αφήνω και τεκμηριώνω τι κάνει",
+            en: "Leave it and document what it does",
           },
-          c: { devops: 3, backend: 2 },
-          t: { ops: 2, systems: 1 },
+          c: { research: 2, qa: 2, dataeng: 1 },
+          t: { research: 2, ops: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Κάθομαι δίπλα του και το βλέπουμε μαζί",
-            en: "Sit next to them and we look at it together",
+            el: "Μόνο αν βλέπω κάτι που σίγουρα λάθος",
+            en: "Only if I spot something clearly wrong",
           },
-          c: { product: 2, frontend: 2 },
-          t: { people: 3 },
+          c: { product: 3, devops: 1 },
+          t: { product: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Ψάχνω ποια υπόθεση κάνει ο κώδικας για το μηχάνημα",
-            en: "Work out which assumption the code makes about the machine",
+            el: "Ελέγχω αν κρύβει πρόβλημα που δεν φάνηκε ακόμα",
+            en: "Check if it hides a problem nobody's hit yet",
           },
-          c: { embedded: 3, backend: 1, security: 1 },
-          t: { systems: 3 },
+          c: { qa: 2, security: 3 },
+          t: { adversarial: 3 },
+        },
+        {
+          id: "e",
+          label: {
+            el: "Καθαρίζω σταδιακά κάθε φορά που πατάω εκεί",
+            en: "Clean it gradually every time I pass through",
+          },
+          c: { frontend: 2, devops: 2, mobile: 1 },
+          t: { ops: 2, creative: 1 },
         },
       ],
     },
@@ -278,15 +278,15 @@ export const section2: Section = {
       id: "q16",
       section: 2,
       text: {
-        el: "Ποια στιγμή σε ευχαριστεί περισσότερο σε ένα project;",
-        en: "Which moment in a project pleases you most?",
+        el: "Ποια στιγμή του project σε κάνει ευτυχή;",
+        en: "Which moment in a project makes you happiest?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Όταν εμφανίζεται στην οθόνη αυτό που φανταζόσουν",
-            en: "When what you imagined finally appears on screen",
+            el: "Όταν το visual αποτέλεσμα ταιριάζει τη φαντασία",
+            en: "When the visual matches what you imagined",
           },
           c: { frontend: 3, mobile: 2 },
           t: { creative: 3 },
@@ -294,8 +294,8 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Όταν όλα τα κομμάτια δένουν και μιλάνε μεταξύ τους",
-            en: "When all the pieces click together and talk to each other",
+            el: "Όταν όλα τα κομμάτια δένουν σωστά",
+            en: "When all pieces fit correctly",
           },
           c: { backend: 3, dataeng: 1 },
           t: { systems: 3 },
@@ -303,8 +303,8 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Όταν όλα τα tests γίνονται πράσινα",
-            en: "When every test goes green",
+            el: "Όταν δεν υπάρχει κανένα μη-ελεγμένο σενάριο",
+            en: "When nothing goes untested",
           },
           c: { qa: 3, devops: 2 },
           t: { ops: 3 },
@@ -312,8 +312,8 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Όταν βρίσκεις γιατί έσπαγε και ήταν κάτι απρόσμενο",
-            en: "When you find why it broke and it's something unexpected",
+            el: "Όταν βρίσκω γιατί έσπαγε κάτι παράξενο",
+            en: "When I find why something weird broke",
           },
           c: { security: 2, embedded: 2, research: 2 },
           t: { adversarial: 2, research: 1 },
@@ -321,8 +321,8 @@ export const section2: Section = {
         {
           id: "e",
           label: {
-            el: "Όταν το χρησιμοποιεί κάποιος και σου λέει ότι βοήθησε",
-            en: "When someone uses it and says it helped",
+            el: "Όταν κάποιος το χρησιμοποιεί και χαμογελάει",
+            en: "When someone uses it and smiles",
           },
           c: { product: 3, frontend: 1 },
           t: { product: 2, people: 1 },
@@ -333,15 +333,15 @@ export const section2: Section = {
       id: "q17",
       section: 2,
       text: {
-        el: "Έχεις προθεσμία αύριο. Πώς γράφεις;",
-        en: "You have a deadline tomorrow. How do you write?",
+        el: "Έχεις προθεσμία αύριο. Ποιον κωδικό γράφεις;",
+        en: "Deadline is tomorrow. What kind of code do you write?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Πρόχειρα αλλά γρήγορα· καθαρίζω μετά",
-            en: "Rough but fast; I clean up afterwards",
+            el: "Γρήγορα και πρόχειρα, θα καθαρίσω μετά",
+            en: "Fast and rough, I'll clean up later",
           },
           c: { frontend: 2, mobile: 2, product: 2 },
           t: { creative: 2, product: 1 },
@@ -349,8 +349,8 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Το ίδιο προσεκτικά· αλλιώς θα το πληρώσω",
-            en: "Exactly as carefully; otherwise I'll pay for it",
+            el: "Τόσο προσεκτικά όσο πάντα — αλλιώς θα το ζήσω",
+            en: "As careful as always — or I'll regret it",
           },
           c: { embedded: 3, qa: 2 },
           t: { systems: 2, adversarial: 1 },
@@ -358,8 +358,8 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Κόβω λειτουργίες, όχι ποιότητα",
-            en: "I cut features, not quality",
+            el: "Κόβω λειτουργίες αν χρειάζεται, όχι πρότυπα",
+            en: "Cut features if needed, not standards",
           },
           c: { backend: 2, product: 2, qa: 1 },
           t: { product: 2, ops: 1 },
@@ -367,11 +367,20 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Γράφω πρόχειρα αλλά αφήνω σχόλια με ό,τι χρωστάω",
-            en: "Write rough but leave notes of everything I owe",
+            el: "Γράφω με σχόλια που λένε τι χρωστάω",
+            en: "Write with comments listing what I owe",
           },
           c: { devops: 2, dataeng: 2, research: 1 },
           t: { ops: 3 },
+        },
+        {
+          id: "e",
+          label: {
+            el: "Πρώτα τα tests, μετά τον κώδικα—πάντα",
+            en: "Tests first, code second—always",
+          },
+          c: { qa: 3, backend: 2 },
+          t: { ops: 2, systems: 1 },
         },
       ],
     },
@@ -379,54 +388,54 @@ export const section2: Section = {
       id: "q18",
       section: 2,
       text: {
-        el: "Βρίσκεις κώδικα που δουλεύει σωστά αλλά είναι απαίσια γραμμένος.",
-        en: "You find code that works correctly but is horribly written.",
+        el: "Μια βιβλιοθήκη κάνει το 90% αυτού που θες. Υπόλοιπο 10%;",
+        en: "A library does 90% of what you need. The other 10%?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Τον ξαναγράφω. Δεν αντέχω να τον ξαναδώ έτσι",
-            en: "Rewrite it. I can't stand seeing it again",
+            el: "Διαβάζω τον κώδικά της και τον προσαρμόζω",
+            en: "Read its source and adapt it to what I need",
           },
-          c: { embedded: 2, backend: 3 },
-          t: { systems: 3 },
+          c: { embedded: 2, research: 3, backend: 1 },
+          t: { research: 2, systems: 1 },
         },
         {
           id: "b",
           label: {
-            el: "Τον αφήνω και γράφω δίπλα τι κάνει",
-            en: "Leave it and document what it does next to it",
+            el: "Τη χρησιμοποιώ και αντιμετωπίζω το 10% χειροκίνητα",
+            en: "Use it and handle the 10% manually",
           },
-          c: { research: 2, qa: 2, dataeng: 1 },
-          t: { research: 2, ops: 1 },
+          c: { product: 3, frontend: 2 },
+          t: { product: 3 },
         },
         {
           id: "c",
           label: {
-            el: "Τον πειράζω μόνο αν χρειαστεί να τον αλλάξω για άλλο λόγο",
-            en: "Only touch it when I have another reason to change it",
+            el: "Ψάχνω άλλη που κάνει το 100%",
+            en: "Find another that does 100%",
           },
-          c: { product: 3, devops: 1 },
-          t: { product: 3 },
+          c: { mobile: 2, frontend: 2, dataeng: 1 },
+          t: { ops: 1, creative: 1 },
         },
         {
           id: "d",
           label: {
-            el: "Πρώτα ελέγχω αν κρύβει σφάλμα που δεν έχει φανεί",
-            en: "First check whether it hides a bug nobody has hit yet",
+            el: "Τη γράφω εξ αρχής — θέλω πλήρη έλεγχο",
+            en: "Write it from scratch — I want full control",
           },
-          c: { qa: 2, security: 3 },
-          t: { adversarial: 3 },
+          c: { embedded: 3, security: 2 },
+          t: { systems: 2, adversarial: 1 },
         },
         {
           id: "e",
           label: {
-            el: "Τον καθαρίζω λίγο κάθε φορά που περνάω από εκεί",
-            en: "Tidy a little every time I pass through it",
+            el: "Πρώτα κοιτάω αν είναι συντηρούμενη και τι κουβαλάει",
+            en: "First check if it's maintained and what it carries",
           },
-          c: { frontend: 2, devops: 2, mobile: 1 },
-          t: { ops: 2, creative: 1 },
+          c: { security: 2, devops: 3 },
+          t: { adversarial: 2, ops: 2 },
         },
       ],
     },
@@ -434,15 +443,15 @@ export const section2: Section = {
       id: "q19",
       section: 2,
       text: {
-        el: "Πόσο σε απασχολεί τι γίνεται κάτω από τη γλώσσα που γράφεις — μνήμη, δίσκος, δίκτυο;",
-        en: "How much do you think about what's under your language — memory, disk, network?",
+        el: "Πόσο σε απασχολεί τι ακριβώς γίνεται κάτω — μνήμη, CPU, δίκτυο;",
+        en: "How much do you think about what happens under the hood?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Συνέχεια. Θέλω να ξέρω τι πληρώνω σε κάθε γραμμή",
-            en: "Constantly. I want to know the cost of every line",
+            el: "Πολύ. Θέλω να ξέρω το κόστος κάθε γραμμής",
+            en: "A lot. I want to know the cost of every line",
           },
           c: { embedded: 3, backend: 2 },
           t: { systems: 3 },
@@ -450,8 +459,8 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Όταν κάτι αργεί ή σκάει, τότε κατεβαίνω",
-            en: "When something is slow or crashes, then I go down there",
+            el: "Όταν κάτι αργεί, τότε κατεβαίνω να ψάξω",
+            en: "When something's slow, then I investigate",
           },
           c: { devops: 2, backend: 2, dataeng: 1 },
           t: { ops: 2, systems: 1 },
@@ -459,8 +468,8 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Με ενδιαφέρει σαν γνώση, όχι σαν καθημερινή δουλειά",
-            en: "It interests me as knowledge, not as daily work",
+            el: "Με ενδιαφέρει σαν γνώση, όχι σαν καθημερινό πράγμα",
+            en: "It interests me, but not as my daily work",
           },
           c: { research: 2, datasci: 2, ml: 1 },
           t: { research: 2 },
@@ -468,8 +477,8 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Ελάχιστα. Θέλω να δουλεύω όσο πιο ψηλά γίνεται",
-            en: "Barely. I want to work as high up as possible",
+            el: "Όχι πολύ. Θέλω να δουλεύω όσο ψηλά γίνεται",
+            en: "Not much. I prefer working as high as possible",
           },
           c: { frontend: 3, product: 2, mobile: 1 },
           t: { creative: 2, product: 1 },
@@ -480,54 +489,45 @@ export const section2: Section = {
       id: "q20",
       section: 2,
       text: {
-        el: "Μια έτοιμη βιβλιοθήκη κάνει το 90% αυτού που θες, αλλά όχι το υπόλοιπο.",
-        en: "A library does 90% of what you need, but not the rest.",
+        el: "Έρχεται κάποιος και λέει «δουλεύει σε μένα». Σε εσένα όχι. Τι;",
+        en: "Someone says \"works for me.\" It doesn't work for you. What next?",
       },
       options: [
         {
           id: "a",
           label: {
-            el: "Διαβάζω τον κώδικά της και τον προσαρμόζω",
-            en: "Read its source and adapt it",
+            el: "Συγκρίνω το περιβάλλον τους με του εμένα γραμμή προς γραμμή",
+            en: "Compare environments line by line",
           },
-          c: { embedded: 2, research: 3, backend: 1 },
-          t: { research: 2, systems: 1 },
+          c: { devops: 3, dataeng: 1 },
+          t: { ops: 3 },
         },
         {
           id: "b",
           label: {
-            el: "Τη χρησιμοποιώ και κάνω το υπόλοιπο 10% με το χέρι",
-            en: "Use it and handle the last 10% by hand",
+            el: "Σε container ώστε να τρέχει το ίδιο παντού",
+            en: "Put it in a container so it runs the same everywhere",
           },
-          c: { product: 3, frontend: 2 },
-          t: { product: 3 },
+          c: { devops: 3, backend: 2 },
+          t: { ops: 2, systems: 1 },
         },
         {
           id: "c",
           label: {
-            el: "Ψάχνω άλλη· κάποιος θα το έχει λύσει σωστά",
-            en: "Look for another; someone will have solved it properly",
+            el: "Κάθομαι δίπλα και δουλεύουμε μαζί",
+            en: "Sit together and figure it out",
           },
-          c: { mobile: 2, frontend: 2, dataeng: 1 },
-          t: { ops: 1, creative: 1 },
+          c: { product: 2, frontend: 2 },
+          t: { people: 3 },
         },
         {
           id: "d",
           label: {
-            el: "Τη γράφω μόνος μου. Θέλω να ελέγχω τι τρέχει",
-            en: "Write my own. I want control over what runs",
+            el: "Σκάβω για ποια υπόθεση κάνει ο κώδικας",
+            en: "Work out what assumption the code makes",
           },
-          c: { embedded: 3, security: 2 },
-          t: { systems: 2, adversarial: 1 },
-        },
-        {
-          id: "e",
-          label: {
-            el: "Πρώτα κοιτάω πόσο ενεργή είναι και τι κουβαλάει μαζί της",
-            en: "First check how maintained it is and what it drags in",
-          },
-          c: { security: 2, devops: 3 },
-          t: { adversarial: 2, ops: 2 },
+          c: { embedded: 3, backend: 1, security: 1 },
+          t: { systems: 3 },
         },
       ],
     },
