@@ -950,5 +950,88 @@ export const section2: Section = {
         },
       ],
     },
+    {
+      id: "q49",
+      section: 2,
+      text: {
+        el: "Σε έναν κοινό κώδικα, παίρνεις ευθύνη για τα δικά σου μέρη ή όλο το σύστημα;",
+        en: "In shared code, responsible for your part or whole system?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Μόνο το δικό μου μέρος",
+            en: "Just my part",
+          },
+          c: { frontend: 2, mobile: 2 },
+          t: { creative: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Ολόκληρο το σύστημα",
+            en: "Whole system",
+          },
+          c: { backend: 3, devops: 2 },
+          t: { systems: 3 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Το δικό μου + πώς αλληλεπιδρά με τα άλλα",
+            en: "Mine + how it connects",
+          },
+          c: { product: 2, research: 2 },
+          t: { systems: 2, analytical: 1 },
+        },
+      ],
+    },
+    {
+      id: "q50",
+      section: 2,
+      text: {
+        el: "Αν μπορούσες να αλλάξεις μία σχέση με κώδικα, τι θα ήταν;",
+        en: "One thing you'd change about coding, what is it?",
+      },
+      options: [
+        {
+          id: "a",
+          label: {
+            el: "Λιγότερη γραφειοκρατία, περισσότερη κωδικοποίηση",
+            en: "Less meetings, more coding",
+          },
+          c: { backend: 2, frontend: 2 },
+          t: { systems: 1, creative: 1 },
+        },
+        {
+          id: "b",
+          label: {
+            el: "Πιο ξεκάθαρες απαιτήσεις",
+            en: "Clearer requirements",
+          },
+          c: { qa: 2, product: 2 },
+          t: { systems: 2, analytical: 1 },
+        },
+        {
+          id: "c",
+          label: {
+            el: "Περισσότερος χρόνος να σκεφτώ",
+            en: "More time to think",
+          },
+          c: { research: 3, backend: 1 },
+          t: { research: 3 },
+        },
+        {
+          id: "d",
+          label: {
+            el: "Καλύτερα εργαλεία και βιβλιοθήκες",
+            en: "Better tools and libraries",
+          },
+          c: { frontend: 2, mobile: 2 },
+          t: { creative: 2 },
+        },
+      ],
+    },
   ],
 };
