@@ -37,7 +37,7 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Ελέγχω τι άλλαξε γύρω από τον κώδικα: εκδόσεις, ρυθμίσεις, μηχάνημα",
+            el: "Ελέγχω τι άλλαξε: τι εκδόσεις έχω, ποιες ρυθμίσεις",
             en: "Check what changed around the code: versions, config, the machine",
           },
           c: { devops: 3, dataeng: 1 },
@@ -46,7 +46,7 @@ export const section2: Section = {
         {
           id: "d",
           label: {
-            el: "Ξαναρχίζω το περιβάλλον — δεν έχω χρόνο να σκάβω",
+            el: "Ξαναρχίζω όλα — δεν έχω χρόνο να ψάξω",
             en: "Restart everything — no time to dig",
           },
           c: { product: 2, frontend: 2 },
@@ -92,7 +92,7 @@ export const section2: Section = {
         {
           id: "c",
           label: {
-            el: "Μετράω ακριβώς για πόσους χρήστες είναι πρόβλημα",
+            el: "Ελέγχω σε πόσους ανθρώπους συμβαίνει το πρόβλημα",
             en: "Measure exactly for which users it's a problem",
           },
           c: { datasci: 3, product: 1 },
@@ -129,7 +129,7 @@ export const section2: Section = {
         {
           id: "a",
           label: {
-            el: "Το διαβάζω συστηματικά, κάνω σημειώσεις, τμηματοποιώ",
+            el: "Το διαβάζω σιγά-σιγά, κάνω σημειώσεις, το σπάω σε κομμάτια",
             en: "Read it systematically, annotate, break it into parts",
           },
           c: { research: 3, embedded: 1 },
@@ -138,7 +138,7 @@ export const section2: Section = {
         {
           id: "b",
           label: {
-            el: "Το τρέχω με debugger και παρακολουθώ τι γίνεται",
+            el: "Το τρέχω με εργαλείο αποσφαλμάτωσης και παρακολουθώ τι κάνει",
             en: "Run it with a debugger and watch it step by step",
           },
           c: { backend: 2, embedded: 2, qa: 1 },
@@ -443,7 +443,7 @@ export const section2: Section = {
       id: "q19",
       section: 2,
       text: {
-        el: "Πόσο σε απασχολεί τι ακριβώς γίνεται κάτω — μνήμη, CPU, δίκτυο;",
+        el: "Σε ενδιαφέρει τι ακριβώς γίνεται στα παρασκήνια — πόση δύναμη χρησιμοποιείται;",
         en: "How much do you think about what happens under the hood?",
       },
       options: [
@@ -496,7 +496,7 @@ export const section2: Section = {
         {
           id: "a",
           label: {
-            el: "Συγκρίνω το περιβάλλον τους με του εμένα γραμμή προς γραμμή",
+            el: "Συγκρίνω τι έχουν δεδομένο εκείνοι και τι έχω εγώ",
             en: "Compare environments line by line",
           },
           c: { devops: 3, dataeng: 1 },

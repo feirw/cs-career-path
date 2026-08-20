@@ -19,7 +19,7 @@ export const section1: Section = {
         {
           id: "a",
           label: {
-            el: "Κάνω ένα πράγμα καλά, το υπόλοιπο δεν χέρια",
+            el: "Κάνω ένα πράγμα καλά, το υπόλοιπο μπορεί να περιμένει",
             en: "Do one thing well, the rest can wait",
           },
           c: { frontend: 2, product: 2 },
@@ -37,7 +37,7 @@ export const section1: Section = {
         {
           id: "c",
           label: {
-            el: "Σχεδιάζω ποια είναι πρώτα και εκτελώ σχεδιασμένα",
+            el: "Σχεδιάζω τι πρέπει να κάνω πρώτα και τα κάνω με σειρά",
             en: "Plan which is first, then execute in order",
           },
           c: { backend: 2, devops: 2, dataeng: 1 },
@@ -92,7 +92,7 @@ export const section1: Section = {
         {
           id: "c",
           label: {
-            el: "Δοκιμάζω, χτυπάω δοκιμαστικά, βλέπω τι σπάει",
+            el: "Δοκιμάζω διάφορα, βλέπω τι δουλεύει και τι δεν δουλεύει",
             en: "Try, fail, see what breaks, fix",
           },
           c: { qa: 2, security: 2 },
@@ -147,7 +147,7 @@ export const section1: Section = {
         {
           id: "c",
           label: {
-            el: "Συλλέγω στοιχεία ώστε να καταλάβω τι ακριβώς πήγε στραβά",
+            el: "Ψάχνω να καταλάβω τι ακριβώς συνέβη",
             en: "Gather evidence to understand exactly what went wrong",
           },
           c: { datasci: 2, research: 2 },
@@ -156,7 +156,7 @@ export const section1: Section = {
         {
           id: "d",
           label: {
-            el: "Σκέφτομαι πώς θα μπορούσε να αποτραπεί σε μέλλον",
+            el: "Σκέφτομαι πώς να μην ξανασυμβεί",
             en: "Think how we can prevent this next time",
           },
           c: { devops: 3, qa: 1 },
@@ -202,7 +202,7 @@ export const section1: Section = {
         {
           id: "c",
           label: {
-            el: "Διαλέγω το πιο ασφαλές—είτε εύκολο να αναστραφεί είτε δυσκολεύει άλλα πράγματα",
+            el: "Διαλέγω το πιο ασφαλές—είτε μπορώ να το γυρίσω πίσω είτε δεν κινδυνεύω πολύ",
             en: "Choose the safer option—either reversible or less risky overall",
           },
           c: { security: 2, devops: 2 },
@@ -220,7 +220,7 @@ export const section1: Section = {
         {
           id: "e",
           label: {
-            el: "Διαλέγω γρήγορα και προχωράω—το learning είναι πιο σημαντικό",
+            el: "Διαλέγω γρήγορα και προχωράω—το να μαθαίνω είναι πιο σημαντικό",
             en: "Pick quickly and move on—learning matters more",
           },
           c: { mobile: 2, frontend: 2, research: 1 },
@@ -248,7 +248,7 @@ export const section1: Section = {
         {
           id: "b",
           label: {
-            el: "Το κάνω με ένα σύστημα—καταλογογραφώ τα βήματα πρώτα",
+            el: "Το κάνω με ένα σύστημα—κατάγραφω τα βήματα πρώτα",
             en: "Do it with a system—I list steps first",
           },
           c: { dataeng: 2, devops: 2, backend: 1 },
@@ -266,7 +266,7 @@ export const section1: Section = {
         {
           id: "d",
           label: {
-            el: "Σταματάω να σκέφτομαι και μπαίνω σε ένα mode πλήρης συγκέντρωσης",
+            el: "Σταματάω να σκέφτομαι και συγκεντρώνομαι 100%",
             en: "I stop thinking and enter full focus mode",
           },
           c: { frontend: 2, mobile: 2 },
@@ -422,7 +422,7 @@ export const section1: Section = {
         {
           id: "c",
           label: {
-            el: "Το δοκιμάζω ενώ μαθαίνω—hands on είναι πιο γρήγορο",
+            el: "Το δοκιμάζω ενώ μαθαίνω—κάνοντας είναι πιο γρήγορο",
             en: "Learn by doing—hands on is faster",
           },
           c: { mobile: 2, frontend: 2, dataeng: 1 },
@@ -431,7 +431,7 @@ export const section1: Section = {
         {
           id: "d",
           label: {
-            el: "Λυσαριθμώ πώς θα το κάνω και μετά κάνω",
+            el: "Σκέφτομαι πώς θα το κάνω και μετά αρχίζω",
             en: "Figure out how I'd do it, then do it",
           },
           c: { embedded: 2, security: 1 },
@@ -486,7 +486,7 @@ export const section1: Section = {
         {
           id: "d",
           label: {
-            el: "Ναι, ασχέτως αποτελέσματος μπορώ να μάθω από το να αποτύχω",
+            el: "Ναι, ακόμα κι αν αποτύχω μπορώ να μάθω",
             en: "Yes, I can learn even if I fail",
           },
           c: { qa: 2, research: 2, security: 1 },
@@ -550,7 +550,7 @@ export const section1: Section = {
         {
           id: "e",
           label: {
-            el: "Ζητάω ανατροφοδότηση από κάποιον",
+            el: "Ζητάω γνώμη από κάποιον για πόσο καλά τα πήγα",
             en: "Ask someone for feedback",
           },
           c: { product: 2, backend: 1 },
