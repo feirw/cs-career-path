@@ -10,10 +10,10 @@ export type { Question, Section, Option, CareerWeights, TraitWeights } from "./t
  *
  * - "short": 20 δικές του ερωτήσεις (s01…s20) γρήγορου ενστίκτου, 2-3 λεπτά,
  *   υποτυπώδες αποτέλεσμα.
- * - "full": 100 ερωτήσεις σε σενάρια (q01…q100) που ξεκαθαρίζουν την κατεύθυνση.
+ * - "full": 50 ερωτήσεις σε σενάρια (q01…q50) που ξεκαθαρίζουν την κατεύθυνση.
  *
  * Two separate tests with their own question banks: a 2-3 minute gut-reaction
- * pass and the full scenario-based 100.
+ * pass and the full scenario-based 50-question deep dive.
  */
 export type TestMode = "short" | "full";
 
@@ -30,7 +30,7 @@ export const FULL_SECTIONS: Section[] = [
 
 export { SHORT_SECTIONS };
 
-/** Οι 100 ερωτήσεις του πλήρους τεστ. */
+/** Οι 50 ερωτήσεις του πλήρους τεστ. */
 export const ALL_QUESTIONS: Question[] = FULL_SECTIONS.flatMap((s) => s.questions);
 
 /** Οι 20 ερωτήσεις του σύντομου τεστ. */
@@ -61,7 +61,7 @@ export function questionCount(mode: TestMode): number {
 
 /** Εκτίμηση διάρκειας: το σύντομο απαντιέται με το ένστικτο, το πλήρες θέλει σκέψη. */
 export function estimatedMinutes(mode: TestMode): number {
-  return mode === "short" ? 3 : 18;
+  return mode === "short" ? 3 : 10;
 }
 
 export const SHORT_TOTAL = questionCount("short");
