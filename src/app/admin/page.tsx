@@ -32,24 +32,64 @@ export default function AdminPage() {
   const [days, setDays] = useState(30);
   const [loading, setLoading] = useState(false);
 
-  const load = useCallback(async (rangeDays: number) => {
-    setLoading(true);
-    const to = Date.now();
-    const from = to - rangeDays * 24 * 60 * 60 * 1000;
-    const response = await fetch(`/api/admin/stats?from=${from}&to=${to}`);
-    if (response.status === 401) {
-      setAuthed(false);
-      setLoading(false);
-      return;
-    }
-    setAuthed(true);
-    setStats((await response.json()) as AdminStats);
-    setLoading(false);
+  // Initialize CSRF token and check auth once on mount
+  useEffect(() => {
+    const initAuth = async () => {
+      try {
+        await fetch("/api/admin/login");
+      } catch {
+        // Ignore init errors
+      }
+      // Try to load stats to check if authenticated
+      const to = Date.now();
+      const from = to - 30 * 24 * 60 * 60 * 1000;
+      const token = getCookie("cscp_csrf");
+      if (!token) {
+        setAuthed(false);
+        return;
+      }
+
+      const response = await fetch(`/api/admin/stats?from=${from}&to=${to}`, {
+        headers: { "x-csrf-token": token },
+      });
+      if (response.status === 401 || response.status === 403) {
+        setAuthed(false);
+      } else {
+        setAuthed(true);
+        setStats((await response.json()) as AdminStats);
+      }
+    };
+    void initAuth();
   }, []);
 
+  // Load stats when days changes (only if authenticated)
   useEffect(() => {
-    void load(days);
-  }, [days, load]);
+    if (authed !== true) return;
+
+    const load = async () => {
+      setLoading(true);
+      const to = Date.now();
+      const from = to - days * 24 * 60 * 60 * 1000;
+      const token = getCookie("cscp_csrf");
+
+      if (!token) {
+        setAuthed(false);
+        setLoading(false);
+        return;
+      }
+
+      const response = await fetch(`/api/admin/stats?from=${from}&to=${to}`, {
+        headers: { "x-csrf-token": token },
+      });
+      if (response.status === 401 || response.status === 403) {
+        setAuthed(false);
+      } else {
+        setStats((await response.json()) as AdminStats);
+      }
+      setLoading(false);
+    };
+    void load();
+  }, [days, authed]);
 
   if (authed === null) {
     return (
@@ -84,7 +124,13 @@ export default function AdminPage() {
             variant="quiet"
             size="sm"
             onClick={async () => {
-              await fetch("/api/admin/logout", { method: "POST" });
+              const token = getCookie("cscp_csrf");
+              if (token) {
+                await fetch("/api/admin/logout", {
+                  method: "POST",
+                  headers: { "x-csrf-token": token },
+                });
+              }
               setAuthed(false);
             }}
           >
@@ -325,10 +371,19 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
     event.preventDefault();
     setBusy(true);
     setError(false);
+
+    // Get CSRF token from cookie
+    const csrfToken = getCookie("cscp_csrf");
+    if (!csrfToken) {
+      setError(true);
+      setBusy(false);
+      return;
+    }
+
     const response = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ password, csrf: csrfToken }),
     });
     setBusy(false);
     if (response.ok) onSuccess();
@@ -459,4 +514,11 @@ function Empty() {
       {tr({ el: "Δεν υπάρχουν ακόμα δεδομένα.", en: "No data yet." })}
     </p>
   );
+}
+
+function getCookie(name: string): string | null {
+  if (typeof document === "undefined") return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  return parts.length === 2 ? parts.pop()?.split(";").shift() || null : null;
 }

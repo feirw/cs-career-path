@@ -81,14 +81,14 @@ export const ui = {
     en: "Based on the 20-question quick test",
   },
   basedOnFull: {
-    el: "Με βάση το πλήρες τεστ των 100 ερωτήσεων",
-    en: "Based on the full 100-question test",
+    el: "Με βάση το πλήρες τεστ των 50 ερωτήσεων",
+    en: "Based on the full 50-question test",
   },
   shortResultWarning: {
-    el: "Αυτό είναι μια πρώτη εικόνα, όχι συμπέρασμα. Το σύντομο τεστ ρωτάει το ένστικτό σου σε 20 ερωτήσεις, οπότε οι κοντινές καριέρες μπερδεύονται εύκολα. Το πλήρες τεστ έχει άλλες 100 ερωτήσεις, με σενάρια από πραγματική δουλειά — εκεί βγαίνει καθαρή απάντηση.",
+    el: "Αυτό είναι μια πρώτη εικόνα, όχι συμπέρασμα. Το σύντομο τεστ ρωτάει το ένστικτό σου σε 20 ερωτήσεις, οπότε οι κοντινές καριέρες μπερδεύονται εύκολα. Το πλήρες τεστ έχει άλλες 50 ερωτήσεις, με σενάρια από πραγματική δουλειά — εκεί βγαίνει καθαρή απάντηση.",
     en: "This is a first impression, not a conclusion. The quick test asks your instinct across 20 questions, so neighbouring careers blur easily. The full test is a different set of 100 scenario questions — that's where a clear answer comes from.",
   },
-  takeFullTest: { el: "Κάνε το πλήρες τεστ (100 ερωτήσεις)", en: "Take the full test (100 questions)" },
+  takeFullTest: { el: "Κάνε το πλήρες τεστ (50 ερωτήσεις)", en: "Take the full test (100 questions)" },
   closeCall: {
     el: "Οι δύο πρώτες καριέρες είναι πολύ κοντά — δεν έχεις μία καθαρή κατεύθυνση, έχεις δύο.",
     en: "Your top two are very close — you don't have one clear direction, you have two.",
