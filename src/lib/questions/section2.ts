@@ -84,8 +84,8 @@ export const section2: Section = {
       id: "q16",
       section: 2,
       text: {
-        el: "Με ενοχλεί όταν η αξιολόγηση ή η ποιότητα ενός έργου γίνεται μόνο ποιοτικά (υποκειμενικά).",
-        en: "Bothered when quality judgment is purely subjective"
+        el: "Θέλω η δουλειά μου να αξιολογείται με συγκεκριμένα κριτήρια, όχι μόνο γνώμες.",
+        en: "Want work evaluated by specific criteria, not just opinions"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { qa: 18, backend: 14, datasci: 10, devops: 8, dataeng: 6, security: 4, ml: 3, embedded: 3, frontend: 1, mobile: 1, product: 1, research: 1 } },
