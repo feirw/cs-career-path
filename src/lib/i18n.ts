@@ -12,8 +12,8 @@ export const DEFAULT_LOCALE: Locale = "el";
 export const ui = {
   appName: { el: "CS Career Path", en: "CS Career Path" },
   /** Ο τίτλος σπάει σε δύο ελεγχόμενες γραμμές αντί να τυλίγεται μόνος του. */
-  taglineLead: { el: "Βρες το μονοπάτι σου", en: "Find your path" },
-  taglineTail: { el: "στην πληροφορική", en: "in tech" },
+  taglineLead: { el: "Ανακάλυψε την", en: "Discover your" },
+  taglineTail: { el: "tech καριέρα σου", en: "tech career" },
   heroLead: {
     el: "Διάλεξε πόσο βαθιά θέλεις να πας. Χωρίς εγγραφή, χωρίς email. Στο τέλος παίρνεις κατάταξη σε 12 καριέρες, το προφίλ σου και ένα roadmap για να ξεκινήσεις.",
     en: "Choose how deep you want to go. No signup, no email. You get a ranking across 12 careers, your trait profile and a roadmap to get started.",
