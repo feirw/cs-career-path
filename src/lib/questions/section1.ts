@@ -13,7 +13,7 @@ export const section1: Section = {
         en: "I try different approaches quickly vs. plan carefully first"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { frontend: 20, mobile: 12, product: 10 }, t: { creative: 14, product: 10 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 18, product: 12, dataeng: 10 }, t: { creative: 14, product: 10 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 16, mobile: 10, product: 8, backend: 4 }, t: { creative: 12, product: 8 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 8, backend: 8, mobile: 6, product: 6 }, t: { analytical: 10, creative: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 14, embedded: 12, devops: 8, qa: 6 }, t: { systems: 12, ops: 8 } },
@@ -28,7 +28,7 @@ export const section1: Section = {
         en: "Bothered when something doesn't 'feel' right or look right"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { frontend: 20, product: 12, mobile: 10 }, t: { creative: 16, product: 10 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 16, product: 14, dataeng: 10 }, t: { creative: 16, product: 10 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 16, product: 10, mobile: 8, qa: 6 }, t: { creative: 14, product: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 10, backend: 10, product: 6, mobile: 6 }, t: { creative: 10, analytical: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 12, embedded: 12, security: 8, devops: 6 }, t: { systems: 12, analytical: 10 } },
@@ -88,7 +88,7 @@ export const section1: Section = {
         en: "Slow = optimization problem, not UX problem"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 18, embedded: 16, devops: 12 }, t: { systems: 16, analytical: 14 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 18, embedded: 16, mobile: 12 }, t: { systems: 16, analytical: 14 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, embedded: 14, devops: 10, dataeng: 6 }, t: { systems: 14, analytical: 12 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, embedded: 10, devops: 8, frontend: 8 }, t: { systems: 10, analytical: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, product: 12, mobile: 10, backend: 4 }, t: { creative: 12, product: 12 } },
@@ -133,7 +133,7 @@ export const section1: Section = {
         en: "Need to understand system-level details to feel I understand"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 18, embedded: 16, research: 12 }, t: { systems: 16, research: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 14, embedded: 16, datasci: 12 }, t: { systems: 16, research: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, embedded: 14, research: 10, devops: 6 }, t: { systems: 14, research: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, embedded: 10, frontend: 10, research: 8 }, t: { systems: 10, analytical: 10 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, product: 12, mobile: 10, qa: 6 }, t: { creative: 12, product: 12 } },

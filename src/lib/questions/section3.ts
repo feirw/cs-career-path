@@ -28,7 +28,7 @@ export const section3: Section = {
         en: "Problem-solving: data-driven first, ideas after"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 20, datasci: 16, devops: 12 }, t: { analytical: 14, ops: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 20, datasci: 16, mobile: 10 }, t: { analytical: 14, ops: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { dataeng: 16, datasci: 14, backend: 10, devops: 8 }, t: { analytical: 12, ops: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { dataeng: 10, datasci: 10, backend: 10, mobile: 8 }, t: { analytical: 10, creative: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 12, product: 12, mobile: 10, ml: 6 }, t: { creative: 12, product: 10 } },
@@ -88,8 +88,8 @@ export const section3: Section = {
         en: "Obsessed with automation: why do something by hand if it can be scripted?"
       },
       options: [
-        { id: "a", label: { el: "Εντελώς", en: "Completely" }, c: { devops: 20, backend: 14, qa: 12 }, t: { ops: 14, systems: 12 } },
-        { id: "b", label: { el: "Πολύ", en: "Very much" }, c: { devops: 18, backend: 12, dataeng: 10, qa: 8 }, t: { ops: 12, systems: 10 } },
+        { id: "a", label: { el: "Εντελώς", en: "Completely" }, c: { dataeng: 20, mobile: 14, qa: 12 }, t: { ops: 14, systems: 12 } },
+        { id: "b", label: { el: "Πολύ", en: "Very much" }, c: { dataeng: 16, mobile: 12, backend: 10, qa: 8 }, t: { ops: 12, systems: 10 } },
         { id: "c", label: { el: "Αρκετά", en: "Quite" }, c: { devops: 10, backend: 10, dataeng: 10, frontend: 8 }, t: { ops: 10, analytical: 8 } },
         { id: "d", label: { el: "Λίγο", en: "A bit" }, c: { frontend: 12, mobile: 12, product: 10, backend: 6 }, t: { creative: 10, product: 8 } },
         { id: "e", label: { el: "Καθόλου", en: "Not at all" }, c: { frontend: 14, product: 12, mobile: 10 }, t: { creative: 12, product: 10 } }
@@ -103,7 +103,7 @@ export const section3: Section = {
         en: "Build new vs. maintain and improve existing"
       },
       options: [
-        { id: "a", label: { el: "Μόνο νέο", en: "Only new" }, c: { frontend: 18, mobile: 14, product: 12 }, t: { creative: 14, product: 12 } },
+        { id: "a", label: { el: "Μόνο νέο", en: "Only new" }, c: { mobile: 18, product: 14, dataeng: 10 }, t: { creative: 14, product: 12 } },
         { id: "b", label: { el: "Κυρίως νέο", en: "Mostly new" }, c: { frontend: 16, backend: 12, mobile: 10, ml: 8 }, t: { creative: 12, analytical: 10 } },
         { id: "c", label: { el: "Ισορροπία", en: "Balanced" }, c: { backend: 12, frontend: 10, devops: 10, dataeng: 8 }, t: { systems: 10, creative: 8 } },
         { id: "d", label: { el: "Κυρίως συντήρηση", en: "Mostly maintain" }, c: { backend: 14, devops: 12, embedded: 10, qa: 8 }, t: { ops: 12, systems: 10 } },

@@ -135,7 +135,7 @@ export default function HomePage() {
                   className="ml-auto flex items-center gap-1.5 px-2 py-1 rounded-full transition-colors duration-200 hover:text-[var(--accent)] hover:bg-[var(--accent-soft)]"
                   aria-label="Scroll to careers"
                 >
-                  <span className="text-[12.5px] font-medium">Δες τις 12</span>
+                  <span className="text-[12.5px] font-medium">Δες τις 12 κατευθύνσεις</span>
                   <ArrowDown aria-hidden strokeWidth={2} className="size-4" />
                 </button>
               </motion.div>

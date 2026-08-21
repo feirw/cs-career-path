@@ -28,7 +28,7 @@ export const section5: Section = {
         en: "Clear architecture interests me; chaos bothers me"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 18, devops: 14, security: 10 }, t: { systems: 14, ops: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 16, mobile: 12, datasci: 10 }, t: { systems: 14, ops: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, devops: 10, embedded: 8 }, t: { systems: 12, ops: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, devops: 8, security: 6 }, t: { systems: 10, analytical: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 12, product: 10, mobile: 8 }, t: { creative: 10, product: 8 } },
@@ -58,7 +58,7 @@ export const section5: Section = {
         en: "Readable code matters more than clever solutions"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 18, qa: 14, embedded: 10 }, t: { systems: 12, ops: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 16, qa: 14, datasci: 10 }, t: { systems: 12, ops: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, qa: 10, embedded: 8 }, t: { systems: 10, ops: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, qa: 8, embedded: 6 }, t: { systems: 8, ops: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 12, product: 10, mobile: 8 }, t: { creative: 10, product: 8 } },
@@ -118,7 +118,7 @@ export const section5: Section = {
         en: "Want to see my work's impact directly on users"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { frontend: 18, product: 14, mobile: 10 }, t: { creative: 14, people: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 18, product: 14, datasci: 10 }, t: { creative: 14, people: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 14, product: 10, mobile: 8 }, t: { creative: 12, people: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 10, product: 8, mobile: 6 }, t: { creative: 10, people: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 12, devops: 10, embedded: 8 }, t: { systems: 10, ops: 8 } },
@@ -133,7 +133,7 @@ export const section5: Section = {
         en: "Systems must work reliably 24/7 without interruption"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { devops: 18, security: 14, backend: 10 }, t: { ops: 14, systems: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 16, security: 14, mobile: 12 }, t: { ops: 14, systems: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { devops: 14, security: 10, backend: 8 }, t: { ops: 12, systems: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { devops: 10, security: 8, backend: 6 }, t: { ops: 10, systems: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 12, product: 10, mobile: 8 }, t: { creative: 10, product: 8 } },

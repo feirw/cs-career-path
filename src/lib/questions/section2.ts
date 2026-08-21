@@ -13,7 +13,7 @@ export const section2: Section = {
         en: "Great API with poor UI bothers me more than poor API with beautiful UI"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 18, dataeng: 12, devops: 10 }, t: { systems: 14, analytical: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 18, mobile: 12, datasci: 10 }, t: { systems: 14, analytical: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, dataeng: 10, security: 8 }, t: { systems: 12, analytical: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, frontend: 10, product: 8 }, t: { systems: 8, creative: 10 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, mobile: 12, product: 10 }, t: { creative: 12, product: 12 } },
@@ -43,7 +43,7 @@ export const section2: Section = {
         en: "When something breaks, I need to know why, not just fix it"
       },
       options: [
-        { id: "a", label: { el: "Πάντα", en: "Always" }, c: { backend: 18, embedded: 16, research: 12 }, t: { systems: 14, research: 12 } },
+        { id: "a", label: { el: "Πάντα", en: "Always" }, c: { datasci: 18, embedded: 16, mobile: 10 }, t: { systems: 14, research: 12 } },
         { id: "b", label: { el: "Συχνά", en: "Often" }, c: { backend: 16, embedded: 14, devops: 12 }, t: { systems: 12, ops: 10 } },
         { id: "c", label: { el: "Μερικές φορές", en: "Sometimes" }, c: { backend: 10, qa: 10, embedded: 8 }, t: { ops: 10, analytical: 8 } },
         { id: "d", label: { el: "Σπάνια", en: "Rarely" }, c: { frontend: 12, mobile: 10, product: 8 }, t: { creative: 10, product: 8 } },
@@ -103,7 +103,7 @@ export const section2: Section = {
         en: "Quick visible results over perfect: I'd rather ship rough today than perfect in a month"
       },
       options: [
-        { id: "a", label: { el: "Πάντα προτιμώ τη ταχύτητα", en: "Always speed" }, c: { frontend: 18, mobile: 14, product: 12 }, t: { creative: 14, product: 12 } },
+        { id: "a", label: { el: "Πάντα προτιμώ τη ταχύτητα", en: "Always speed" }, c: { mobile: 18, product: 14, dataeng: 10 }, t: { creative: 14, product: 12 } },
         { id: "b", label: { el: "Συνήθως ταχύτητα", en: "Usually speed" }, c: { frontend: 16, mobile: 12, product: 10 }, t: { creative: 12, product: 10 } },
         { id: "c", label: { el: "Ισορροπία", en: "Balance" }, c: { frontend: 10, backend: 10, qa: 8 }, t: { creative: 10, ops: 8 } },
         { id: "d", label: { el: "Συνήθως τελειότητα", en: "Usually quality" }, c: { backend: 14, embedded: 12, security: 10 }, t: { ops: 12, analytical: 10 } },
@@ -133,7 +133,7 @@ export const section2: Section = {
         en: "I care about network layers, caching, infrastructure—not just application logic"
       },
       options: [
-        { id: "a", label: { el: "Πολύ", en: "Very much" }, c: { devops: 18, backend: 14, embedded: 12 }, t: { systems: 14, ops: 12 } },
+        { id: "a", label: { el: "Πολύ", en: "Very much" }, c: { dataeng: 18, backend: 14, mobile: 12 }, t: { systems: 14, ops: 12 } },
         { id: "b", label: { el: "Αρκετά", en: "Quite a bit" }, c: { devops: 16, backend: 12, security: 10 }, t: { systems: 12, ops: 10 } },
         { id: "c", label: { el: "Λίγο", en: "A little" }, c: { backend: 12, devops: 10, dataeng: 8 }, t: { systems: 10, analytical: 8 } },
         { id: "d", label: { el: "Όχι ιδιαίτερα", en: "Not particularly" }, c: { frontend: 14, mobile: 10, product: 8 }, t: { creative: 10, product: 8 } },
