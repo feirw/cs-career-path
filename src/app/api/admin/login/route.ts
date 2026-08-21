@@ -16,9 +16,11 @@ export const runtime = "nodejs";
 
 async function getClientIp(request: NextRequest): Promise<string> {
   const headersList = await headers();
-  return headersList.get("x-forwarded-for")?.split(",")[0].trim() ||
-         headersList.get("x-real-ip") ||
-         "unknown";
+  const cloudflareIp = headersList.get("cf-connecting-ip");
+  if (cloudflareIp) return cloudflareIp;
+  const vercelIp = headersList.get("x-real-ip");
+  if (vercelIp) return vercelIp;
+  return "unknown";
 }
 
 export async function POST(request: NextRequest) {

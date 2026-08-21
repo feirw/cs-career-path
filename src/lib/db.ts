@@ -59,6 +59,13 @@ function getDb(): DatabaseSync {
       locale     TEXT NOT NULL
     );
     CREATE INDEX IF NOT EXISTS idx_starts_created ON starts(created_at);
+
+    CREATE TABLE IF NOT EXISTS login_attempts (
+      ip          TEXT NOT NULL,
+      attempt_at  INTEGER NOT NULL,
+      success     INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_login_attempts_ip ON login_attempts(ip);
   `);
 
   // Μετάβαση: οι παλιές υποβολές έγιναν πριν υπάρξουν δύο τεστ — ήταν το πλήρες
@@ -282,4 +289,43 @@ function fillDays(map: Map<string, number>, from: number, to: number) {
       .sort((a, b) => a.day.localeCompare(b.day));
   }
   return out;
+}
+
+// ── Rate Limiting / Περιορισμός Ρυθμού ────────────────────────────────────────
+
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 λεπτά
+const MAX_LOGIN_ATTEMPTS = 5;
+
+export function recordLoginAttempt(ip: string, success: boolean): void {
+  const db = getDb();
+  db.prepare("INSERT INTO login_attempts (ip, attempt_at, success) VALUES (?, ?, ?)")
+    .run(ip, Date.now(), success ? 1 : 0);
+  cleanupOldAttempts();
+
+  if (!success) {
+    const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
+    const attempts = db
+      .prepare("SELECT COUNT(*) as count FROM login_attempts WHERE ip = ? AND attempt_at > ? AND success = 0")
+      .get(ip, cutoffTime) as { count: number } | undefined;
+
+    if ((attempts?.count ?? 0) > MAX_LOGIN_ATTEMPTS) {
+      console.warn(`[SECURITY] Potential brute force attack from IP: ${ip}. Attempts: ${attempts?.count}`);
+    }
+  }
+}
+
+export function isRateLimited(ip: string): boolean {
+  const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
+  const attempts = getDb()
+    .prepare("SELECT COUNT(*) as count FROM login_attempts WHERE ip = ? AND attempt_at > ? AND success = 0")
+    .get(ip, cutoffTime) as { count: number } | undefined;
+
+  return (attempts?.count ?? 0) >= MAX_LOGIN_ATTEMPTS;
+}
+
+function cleanupOldAttempts(): void {
+  const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
+  getDb()
+    .prepare("DELETE FROM login_attempts WHERE attempt_at < ?")
+    .run(cutoffTime);
 }
