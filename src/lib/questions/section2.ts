@@ -9,150 +9,150 @@ export const section2: Section = {
       id: "q11",
       section: 2,
       text: {
-        el: "Με ανησυχεί η ιδέα ότι κάτι μπορεί να σπάσει απρόσμενα ή να χάσουμε δεδομένα.",
-        en: "Worried about unexpected failures or data loss"
+        el: "Ένα πολύ καλό API με άσχημη σύνδεση για τον χρήστη με ενοχλεί περισσότερο από ένα άσχημο API με ωραία σύνδεση.",
+        en: "Great API with poor UI bothers me more than poor API with beautiful UI"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { devops: 18, backend: 14, dataeng: 12, qa: 10, security: 8, embedded: 4, datasci: 2, ml: 2, frontend: 1, mobile: 1, product: 1, research: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { devops: 14, backend: 11, dataeng: 9, qa: 8, security: 6, embedded: 3, datasci: 2, ml: 2, frontend: 1, mobile: 1, product: 1, research: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { devops: 8, backend: 6, dataeng: 5, qa: 5, security: 4, embedded: 3, datasci: 3, frontend: 3, mobile: 2, ml: 2, product: 2, research: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, research: 4, datasci: 3, ml: 2, dataeng: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 18, dataeng: 12, devops: 10 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, dataeng: 10, security: 8 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, frontend: 10, product: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, mobile: 12, product: 10 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, mobile: 14, product: 12 } }
       ]
     },
     {
       id: "q12",
       section: 2,
       text: {
-        el: "Χαίρομαι όταν βρίσκω ένα bug που κανείς άλλος δεν είδε ή δεν περίμενε.",
-        en: "Happy finding bugs nobody else expected"
+        el: "Αν βρω ένα pattern στα δεδομένα, ήθελα να το καταλάβω μαθηματικά, όχι μόνο να το δω στο γράφημα.",
+        en: "Finding patterns in data—I need to understand the maths, not just see the chart"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { qa: 18, security: 14, backend: 10, devops: 8, embedded: 6, dataeng: 4, research: 4, datasci: 2, ml: 2, frontend: 1, mobile: 1, product: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { qa: 14, security: 11, backend: 8, devops: 6, embedded: 5, dataeng: 3, research: 3, datasci: 2, ml: 2, frontend: 1, mobile: 1, product: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { qa: 8, security: 6, backend: 5, devops: 5, embedded: 4, dataeng: 3, research: 3, frontend: 3, datasci: 2, ml: 2, mobile: 2, product: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, research: 4, datasci: 3, ml: 2, dataeng: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Πάντα", en: "Always" }, c: { ml: 20, datasci: 14, research: 12 } },
+        { id: "b", label: { el: "Συχνά", en: "Often" }, c: { ml: 16, datasci: 14, dataeng: 10 } },
+        { id: "c", label: { el: "Μερικές φορές", en: "Sometimes" }, c: { datasci: 12, dataeng: 10, backend: 8 } },
+        { id: "d", label: { el: "Σπάνια", en: "Rarely" }, c: { frontend: 12, product: 10, mobile: 10 } },
+        { id: "e", label: { el: "Όχι", en: "Never" }, c: { frontend: 16, product: 12, embedded: 10 } }
       ]
     },
     {
       id: "q13",
       section: 2,
       text: {
-        el: "Σκέφτομαι πώς να κάνω κάτι να χωρέσει σε πολύ περιορισμένο χώρο ή υπό δύσκολες συνθήκες.",
-        en: "Think about fitting things in very limited space or constraints"
+        el: "Όταν κάτι δεν δουλεύει, θέλω αμέσως να ξέρω ποιο είναι το πρόβλημα και γιατί, όχι απλώς να το 'φτιάξω'.",
+        en: "When something breaks, I need to know why, not just fix it"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { embedded: 18, mobile: 14, backend: 10, dataeng: 8, devops: 6, security: 4, datasci: 3, qa: 3, ml: 2, frontend: 1, product: 1, research: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { embedded: 14, mobile: 11, backend: 8, dataeng: 6, devops: 5, security: 3, datasci: 3, qa: 2, ml: 2, frontend: 1, product: 1, research: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { embedded: 8, mobile: 6, backend: 5, dataeng: 5, devops: 4, datasci: 3, security: 3, frontend: 3, qa: 2, ml: 2, product: 2, research: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, datasci: 6, backend: 5, mobile: 4, dataeng: 3, ml: 2, devops: 1, embedded: 5, research: 1, security: 1, qa: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, datasci: 8, backend: 5, research: 4, dataeng: 2, ml: 2, embedded: 5, mobile: 1, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Πάντα", en: "Always" }, c: { backend: 18, embedded: 16, research: 12 } },
+        { id: "b", label: { el: "Συχνά", en: "Often" }, c: { backend: 16, embedded: 14, devops: 12 } },
+        { id: "c", label: { el: "Μερικές φορές", en: "Sometimes" }, c: { backend: 10, qa: 10, embedded: 8 } },
+        { id: "d", label: { el: "Σπάνια", en: "Rarely" }, c: { frontend: 12, mobile: 10, product: 8 } },
+        { id: "e", label: { el: "Όχι", en: "Never" }, c: { frontend: 14, mobile: 12, product: 10 } }
       ]
     },
     {
       id: "q14",
       section: 2,
       text: {
-        el: "Με ενδιαφέρει περισσότερο να κατανοώ τη θεωρία παρά να κτίσω γρήγορα κάτι πρακτικό.",
-        en: "More interested in understanding theory than building quickly"
+        el: "Ευχαριστιέμαι να εξηγώ στους άλλους πώς λειτουργούν τα πράγματα ή να τους βοηθώ να μάθουν.",
+        en: "I enjoy explaining to others how things work or mentoring them"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 18, ml: 14, backend: 10, datasci: 8, dataeng: 6, embedded: 4, security: 3, qa: 3, devops: 2, frontend: 1, mobile: 1, product: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { research: 14, ml: 11, backend: 8, datasci: 6, dataeng: 5, embedded: 3, security: 3, qa: 2, devops: 2, frontend: 1, mobile: 1, product: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { research: 8, ml: 6, backend: 5, datasci: 5, dataeng: 4, embedded: 3, security: 3, frontend: 3, qa: 2, devops: 2, mobile: 2, product: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, dataeng: 3, datasci: 2, ml: 2, research: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Πολύ", en: "Very much" }, c: { product: 18, research: 14, frontend: 10 } },
+        { id: "b", label: { el: "Αρκετά", en: "Quite a bit" }, c: { product: 14, research: 12, backend: 10 } },
+        { id: "c", label: { el: "Λίγο", en: "A little" }, c: { backend: 10, qa: 10, devops: 8 } },
+        { id: "d", label: { el: "Όχι ιδιαίτερα", en: "Not particularly" }, c: { embedded: 14, security: 10, ml: 10 } },
+        { id: "e", label: { el: "Προτιμώ να δουλέψω μόνος μου", en: "I prefer solo work" }, c: { embedded: 16, research: 12, security: 10 } }
       ]
     },
     {
       id: "q15",
       section: 2,
       text: {
-        el: "Μου αρέσει να δοκιμάζω διάφορες τεχνικές και να σύγκρίνω ποια δίνει τα καλύτερα αποτελέσματα.",
-        en: "Like trying different techniques and comparing results"
+        el: "Ένα σύστημα που μπορεί να χαλάσει και να βλάψει ανθρώπους με ανησυχεί περισσότερο από ένα που απλώς θα κρεμάσει.",
+        en: "A system that could fail and harm people worries me more than one that just crashes"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { ml: 18, datasci: 14, research: 10, dataeng: 8, backend: 6, security: 4, devops: 3, embedded: 3, qa: 2, mobile: 1, frontend: 1, product: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { ml: 14, datasci: 11, research: 8, dataeng: 6, backend: 5, security: 3, devops: 3, embedded: 8, qa: 2, mobile: 1, frontend: 1, product: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { ml: 8, datasci: 6, research: 5, dataeng: 5, backend: 4, devops: 3, security: 3, frontend: 3, embedded: 8, qa: 2, mobile: 2, product: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, research: 4, dataeng: 2, datasci: 2, ml: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { security: 18, embedded: 14, qa: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { security: 16, qa: 14, embedded: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { qa: 10, security: 10, backend: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, mobile: 10, product: 8 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, mobile: 14, product: 12 } }
       ]
     },
     {
       id: "q16",
       section: 2,
       text: {
-        el: "Θέλω η δουλειά μου να αξιολογείται με συγκεκριμένα κριτήρια, όχι μόνο γνώμες.",
-        en: "Want work evaluated by specific criteria, not just opinions"
+        el: "Θέλω να δουλεύω σε έναν τομέα που έχει λίγο ανταγωνισμό και θέλω να είμαι ειδικός, όχι γενικός.",
+        en: "I want a niche field where there's less competition and I can be a specialist"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { qa: 18, backend: 14, datasci: 10, devops: 8, dataeng: 6, security: 4, ml: 3, embedded: 3, frontend: 1, mobile: 1, product: 1, research: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { qa: 14, backend: 11, datasci: 8, devops: 6, dataeng: 5, security: 3, ml: 3, embedded: 8, frontend: 1, mobile: 1, product: 1, research: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { qa: 8, backend: 6, datasci: 5, devops: 5, dataeng: 4, security: 3, ml: 3, frontend: 3, embedded: 8, mobile: 2, product: 2, research: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, research: 4, datasci: 3, ml: 2, dataeng: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Πολύ σημαντικό", en: "Very important" }, c: { embedded: 18, security: 14, research: 12 } },
+        { id: "b", label: { el: "Σημαντικό", en: "Important" }, c: { embedded: 16, security: 12, dataeng: 10 } },
+        { id: "c", label: { el: "Κάπως σημαντικό", en: "Somewhat important" }, c: { dataeng: 12, devops: 10, ml: 10 } },
+        { id: "d", label: { el: "Λιγότερο σημαντικό", en: "Less important" }, c: { frontend: 12, backend: 10, mobile: 8 } },
+        { id: "e", label: { el: "Καθόλου σημαντικό", en: "Not important" }, c: { frontend: 16, mobile: 14, product: 12 } }
       ]
     },
     {
       id: "q17",
       section: 2,
       text: {
-        el: "Η ροή δεδομένων από την προέλευσή τους έως την τελική τους χρήση με ενδιαφέρει.",
-        en: "Interested in data flow from source to final use"
+        el: "Προτιμώ να έχω αμέσως αποτέλεσμα που θα δω (ακόμα και 'χοντρό') παρά να περιμένω για τέλειο.",
+        en: "Quick visible results over perfect: I'd rather ship rough today than perfect in a month"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 18, backend: 14, ml: 10, datasci: 8, devops: 6, security: 4, qa: 3, mobile: 3, embedded: 8, frontend: 1, product: 1, research: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { dataeng: 14, backend: 11, ml: 8, datasci: 6, devops: 5, security: 3, qa: 3, mobile: 2, embedded: 8, frontend: 1, product: 1, research: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { dataeng: 8, backend: 6, ml: 5, datasci: 5, devops: 4, security: 3, qa: 3, frontend: 3, mobile: 2, embedded: 8, product: 2, research: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, research: 4, datasci: 3, ml: 2, dataeng: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Πάντα προτιμώ τη ταχύτητα", en: "Always speed" }, c: { frontend: 18, mobile: 14, product: 12 } },
+        { id: "b", label: { el: "Συνήθως ταχύτητα", en: "Usually speed" }, c: { frontend: 16, mobile: 12, product: 10 } },
+        { id: "c", label: { el: "Ισορροπία", en: "Balance" }, c: { frontend: 10, backend: 10, qa: 8 } },
+        { id: "d", label: { el: "Συνήθως τελειότητα", en: "Usually quality" }, c: { backend: 14, embedded: 12, security: 10 } },
+        { id: "e", label: { el: "Πάντα τελειότητα", en: "Always quality" }, c: { backend: 18, embedded: 16, security: 14 } }
       ]
     },
     {
       id: "q18",
       section: 2,
       text: {
-        el: "Μου αρέσει όταν βλέπω αμέσως τα αποτελέσματα της δουλειάς μου αντί να περιμένω λίγες ώρες.",
-        en: "Like seeing immediate results of my work vs. waiting hours"
+        el: "Τα Γραμμική Άλγεβρα και Λογισμός από τα αγαπημένα μου μαθήματα (ή ήθελα να ήταν).",
+        en: "Linear algebra and calculus were among my favourite subjects"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { frontend: 18, mobile: 14, product: 10, backend: 8, datasci: 6, dataeng: 4, devops: 3, ml: 3, embedded: 8, security: 1, qa: 1, research: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 14, mobile: 11, product: 8, backend: 6, datasci: 5, dataeng: 3, devops: 3, ml: 2, embedded: 8, security: 1, qa: 1, research: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 8, mobile: 6, product: 5, backend: 5, datasci: 4, dataeng: 3, devops: 3, ml: 2, embedded: 8, security: 2, qa: 2, research: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 10, devops: 8, dataeng: 6, security: 5, qa: 4, datasci: 3, ml: 2, embedded: 5, research: 1, frontend: 1, mobile: 1, product: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 16, devops: 10, dataeng: 8, research: 6, security: 5, qa: 3, datasci: 2, ml: 2, embedded: 5, frontend: 1, mobile: 1, product: 1 } }
+        { id: "a", label: { el: "Ναι, πολύ", en: "Yes, really" }, c: { ml: 20, research: 14, dataeng: 12 } },
+        { id: "b", label: { el: "Ναι, αρκετά", en: "Yes, quite" }, c: { ml: 16, research: 12, datasci: 12 } },
+        { id: "c", label: { el: "Λίγο-λίγο", en: "Somewhat" }, c: { datasci: 12, dataeng: 10, backend: 8 } },
+        { id: "d", label: { el: "Όχι ιδιαίτερα", en: "Not really" }, c: { frontend: 12, mobile: 10, product: 8 } },
+        { id: "e", label: { el: "Καθόλου", en: "Not at all" }, c: { frontend: 16, mobile: 14, product: 12 } }
       ]
     },
     {
       id: "q19",
       section: 2,
       text: {
-        el: "Προτιμώ να δουλεύω πάνω σε πολύ δύσκολα και αφηρημένα προβλήματα που λίγοι κατανοούν.",
-        en: "Prefer difficult abstract problems few understand"
+        el: "Με ενδιαφέρει ο σχεδιασμός συστημάτων κάτω στο επίπεδο δικτύων, caching και όχι μόνο αλγόριθμοι επιπέδου εφαρμογής.",
+        en: "I care about network layers, caching, infrastructure—not just application logic"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 18, ml: 14, backend: 10, datasci: 8, dataeng: 6, security: 4, devops: 3, embedded: 3, qa: 2, mobile: 1, frontend: 1, product: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { research: 14, ml: 11, backend: 8, datasci: 6, dataeng: 5, security: 3, devops: 3, embedded: 8, qa: 2, mobile: 1, frontend: 1, product: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { research: 8, ml: 6, backend: 5, datasci: 5, dataeng: 4, security: 3, devops: 3, frontend: 3, embedded: 8, qa: 2, mobile: 2, product: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 10, product: 8, mobile: 6, backend: 5, datasci: 4, dataeng: 3, ml: 2, embedded: 5, research: 1, security: 1, qa: 1, devops: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 16, product: 10, mobile: 8, backend: 5, dataeng: 3, datasci: 2, ml: 2, research: 1, embedded: 5, devops: 1, security: 1, qa: 1 } }
+        { id: "a", label: { el: "Πολύ", en: "Very much" }, c: { devops: 18, backend: 14, embedded: 12 } },
+        { id: "b", label: { el: "Αρκετά", en: "Quite a bit" }, c: { devops: 16, backend: 12, security: 10 } },
+        { id: "c", label: { el: "Λίγο", en: "A little" }, c: { backend: 12, devops: 10, dataeng: 8 } },
+        { id: "d", label: { el: "Όχι ιδιαίτερα", en: "Not particularly" }, c: { frontend: 14, mobile: 10, product: 8 } },
+        { id: "e", label: { el: "Καθόλου", en: "Not at all" }, c: { frontend: 16, mobile: 12, product: 10 } }
       ]
     },
     {
       id: "q20",
       section: 2,
       text: {
-        el: "Σκέφτομαι πώς θα επικοινωνήσω μια περίπλοκη τεχνική ιδέα σε κάποιον που δεν έχει τεχνική κατάρτιση.",
-        en: "Think about explaining complex ideas to non-technical people"
+        el: "Θέλω να δω πώς οι αποφάσεις μου επηρεάζουν πραγματικούς ανθρώπους, όχι μόνο αριθμούς.",
+        en: "I want to see how my work affects real people, not just numbers"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 18, frontend: 12, datasci: 8, backend: 6, mobile: 6, dataeng: 4, ml: 3, devops: 2, embedded: 5, security: 1, qa: 1, research: 1 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { product: 14, frontend: 9, datasci: 6, backend: 5, mobile: 5, dataeng: 3, ml: 2, devops: 2, embedded: 5, security: 1, qa: 1, research: 1 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { product: 8, frontend: 5, datasci: 5, backend: 5, mobile: 4, dataeng: 3, devops: 3, ml: 2, embedded: 8, security: 2, qa: 2, research: 2 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 10, devops: 8, embedded: 6, security: 5, qa: 4, dataeng: 3, research: 3, datasci: 2, ml: 2, frontend: 1, mobile: 1, product: 1 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 16, embedded: 10, devops: 8, research: 6, security: 5, qa: 3, dataeng: 2, datasci: 2, ml: 2, frontend: 1, mobile: 1, product: 1 } }
+        { id: "a", label: { el: "Πολύ σημαντικό", en: "Very important" }, c: { product: 18, mobile: 14, frontend: 12 } },
+        { id: "b", label: { el: "Σημαντικό", en: "Important" }, c: { product: 14, frontend: 12, mobile: 10 } },
+        { id: "c", label: { el: "Κάπως σημαντικό", en: "Somewhat important" }, c: { frontend: 10, product: 10, mobile: 8 } },
+        { id: "d", label: { el: "Λιγότερο σημαντικό", en: "Less important" }, c: { backend: 12, devops: 10, dataeng: 8 } },
+        { id: "e", label: { el: "Καθόλου σημαντικό", en: "Not important" }, c: { backend: 16, embedded: 12, security: 10 } }
       ]
     }
   ]
