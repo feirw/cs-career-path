@@ -3,6 +3,7 @@ import { Commissioner, JetBrains_Mono, Manrope } from "next/font/google";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { ThemeProvider, themeInitScript } from "@/components/ThemeProvider";
 import { ToastProvider } from "@/components/ui/Toast";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 /** Commissioner: ουμανιστικό, με χαρακτήρα στα τερματικά, με πλήρη ελληνικά. */
@@ -46,10 +47,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Τρέχει πριν το πρώτο paint ώστε να μην υπάρχει αναλαμπή. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen antialiased flex flex-col">
         <ThemeProvider>
           <LocaleProvider>
-            <ToastProvider>{children}</ToastProvider>
+            <ToastProvider>
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </ToastProvider>
           </LocaleProvider>
         </ThemeProvider>
       </body>

@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { motion } from "framer-motion";
 import { Clock3, Gauge, ListChecks, LogOut, Percent, Send, Users } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
@@ -108,7 +110,7 @@ export default function AdminPage() {
     );
   }
 
-  if (!authed) return <LoginForm onSuccess={() => void load(days)} />;
+  if (!authed) return <LoginForm onSuccess={() => setAuthed(true)} />;
 
   return (
     <>
@@ -132,6 +134,8 @@ export default function AdminPage() {
                 });
               }
               setAuthed(false);
+              // Get new CSRF token for next login
+              await fetch("/api/admin/login");
             }}
           >
             <LogOut aria-hidden strokeWidth={1.75} className="size-4" />
@@ -366,6 +370,14 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [busy, setBusy] = useState(false);
+
+  // Ensure CSRF token exists when form loads
+  useEffect(() => {
+    const token = getCookie("cscp_csrf");
+    if (!token) {
+      void fetch("/api/admin/login");
+    }
+  }, []);
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();

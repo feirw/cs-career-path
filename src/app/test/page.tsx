@@ -303,14 +303,22 @@ function Quiz({ mode }: { mode: TestMode }) {
                               >
                                 {MARKS[optionIndex] ?? option.id.toUpperCase()}
                               </span>
-                              <span
-                                className={cn(
-                                  "max-w-[56ch] text-[15px] leading-[1.6] transition-colors duration-200",
-                                  selected ? "font-medium text-[var(--ink)]" : "text-[var(--ink-2)]",
+                              <div className="flex flex-1 flex-col gap-2">
+                                {option.image && (
+                                  <div
+                                    className="h-20 w-20 shrink-0"
+                                    dangerouslySetInnerHTML={{ __html: option.image }}
+                                  />
                                 )}
-                              >
-                                {tr(option.label)}
-                              </span>
+                                <span
+                                  className={cn(
+                                    "max-w-[56ch] text-[15px] leading-[1.6] transition-colors duration-200",
+                                    selected ? "font-medium text-[var(--ink)]" : "text-[var(--ink-2)]",
+                                  )}
+                                >
+                                  {tr(option.label)}
+                                </span>
+                              </div>
                             </motion.label>
                           );
                         })}

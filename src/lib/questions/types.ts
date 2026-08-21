@@ -13,6 +13,8 @@ export type Option = {
   label: LS;
   c: CareerWeights;
   t?: TraitWeights;
+  /** SVG icon/image for visual questions */
+  image?: string;
 };
 
 export type Question = {
