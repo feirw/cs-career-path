@@ -329,6 +329,15 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
           <CommunityInsights />
         </section>
 
+        <section className="mt-12">
+          <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">
+            {tr({
+              el: "Φυσικά υπάρχουν και άλλες καριέρες που μπορεί κάποιος να ακολουθήσει. Αυτές που εμφανίζονται εδώ είναι απλώς οι πιο συχνές.",
+              en: "Of course, there are other careers one can pursue. The ones shown here are simply the most common."
+            })}
+          </p>
+        </section>
+
         <footer className="mt-16 border-t border-[var(--rule)] pt-8">
           <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">
             {tr(ui.disclaimer)}

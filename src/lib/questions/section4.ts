@@ -9,8 +9,8 @@ export const section4: Section = {
       id: "q31",
       section: 4,
       text: {
-        el: "Προτιμώ να κτίσω κάτι μικρό και τέλειο παρά κάτι μεγάλο και κατά προσέγγιση.",
-        en: "Prefer small & perfect vs. large & approximate"
+        el: "Μου αρέσει να συνδέω διαφορετικά εργαλεία μεταξύ τους ώστε να λειτουργούν σαν μια καλοκουρδισμένη μηχανή.",
+        en: "I love connecting tools to work as one fine-tuned machine"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { qa: 20, embedded: 14, security: 12 }, t: { ops: 14, adversarial: 12 } },
@@ -24,8 +24,8 @@ export const section4: Section = {
       id: "q32",
       section: 4,
       text: {
-        el: "Αν κάτι δεν χρησιμοποιείται ακόμα, δεν θέλω να το κτίσω ακόμα.",
-        en: "Don't build what isn't used yet"
+        el: "Προτιμώ τα οπτικά διαγράμματα και τις εικόνες για να κατανοήσω ένα πρόβλημα αντί για μεγάλες παραγράφους κειμένου.",
+        en: "I prefer visual diagrams over long text explanations"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 20, mobile: 14, devops: 12 }, t: { product: 14, people: 10 } },
@@ -39,8 +39,8 @@ export const section4: Section = {
       id: "q33",
       section: 4,
       text: {
-        el: "Μου αρέσει να γνωρίζω ακριβώς πόσο «γρήγορη» ή «βαριά» είναι μια λειτουργία.",
-        en: "Like knowing exactly how fast or heavy each function is"
+        el: "Νιώθω ανικανοποίητος αν δεν είμαι 100% βέβαιος ότι αυτό που παρέδωσα είναι απαλλαγμένο από κάθε ελάττωμα.",
+        en: "I feel unsatisfied unless I'm 100% sure there are no flaws"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 20, mobile: 12, embedded: 12 }, t: { systems: 14, analytical: 14 } },
@@ -54,8 +54,8 @@ export const section4: Section = {
       id: "q34",
       section: 4,
       text: {
-        el: "Δεν ανησυχώ για το τι θα γίνει αν κάτι σπάσει — μπορώ να το διορθώσω.",
-        en: "Don't worry if something breaks—can fix it"
+        el: "Με ενδιαφέρει περισσότερο το γιατί φτιάχνουμε κάτι και αν έχει εμπορική αξία, παρά το πώς θα γραφτεί τεχνικά.",
+        en: "I care more about why and value than technical implementation"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 20, product: 14, dataeng: 10 }, t: { creative: 14, product: 12 } },
@@ -69,8 +69,8 @@ export const section4: Section = {
       id: "q35",
       section: 4,
       text: {
-        el: "Προτιμώ να γνωρίζω όλες τις ακριβείς προδιαγραφές πριν αρχίσω.",
-        en: "Prefer having all exact specs before starting"
+        el: "Με γοητεύει ο τρόπος με τον οποίο ο ανθρώπινος εγκέφαλος επεξεργάζεται πληροφορίες και θέλω να τον αντιγράψω.",
+        en: "Fascinated by how the brain processes info, want to replicate it"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 18, qa: 14, mobile: 12 }, t: { ops: 12, analytical: 12 } },
@@ -84,8 +84,8 @@ export const section4: Section = {
       id: "q36",
       section: 4,
       text: {
-        el: "Με ενδιαφέρει να δω τα δεδομένα οπτικοποιημένα και κατανοητά αμέσως.",
-        en: "Want to see data visualized and understood immediately"
+        el: "Προτιμώ τη σταθερότητα, την τάξη και την πρόληψη προβλημάτων από την εισαγωγή ρίσκου και συνεχών αλλαγών.",
+        en: "I prefer stability and prevention over risk and constant change"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { datasci: 20, mobile: 14, dataeng: 12 }, t: { creative: 14, analytical: 12 } },
@@ -99,8 +99,8 @@ export const section4: Section = {
       id: "q37",
       section: 4,
       text: {
-        el: "Μου αρέσει να δουλεύω με άγνωστες προκλήσεις όπου δεν υπάρχει μια σαφή λύση.",
-        en: "Like working with unknown challenges without clear solutions"
+        el: "Νιώθω την ανάγκη να προστατεύω τους αδύναμους ή τα ευαίσθητα δεδομένα από κακόβουλες προθέσεις.",
+        en: "I feel the need to protect vulnerable people and sensitive data"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 20, ml: 14, dataeng: 12 }, t: { research: 14, analytical: 12 } },
@@ -114,8 +114,8 @@ export const section4: Section = {
       id: "q38",
       section: 4,
       text: {
-        el: "Το τέλειο είναι εχθρός του καλού — προτιμώ 80/20 παρά 100%.",
-        en: "Perfect is enemy of good—prefer 80/20 vs. 100%"
+        el: "Απολαμβάνω να βρίσκω την ισορροπία ανάμεσα σε δύο αντίθετες δυνάμεις (π.χ. ταχύτητα vs ποιότητα).",
+        en: "I enjoy finding balance between opposing forces"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 20, frontend: 14, product: 12 }, t: { creative: 14, product: 12 } },
@@ -129,8 +129,8 @@ export const section4: Section = {
       id: "q39",
       section: 4,
       text: {
-        el: "Μ' αρέσει να χωρίζω ένα μεγάλο σύστημα σε μικρά, ανεξάρτητα κομμάτια.",
-        en: "Like splitting large system into small independent pieces"
+        el: "Προτιμώ να λύνω γρίφους που απαιτούν βαθιά παρατηρητικότητα παρά να φτιάχνω πράγματα από το μηδέν.",
+        en: "I prefer solving complex puzzles over building from scratch"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 20, mobile: 14, datasci: 12 }, t: { systems: 14, analytical: 12 } },
@@ -144,8 +144,8 @@ export const section4: Section = {
       id: "q40",
       section: 4,
       text: {
-        el: "Θέλω να καταλάβω πώς όλα συνδέονται και το κύριο σχέδιο του συστήματος.",
-        en: "Want to understand how everything connects and main plan"
+        el: "Με γεμίζει η ιδέα να καθοδηγώ νέους ανθρώπους και να τους μεταδίδω γνώση.",
+        en: "I love mentoring new people and sharing knowledge"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 18, dataeng: 14, mobile: 12 }, t: { systems: 14, analytical: 12 } },

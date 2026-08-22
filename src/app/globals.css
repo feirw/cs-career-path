@@ -249,10 +249,104 @@ button:active,
   }
   html,
   body {
-    background: #fff;
-    color: #000;
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
   }
+
+  /* Διατήρηση χρωμάτων του theme */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  main {
+    padding: 12px 16px;
+    max-width: 100%;
+  }
+
   .print-block {
     break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 8px !important;
+    padding: 10px !important;
+  }
+
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 6px !important;
+    padding-top: 0 !important;
+  }
+
+  footer {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-top: 8px !important;
+    padding-top: 6px !important;
+  }
+
+  /* Μείωση spacing */
+  .mt-10 { margin-top: 4px !important; }
+  .mt-8 { margin-top: 4px !important; }
+  .mt-6 { margin-top: 2px !important; }
+  .pt-8 { padding-top: 4px !important; }
+  .pt-5 { padding-top: 2px !important; }
+  .gap-8 { gap: 4px !important; }
+  .gap-10 { gap: 4px !important; }
+  .space-y-2\.5 > * + * { margin-top: 2px !important; }
+
+  /* Αποφυγή χωρισμού κειμένου */
+  p, h1, h2, h3, h4, h5, h6 {
+    orphans: 2;
+    widows: 2;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 4px !important;
+  }
+
+  /* Compressed panel styling */
+  [class*="panel"] {
+    margin-bottom: 6px !important;
+  }
+
+  /* Μικρότερα fonts για εκτύπωση */
+  .text-\[30px\] { font-size: 24px !important; }
+  .text-\[42px\] { font-size: 32px !important; }
+
+  /* Εμφάνιση διαγράμματος RadarChart */
+  svg {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    scale: 1 !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  svg g {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  svg polygon {
+    opacity: 0.14 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  svg circle, svg line, svg text {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ορατότητα όλων των στοιχείων */
+  [style*="display: none"] {
+    display: block !important;
+    visibility: visible !important;
   }
 }

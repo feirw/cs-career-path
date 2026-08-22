@@ -9,8 +9,8 @@ export const section1: Section = {
       id: "q01",
       section: 1,
       text: {
-        el: "Δοκιμάζω διάφορες προσεγγίσεις γρήγορα για να δω τι δουλεύει, αντί να σχεδιάζω προσεκτικά πρώτα.",
-        en: "I try different approaches quickly vs. plan carefully first"
+        el: "Νιώθω τη μεγαλύτερη ικανοποίηση όταν ένα αποτέλεσμα είναι αισθητά ορατό και μπορώ να το \"αγγίξω\" ή να το δω στην οθόνη.",
+        en: "I feel most satisfied when results are tangible and visible"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 18, product: 12, dataeng: 10 }, t: { creative: 14, product: 10 } },
@@ -24,8 +24,8 @@ export const section1: Section = {
       id: "q02",
       section: 1,
       text: {
-        el: "Με ενοχλεί αν κάτι δεν 'φαίνεται' σωστό ή δεν φαίνεται όπως το φαντάστηκα.",
-        en: "Bothered when something doesn't 'feel' right or look right"
+        el: "Όταν ένα σύστημα καταρρέει, η πρώτη μου παρόρμηση είναι να καταλάβω τη βαθύτερη αιτία και όχι απλά να το επαναφέρω γρήγορα.",
+        en: "System crash: I want to find root cause, not just fix it fast"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 16, product: 14, dataeng: 10 }, t: { creative: 16, product: 10 } },
@@ -39,8 +39,8 @@ export const section1: Section = {
       id: "q03",
       section: 1,
       text: {
-        el: "Σκέφτομαι πώς θα κλιμακώσει ένα σύστημα όταν αναλαμβάνει εκατομμύρια χρήστες.",
-        en: "I think about system scaling with millions of users"
+        el: "Προτιμώ να δουλεύω πάνω σε προβλήματα που δεν έχουν ακόμα έτοιμη λύση, ακόμα κι αν αυτό σημαίνει ότι θα νιώθω χαμένος για μέρες.",
+        en: "I prefer unsolved problems over comfortable tasks"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { backend: 20, dataeng: 16, devops: 14 }, t: { systems: 16, analytical: 12 } },
@@ -54,8 +54,8 @@ export const section1: Section = {
       id: "q04",
       section: 1,
       text: {
-        el: "Ενδιαφέρομαι για το κάτω επίπεδο: πώς λειτουργεί το hardware, τα protocols, τα bytes.",
-        en: "Interested in low-level details: hardware, protocols, bytes"
+        el: "Μου είναι αδύνατο να αγνοήσω μια μικρή αισθητική ατέλεια ή μια ασυμμετρία που οι άλλοι θεωρούν ασήμαντη.",
+        en: "I cannot ignore small aesthetic flaws or asymmetries"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { embedded: 20, backend: 14, security: 12 }, t: { systems: 16, analytical: 14 } },
@@ -69,8 +69,8 @@ export const section1: Section = {
       id: "q05",
       section: 1,
       text: {
-        el: "Θέλω κώδικα που να δουλεύει πολύ γρήγορα ακόμα κι αν ο ίδιος ο κώδικας είναι πιο περίπλοκος.",
-        en: "Want code fast vs. code elegant"
+        el: "Απολαμβάνω να βάζω τάξη σε μια ακατάστατη μάζα πληροφοριών, νιώθοντας ότι \"δαμάζω\" το χάος.",
+        en: "I enjoy bringing order to chaotic information"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { embedded: 18, backend: 14, ml: 12 }, t: { systems: 12, analytical: 14 } },
@@ -84,8 +84,8 @@ export const section1: Section = {
       id: "q06",
       section: 1,
       text: {
-        el: "Όταν κάποιος είπε 'αυτό είναι αργό', άμεσα σκέφτομαι profiling και optimization, όχι user experience.",
-        en: "Slow = optimization problem, not UX problem"
+        el: "Προτιμώ να συντονίζω μια ομάδα ανθρώπων και να παίρνω στρατηγικές αποφάσεις παρά να εκτελώ ο ίδιος το τεχνικό μέρος.",
+        en: "I prefer coordinating teams and strategy over hands-on execution"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 18, embedded: 16, mobile: 12 }, t: { systems: 16, analytical: 14 } },
@@ -99,23 +99,23 @@ export const section1: Section = {
       id: "q07",
       section: 1,
       text: {
-        el: "Έχω δουλέψει με assembly, drivers, embedded systems ή network protocols.",
-        en: "Worked with assembly, drivers, embedded, or protocols"
+        el: "Με γοητεύει η ιδέα να δίνω \"εντολές\" σε αντικείμενα του φυσικού κόσμου ώστε να κινούνται ή να αντιδρούν αυτόνομα.",
+        en: "Fascinated by controlling physical objects autonomously"
       },
       options: [
-        { id: "a", label: { el: "Πολύ", en: "Yes, extensively" }, c: { embedded: 20, backend: 10, security: 10 }, t: { systems: 16, analytical: 12 } },
-        { id: "b", label: { el: "Λίγο", en: "A little" }, c: { embedded: 16, backend: 12, security: 8, devops: 6 }, t: { systems: 14, analytical: 10 } },
-        { id: "c", label: { el: "Ποτέ δεν ενδιαφέρθηκα", en: "Never interested" }, c: { frontend: 14, mobile: 12, product: 10, backend: 6 }, t: { creative: 12, product: 10 } },
-        { id: "d", label: { el: "Δεν με ενδιαφέρει πολύ", en: "Not interested" }, c: { frontend: 16, mobile: 12, product: 10, ml: 6 }, t: { creative: 14, product: 10 } },
-        { id: "e", label: { el: "Ήθελα αλλά δεν έχω ευκαιρία ακόμα", en: "Want to but no chance yet" }, c: { embedded: 18, backend: 12, research: 10, qa: 6 }, t: { systems: 14, research: 10 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { embedded: 20, backend: 10, security: 10 }, t: { systems: 16, analytical: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { embedded: 16, backend: 12, security: 8, devops: 6 }, t: { systems: 14, analytical: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 14, mobile: 12, product: 10, backend: 6 }, t: { creative: 12, product: 10 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 16, mobile: 12, product: 10, ml: 6 }, t: { creative: 14, product: 10 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { embedded: 18, backend: 12, research: 10, qa: 6 }, t: { systems: 14, research: 10 } }
       ]
     },
     {
       id: "q08",
       section: 1,
       text: {
-        el: "Το γεγονός ότι το κινητό μου έχει CPU, RAM, και σκληρό δίσκο με ενδιαφέρει περισσότερο από ότι το UX.",
-        en: "Hardware specs interest me more than UX"
+        el: "Νιώθω ασφάλεια όταν βασίζω τις αποφάσεις μου αποκλειστικά σε σκληρά δεδομένα και αριθμούς, χωρίς να εμπιστεύομαι το ένστικτό μου.",
+        en: "I feel safe when decisions are based on hard data, not intuition"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { embedded: 20, backend: 14, security: 10 }, t: { systems: 16, analytical: 12 } },
@@ -129,8 +129,8 @@ export const section1: Section = {
       id: "q09",
       section: 1,
       text: {
-        el: "Αν κάποιο πράγμα μου δεν εξηγείται σε επίπεδο συστήματος, δεν το νιώθω ότι το κατάλαβα.",
-        en: "Need to understand system-level details to feel I understand"
+        el: "Έχω μια φυσική τάση να υποθέτω το χειρότερο δυνατό σενάριο σε κάθε κατάσταση ώστε να είμαι προετοιμασμένος.",
+        en: "I naturally assume worst-case scenarios to be prepared"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 14, embedded: 16, datasci: 12 }, t: { systems: 16, research: 12 } },
@@ -144,8 +144,8 @@ export const section1: Section = {
       id: "q10",
       section: 1,
       text: {
-        el: "Σταματάω να δουλεύω σε ένα feature μέχρι να καλύψω edge cases και corner cases.",
-        en: "Must cover edge cases and corner cases before stopping"
+        el: "Μου αρέσει να εξηγώ περίπλοκα πράγματα με απλά λόγια, γεφυρώνοντας το κενό ανάμεσα σε διαφορετικούς ανθρώπους.",
+        en: "I enjoy explaining complex ideas simply"
       },
       options: [
         { id: "a", label: { el: "Πάντα", en: "Always" }, c: { qa: 18, backend: 14, security: 12 }, t: { ops: 16, adversarial: 12 } },

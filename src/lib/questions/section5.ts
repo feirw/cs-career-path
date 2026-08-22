@@ -9,8 +9,8 @@ export const section5: Section = {
       id: "q41",
       section: 5,
       text: {
-        el: "Προτιμώ να δουλεύω με άγνωστα προβλήματα χωρίς σαφείς απαντήσεις.",
-        en: "Prefer working with unknowns and no clear answers"
+        el: "Θέλω η δουλειά μου να εκμεταλλεύεται τις φυσικές ιδιότητες του περιβάλλοντος (π.χ. κίνηση, τοποθεσία, ήχο).",
+        en: "My work should leverage physical properties (motion, location, sound)"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 18, ml: 14, backend: 10 }, t: { research: 14, analytical: 12 } },
@@ -24,8 +24,8 @@ export const section5: Section = {
       id: "q42",
       section: 5,
       text: {
-        el: "Με ενδιαφέρει καθαρή αρχιτεκτονική και δεν ανέχομαι χαοτικές δομές.",
-        en: "Clear architecture interests me; chaos bothers me"
+        el: "Μου αρέσει να αποσυναρμολογώ λογικά ένα πρόβλημα μέχρι να φτάσω στο πιο θεμελιώδες δομικό του στοιχείο.",
+        en: "I enjoy decomposing problems to their fundamental building blocks"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 16, mobile: 12, datasci: 10 }, t: { systems: 14, ops: 12 } },
@@ -39,8 +39,8 @@ export const section5: Section = {
       id: "q43",
       section: 5,
       text: {
-        el: "Η προσωπική ανάπτυξή μου έχει προτεραιότητα έναντι της προώθησης σταδιοδρομίας.",
-        en: "Personal growth matters more than career advancement"
+        el: "Προτιμώ να διαμορφώνω το όραμα και τις προτεραιότητες μιας ομάδας παρά να εκτελώ τις οδηγίες άλλων.",
+        en: "I prefer shaping team vision over executing orders"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 18, ml: 14, dataeng: 10 }, t: { research: 14, analytical: 12 } },
@@ -54,8 +54,8 @@ export const section5: Section = {
       id: "q44",
       section: 5,
       text: {
-        el: "Ο αναγνώσιμος κώδικας με ενδιαφέρει περισσότερο από έξυπνες λύσεις.",
-        en: "Readable code matters more than clever solutions"
+        el: "Με συναρπάζει η ιδέα των αυτόνομων ρομπότ που κινούνται και λαμβάνουν αποφάσεις στον πραγματικό κόσμο.",
+        en: "Fascinated by autonomous robots making decisions in the real world"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 16, qa: 14, datasci: 10 }, t: { systems: 12, ops: 12 } },
@@ -69,8 +69,8 @@ export const section5: Section = {
       id: "q45",
       section: 5,
       text: {
-        el: "Δεν με νοιάζει αν ένα εργαλείο είναι δημοφιλές—αν λύνει το πρόβλημα, το χρησιμοποιώ.",
-        en: "Don't care if tool is popular—if it solves it, I use it"
+        el: "Μου αρέσει να μετατρέπω έναν ακατάστατο \"ωκεανό\" από στοιχεία σε μια καθαρή, δομημένη βάση.",
+        en: "I love turning messy data oceans into clean, structured databases"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { ml: 18, backend: 14, devops: 10 }, t: { analytical: 14, systems: 12 } },
@@ -84,8 +84,8 @@ export const section5: Section = {
       id: "q46",
       section: 5,
       text: {
-        el: "Μου αρέσει να κρατώ πολλά στο μυαλό μου και να δω το σύνολο.",
-        en: "Like juggling complexity and seeing the big picture"
+        el: "Θέλω ο χρήστης να νιώθει χαρά, άνεση και οικειότητα από το πρώτο δευτερόλεπτο που αλληλεπιδρά με τη δουλειά μου.",
+        en: "Users should feel joy and comfort from first interaction with my work"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 18, backend: 14, dataeng: 10 }, t: { product: 14, analytical: 12 } },
@@ -99,8 +99,8 @@ export const section5: Section = {
       id: "q47",
       section: 5,
       text: {
-        el: "Ανυπομονώ να δουλέψω σε κάτι που δεν έχει γίνει ποτέ πριν.",
-        en: "Excited to work on something never done before"
+        el: "Με ενδιαφέρει η μυστικότητα και η κρυπτογράφηση μηνυμάτων ώστε να μην μπορεί κανείς ενδιάμεσος να τα διαβάσει.",
+        en: "I care about encryption and ensuring no intermediary can read messages"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 18, ml: 14, backend: 10 }, t: { research: 14, analytical: 12 } },
@@ -114,8 +114,8 @@ export const section5: Section = {
       id: "q48",
       section: 5,
       text: {
-        el: "Θέλω να δω κατευθείαν τις συνέπειες της δουλειάς μου στους χρήστες.",
-        en: "Want to see my work's impact directly on users"
+        el: "Απολαμβάνω τη διαδικασία του να \"στρεσάρω\" κάτι στα όριά του για να δω πότε και πώς θα σπάσει.",
+        en: "I enjoy stress-testing systems to find their breaking points"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 18, product: 14, datasci: 10 }, t: { creative: 14, people: 12 } },
@@ -129,8 +129,8 @@ export const section5: Section = {
       id: "q49",
       section: 5,
       text: {
-        el: "Θέλω συστήματα που δουλεύουν αξιόπιστα 24/7 χωρίς διακοπές.",
-        en: "Systems must work reliably 24/7 without interruption"
+        el: "Θέλω να γνωρίζω πώς να στήσω μια υποδομή που να αντέχει εκατομμύρια ταυτόχρονους χρήστες χωρίς να καταρρεύσει.",
+        en: "I want to architect infrastructure for millions of concurrent users"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 16, security: 14, mobile: 12 }, t: { ops: 14, systems: 12 } },
@@ -144,8 +144,8 @@ export const section5: Section = {
       id: "q50",
       section: 5,
       text: {
-        el: "Τελικά, επιλέγω δουλειά που με εμπνέει και με ενθουσιάζει κυρίως.",
-        en: "Ultimately, choose work that excites and inspires me"
+        el: "Μου αρέσει να εμβαθύνω στις μαθηματικές πιθανότητες και τη στατιστική.",
+        en: "I love diving deep into mathematical probability and statistics"
       },
       options: [
         { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { ml: 18, research: 14, datasci: 10 }, t: { research: 14, analytical: 12 } },
