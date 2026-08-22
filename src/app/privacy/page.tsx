@@ -227,8 +227,8 @@ export default function PrivacyPage() {
         <div className="mt-12 pt-8 border-t border-[var(--rule)] text-sm text-[var(--ink-4)]">
           <p>
             {locale === "el"
-              ? "Αυτή η πολιτική απορρήτου ισχύει για την ιστοσελίδα cs-career-path.com"
-              : "This privacy policy applies to the cs-career-path.com website"}
+              ? "Αυτή η πολιτική απορρήτου ισχύει για την ιστοσελίδα cscareerpath.vercel.app"
+              : "This privacy policy applies to the cscareerpath.vercel.app website"}
           </p>
         </div>
       </main>
