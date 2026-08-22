@@ -112,7 +112,6 @@ export const ui = {
   certifications: { el: "Πιστοποιήσεις για συνεντεύξεις", en: "Certifications for interviews" },
   juniorMarket: { el: "Junior αγορά", en: "Junior market" },
   dayToDay: { el: "Η καθημερινότητα", en: "Day to day" },
-  downloadPdf: { el: "Κατέβασε PDF", en: "Download PDF" },
   copyLink: { el: "Αντίγραψε link", en: "Copy link" },
   linkCopied: { el: "Το link αντιγράφηκε!", en: "Link copied!" },
   retake: { el: "Ξανακάνε το τεστ", en: "Retake the test" },

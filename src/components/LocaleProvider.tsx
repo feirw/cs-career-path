@@ -55,7 +55,7 @@ export function LanguageToggle({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "no-print relative inline-flex items-center rounded-full border border-[var(--rule)]",
+        "relative inline-flex items-center rounded-full border border-[var(--rule)]",
         "bg-[var(--panel)] p-0.5 text-[11px] font-semibold",
         className,
       )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { ArrowRight, BadgeCheck, Link2, Printer, RotateCcw } from "lucide-react";
+import { ArrowRight, BadgeCheck, Link2, RotateCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "./AppHeader";
 import { CareerSwatch } from "./CareerIcon";
@@ -64,7 +64,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="print-block mt-10"
+          className="mt-10"
         >
           <Panel className="overflow-hidden p-7 sm:p-10">
             <p className="eyebrow">{tr(ui.yourTop)}</p>
@@ -95,11 +95,11 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
         </motion.section>
 
         {isShort && (
-          <Panel className="print-block mt-4 border-[var(--accent)]/35 bg-[var(--accent-soft)] p-6">
+          <Panel className="mt-4 border-[var(--accent)]/35 bg-[var(--accent-soft)] p-6">
             <p className="max-w-[80ch] text-sm leading-relaxed text-[var(--ink-2)]">
               {tr(ui.shortResultWarning)}
             </p>
-            <ButtonLink href="/test?mode=full" size="md" className="no-print group/cta mt-5">
+            <ButtonLink href="/test?mode=full" size="md" className="group/cta mt-5">
               {tr(ui.takeFullTest)}
               <ArrowRight
                 aria-hidden
@@ -110,11 +110,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
           </Panel>
         )}
 
-        <div className="no-print mt-5 flex flex-wrap gap-2">
-          <Button variant="outline" onClick={() => window.print()}>
-            <Printer aria-hidden strokeWidth={1.75} className="size-4" />
-            {tr(ui.downloadPdf)}
-          </Button>
+        <div className="mt-5 flex flex-wrap gap-2">
           <Button variant="outline" onClick={copyLink}>
             <Link2 aria-hidden strokeWidth={1.75} className="size-4" />
             {tr(ui.copyLink)}
@@ -126,7 +122,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
         </div>
 
         {/* Κατάταξη */}
-        <section className="print-block pt-16">
+        <section className="pt-16">
           <SheetLabel>{tr(ui.allCareers)}</SheetLabel>
           <Panel className="mt-6 p-2 sm:p-3">
             <ul>
@@ -169,7 +165,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
         </section>
 
         {/* Προφίλ */}
-        <section className="print-block pt-16">
+        <section className="pt-16">
           <SheetLabel>{tr(ui.yourProfile)}</SheetLabel>
           <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-[var(--ink-3)]">
             {tr(ui.profileLead)}
@@ -210,7 +206,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
         <section className="pt-16">
           <SheetLabel>{tr(ui.roadmap)}</SheetLabel>
 
-          <div className="no-print mt-6 inline-flex rounded-full border border-[var(--rule)] bg-[var(--panel)] p-1">
+          <div className="mt-6 inline-flex rounded-full border border-[var(--rule)] bg-[var(--panel)] p-1">
             {top3.map((entry, index) => {
               const career = CAREER_BY_ID[entry.careerId];
               const active = index === tab;
@@ -250,7 +246,7 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.22, ease: EASE }}
             >
-              <Panel className="print-block mt-5 p-6 sm:p-8">
+              <Panel className="mt-5 p-6 sm:p-8">
                 <div className="flex items-center gap-3">
                   <CareerSwatch id={selected.id} color={selected.color} />
                   <h3 className="display text-xl font-bold tracking-tight">{tr(selected.name)}</h3>

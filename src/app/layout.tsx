@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   title: "CS Career Path — Τεστ καριέρας για φοιτητές πληροφορικής",
   description:
     "Δύο τεστ, 20 ή 50 ερωτήσεις, που δείχνουν ποιο μονοπάτι της πληροφορικής σου ταιριάζει ανάμεσα σε 12 καριέρες.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export const viewport: Viewport = {

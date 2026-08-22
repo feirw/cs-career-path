@@ -77,7 +77,7 @@ src/components/
 | `/` | Landing: επιλογή ανάμεσα στα δύο τεστ, οι 12 καριέρες. |
 | `/test?mode=short` | Σύντομο τεστ: 2 ενότητες × 10 ερωτήσεις ενστίκτου. |
 | `/test?mode=full` | Πλήρες τεστ: 10 ενότητες × 10 ερωτήσεις. Autosave ξεχωριστό ανά τεστ. |
-| `/results/[id]` | Αποτελέσματα: top 3, κατάταξη και στις 12, radar chart, roadmap, PDF, share link. |
+| `/results/[id]` | Αποτελέσματα: top 3, κατάταξη και στις 12, radar chart, roadmap, share link. |
 | `/admin` | Ανώνυμα στατιστικά. Ζητά τον `ADMIN_PASSWORD`. |
 
 ## Πώς βαθμολογείται (weighted matrix)

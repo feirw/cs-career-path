@@ -82,7 +82,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       role="group"
       aria-label="Theme"
       className={cn(
-        "no-print inline-flex items-center gap-0.5 rounded-full border border-[var(--rule)] bg-[var(--panel)] p-0.5",
+        "inline-flex items-center gap-0.5 rounded-full border border-[var(--rule)] bg-[var(--panel)] p-0.5",
         className,
       )}
     >

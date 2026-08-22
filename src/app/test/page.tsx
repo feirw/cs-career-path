@@ -347,7 +347,7 @@ function Quiz({ mode }: { mode: TestMode }) {
         </AnimatePresence>
       </main>
 
-      <div className="no-print fixed inset-x-0 bottom-0 z-30 border-t border-[var(--rule)] bg-[var(--paper)]/90 backdrop-blur-md">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--rule)] bg-[var(--paper)]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-5 py-3 sm:px-8">
           <Button variant="quiet" onClick={back} disabled={sectionIndex === 0}>
             <ArrowLeft aria-hidden strokeWidth={1.75} className="size-4" />
