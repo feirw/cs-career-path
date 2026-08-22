@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { ArrowRight, BadgeCheck, Link2, RotateCcw } from "lucide-react";
+import { ArrowRight, BadgeCheck, Download, Link2, RotateCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "./AppHeader";
 import { CareerSwatch } from "./CareerIcon";
@@ -16,9 +16,11 @@ import { cn } from "@/lib/cn";
 import { ui } from "@/lib/i18n";
 import type { TestMode } from "@/lib/questions";
 import { separation, type CareerScore } from "@/lib/scoring";
+import { addToHistory } from "@/lib/storageKeys";
 import { TRAITS, type TraitId } from "@/lib/traits";
 
 type Props = {
+  id: string;
   scores: CareerScore[];
   traits: Record<TraitId, number>;
   createdAt: number;
@@ -27,7 +29,7 @@ type Props = {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function ResultView({ scores, traits, createdAt, mode }: Props) {
+export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
   const { tr, locale } = useLocale();
   const toast = useToast();
   const [tab, setTab] = useState(0);
@@ -37,6 +39,22 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
   const gap = separation(scores);
   const isShort = mode === "short";
   const selected = CAREER_BY_ID[top3[tab].careerId];
+
+  /*
+   * Κάθε άνοιγμα αποτελέσματος το γράφει στο ιστορικό της συσκευής, ώστε ο
+   * χρήστης να το ξαναβρίσκει από την αρχική χωρίς να έχει κρατήσει το link.
+   * Τρέχει και όταν κάποιος ανοίγει link που του μοιράστηκαν — δικό του
+   * αποτέλεσμα ή όχι, το θέλει προσβάσιμο.
+   */
+  useEffect(() => {
+    addToHistory({
+      id,
+      mode,
+      careerId: winner.id,
+      match: top3[0].match,
+      createdAt,
+    });
+  }, [id, mode, winner.id, top3, createdAt]);
 
   const copyLink = async () => {
     try {
@@ -111,6 +129,11 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
         )}
 
         <div className="mt-5 flex flex-wrap gap-2">
+          {/* Απλό link: ο server στέλνει Content-Disposition, ο browser κατεβάζει. */}
+          <ButtonLink href={`/api/results/${id}/pdf?locale=${locale}`} variant="outline" download>
+            <Download aria-hidden strokeWidth={1.75} className="size-4" />
+            {tr(ui.downloadPdf)}
+          </ButtonLink>
           <Button variant="outline" onClick={copyLink}>
             <Link2 aria-hidden strokeWidth={1.75} className="size-4" />
             {tr(ui.copyLink)}
@@ -120,6 +143,11 @@ export function ResultView({ scores, traits, createdAt, mode }: Props) {
             {tr(ui.retake)}
           </ButtonLink>
         </div>
+
+        {/* Το link είναι ο μόνος μόνιμος τρόπος: το ιστορικό ζει μόνο τοπικά. */}
+        <p className="mt-3 max-w-[62ch] text-[12.5px] leading-relaxed text-[var(--ink-4)]">
+          {tr(ui.keepLink)}
+        </p>
 
         {/* Κατάταξη */}
         <section className="pt-16">

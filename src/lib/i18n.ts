@@ -85,10 +85,10 @@ export const ui = {
     en: "Based on the full 60-question test",
   },
   shortResultWarning: {
-    el: "Αυτό είναι μια πρώτη εικόνα, όχι συμπέρασμα. Το σύντομο τεστ ρωτάει το ένστικτό σου σε 20 ερωτήσεις, οπότε οι κοντινές καριέρες μπερδεύονται εύκολα. Το πλήρες τεστ έχει άλλες 50 ερωτήσεις, με σενάρια από πραγματική δουλειά — εκεί βγαίνει καθαρή απάντηση.",
-    en: "This is a first impression, not a conclusion. The quick test asks your instinct across 20 questions, so neighbouring careers blur easily. The full test is a different set of 100 scenario questions — that's where a clear answer comes from.",
+    el: "Αυτό είναι μια πρώτη εικόνα, όχι συμπέρασμα. Το σύντομο τεστ ρωτάει το ένστικτό σου σε 20 ερωτήσεις, οπότε οι κοντινές καριέρες μπερδεύονται εύκολα. Το πλήρες τεστ έχει άλλες 60 ερωτήσεις, με σενάρια από πραγματική δουλειά — εκεί βγαίνει καθαρή απάντηση.",
+    en: "This is a first impression, not a conclusion. The quick test asks your instinct across 20 questions, so neighbouring careers blur easily. The full test is a different set of 60 scenario questions — that's where a clear answer comes from.",
   },
-  takeFullTest: { el: "Κάνε το πλήρες τεστ (60 ερωτήσεις)", en: "Take the full test (100 questions)" },
+  takeFullTest: { el: "Κάνε το πλήρες τεστ (60 ερωτήσεις)", en: "Take the full test (60 questions)" },
   closeCall: {
     el: "Οι δύο πρώτες καριέρες είναι πολύ κοντά — δεν έχεις μία καθαρή κατεύθυνση, έχεις δύο.",
     en: "Your top two are very close — you don't have one clear direction, you have two.",
@@ -112,9 +112,22 @@ export const ui = {
   certifications: { el: "Πιστοποιήσεις για συνεντεύξεις", en: "Certifications for interviews" },
   juniorMarket: { el: "Junior αγορά", en: "Junior market" },
   dayToDay: { el: "Η καθημερινότητα", en: "Day to day" },
+  downloadPdf: { el: "Κατέβασε PDF", en: "Download PDF" },
   copyLink: { el: "Αντίγραψε link", en: "Copy link" },
   linkCopied: { el: "Το link αντιγράφηκε!", en: "Link copied!" },
   retake: { el: "Ξανακάνε το τεστ", en: "Retake the test" },
+
+  savedResults: { el: "Τα αποτελέσματά σου", en: "Your results" },
+  savedResultsLead: {
+    el: "Αποθηκευμένα σε αυτή τη συσκευή. Αν καθαρίσεις τα δεδομένα του browser ή ανοίξεις το site από αλλού, θα χαθούν — κράτα το link για να έχεις ένα αποτέλεσμα για πάντα.",
+    en: "Saved on this device. They disappear if you clear your browser data or open the site elsewhere — keep the link to hold on to a result for good.",
+  },
+  openResult: { el: "Άνοιξε", en: "Open" },
+  removeResult: { el: "Αφαίρεσε από τη λίστα", en: "Remove from list" },
+  keepLink: {
+    el: "Το αποτέλεσμα μένει σε αυτό το link για πάντα. Αντίγραψέ το ή κάνε bookmark τη σελίδα για να το ξαναβρείς από οποιαδήποτε συσκευή.",
+    en: "This result lives at this link permanently. Copy it or bookmark the page to find it again from any device.",
+  },
   disclaimer: {
     el: "Το τεστ είναι εργαλείο αυτογνωσίας, όχι πρόβλεψη. Οι καριέρες επικαλύπτονται και αλλάζουν — χρησιμοποίησέ το σαν αφετηρία, όχι σαν απόφαση.",
     en: "This test is a self-reflection tool, not a prediction. These careers overlap and evolve — treat it as a starting point, not a verdict.",

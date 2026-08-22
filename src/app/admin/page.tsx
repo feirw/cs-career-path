@@ -242,7 +242,7 @@ export default function AdminPage() {
                       <p className="text-sm font-medium">
                         {row.mode === "short"
                           ? tr({ el: "Σύντομο (20)", en: "Quick (20)" })
-                          : tr({ el: "Πλήρες (100)", en: "Full (100)" })}
+                          : tr({ el: "Πλήρες (60)", en: "Full (60)" })}
                       </p>
                       <p className="text-xs tabular-nums text-[var(--ink-3)]">
                         {row.submissions} / {row.starts} {tr({ el: "έναρξεις", en: "starts" })}

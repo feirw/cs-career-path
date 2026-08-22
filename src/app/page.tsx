@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight, Gauge, ListChecks, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowRight, Gauge, ListChecks, RotateCcw, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { CareerSwatch } from "@/components/CareerIcon";
@@ -14,13 +15,14 @@ import { CAREERS } from "@/lib/careers";
 import { cn } from "@/lib/cn";
 import { ui } from "@/lib/i18n";
 import { estimatedMinutes, questionCount, type TestMode } from "@/lib/questions";
-import { progressKey } from "@/lib/storageKeys";
+import { progressKey, readHistory, removeFromHistory, type HistoryEntry } from "@/lib/storageKeys";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
   const { tr } = useLocale();
   const [progress, setProgress] = useState<Record<TestMode, boolean>>({ short: false, full: false });
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
   const careersRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function HomePage() {
       short: Boolean(window.localStorage.getItem(progressKey("short"))),
       full: Boolean(window.localStorage.getItem(progressKey("full"))),
     });
+    setHistory(readHistory());
   }, []);
 
   const clear = (mode: TestMode) => {
@@ -109,6 +112,13 @@ export default function HomePage() {
                       </Button>
                     ))}
                 </div>
+              )}
+
+              {history.length > 0 && (
+                <SavedResults
+                  entries={history}
+                  onRemove={(id) => setHistory(removeFromHistory(id))}
+                />
               )}
 
               {/* Τρία βήματα σε μία γραμμή: τι θα συμβεί μόλις πατήσεις */}
@@ -302,5 +312,76 @@ function StartButton({
         </span>
       </ButtonLink>
     </span>
+  );
+}
+
+/**
+ * Τα αποτελέσματα που έχει ανοίξει αυτή η συσκευή. Το ίδιο το αποτέλεσμα ζει
+ * στη βάση· εδώ κρατάμε μόνο τον δρόμο προς αυτό.
+ */
+function SavedResults({
+  entries,
+  onRemove,
+}: {
+  entries: HistoryEntry[];
+  onRemove: (id: string) => void;
+}) {
+  const { tr, locale } = useLocale();
+
+  return (
+    <div className="mt-6 border-t border-[var(--rule)] pt-5">
+      <p className="eyebrow">{tr(ui.savedResults)}</p>
+
+      <ul className="mt-3 space-y-1.5">
+        {entries.map((entry) => {
+          const career = CAREERS.find((c) => c.id === entry.careerId);
+          return (
+            <li key={entry.id} className="group/saved flex items-center gap-2.5">
+              <Link
+                href={`/results/${entry.id}`}
+                className={cn(
+                  "flex min-w-0 flex-1 items-center gap-3 rounded-full px-3 py-2",
+                  "border border-[var(--rule)] bg-[var(--panel)]",
+                  "transition-colors duration-200 ease-out hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+                )}
+              >
+                {career && <CareerSwatch id={career.id} color={career.color} size="sm" />}
+                <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium">
+                  {career ? tr(career.name) : entry.careerId}
+                </span>
+                <span className="mono shrink-0 text-[12px] text-[var(--ink-3)]">
+                  {entry.match}%
+                </span>
+                <span className="hidden shrink-0 text-[11.5px] text-[var(--ink-4)] sm:inline">
+                  {new Date(entry.createdAt).toLocaleDateString(
+                    locale === "el" ? "el-GR" : "en-GB",
+                    { day: "numeric", month: "short" },
+                  )}
+                </span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => onRemove(entry.id)}
+                aria-label={tr(ui.removeResult)}
+                title={tr(ui.removeResult)}
+                className={cn(
+                  "grid size-8 shrink-0 place-items-center rounded-full text-[var(--ink-4)]",
+                  "transition-colors duration-200 ease-out hover:bg-[var(--panel-2)] hover:text-[var(--ink)]",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
+                )}
+              >
+                <X aria-hidden strokeWidth={2} className="size-4" />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+
+      <p className="mt-3 max-w-[52ch] text-[11.5px] leading-relaxed text-[var(--ink-4)]">
+        {tr(ui.savedResultsLead)}
+      </p>
+    </div>
   );
 }

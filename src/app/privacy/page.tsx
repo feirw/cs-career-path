@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         {
           heading: "1. Τι Δεδομένα Συλλέγουμε",
           items: [
-            "✅ Οι απαντήσεις σας στις 50 ερωτήσεις",
+            "✅ Οι απαντήσεις σας στις 60 ερωτήσεις",
             "✅ Οι υπολογισμένοι βαθμοί ταιριάσματος ανά καριέρα",
             "✅ Ο χρόνος που χρειάστηκε για το test",
             "✅ Η γλώσσα που διάλεξατε (Ελληνικά/Αγγλικά)",
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
         {
           heading: "1. What Data We Collect",
           items: [
-            "✅ Your answers to the 50 questions",
+            "✅ Your answers to the 60 questions",
             "✅ Your calculated career match scores",
             "✅ Time taken to complete the test",
             "✅ Language preference (Greek/English)",
