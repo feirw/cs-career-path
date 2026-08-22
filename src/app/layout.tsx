@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Commissioner, JetBrains_Mono, Manrope } from "next/font/google";
 import { LocaleProvider } from "@/components/LocaleProvider";
@@ -56,6 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ToastProvider>
               <div className="flex-1">{children}</div>
               <Footer />
+              {/* Επισκεψιμότητα χωρίς cookies και χωρίς προσωπικά δεδομένα. */}
+              <Analytics />
             </ToastProvider>
           </LocaleProvider>
         </ThemeProvider>

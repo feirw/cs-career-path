@@ -22,13 +22,15 @@ cp .env.example .env.local     # και άλλαξε ΟΠΩΣΔΗΠΟΤΕ τον
 npm run dev                    # http://localhost:3000
 ```
 
-Απαιτεί **Node 22.5+** (χρησιμοποιεί το ενσωματωμένο `node:sqlite`, χωρίς native modules).
+Η βάση είναι **Supabase** (Postgres). Το schema βρίσκεται στο `supabase/schema.sql` —
+τρέξε το μία φορά στο SQL Editor του project.
 
 | Μεταβλητή | Τι κάνει |
 | --- | --- |
 | `ADMIN_PASSWORD` | Ο κωδικός για το `/admin`. |
 | `ADMIN_SECRET` | Υπογράφει το cookie του admin. Τυχαία συμβολοσειρά 32+ χαρακτήρων. |
-| `DATABASE_PATH` | Πού γράφεται το αρχείο SQLite. Default: `./data/submissions.sqlite`. |
+| `SUPABASE_URL` | Το URL του project. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Το **service_role** key — όχι το anon. Μόνο server-side. |
 
 ## Διεπαφή
 
@@ -129,7 +131,7 @@ src/lib/
   questions/short.ts      οι 20 ερωτήσεις ενστίκτου του σύντομου τεστ (s01…s20)
   questions/index.ts      ενώνει τα δύο τεστ: sectionsFor(mode), questionsFor(mode)
   scoring.ts              η μηχανή βαθμολόγησης
-  db.ts                   SQLite: αποθήκευση + στατιστικά
+  db.ts                   Supabase: αποθήκευση + στατιστικά
   auth.ts                 login admin με HMAC-υπογεγραμμένο cookie
   i18n.ts                 τα κείμενα του UI σε EL/EN
 ```
@@ -175,9 +177,16 @@ src/lib/
 
 ## Deploy
 
-Σε VPS ή Docker δουλεύει ως έχει (το SQLite αρχείο θέλει μόνιμο δίσκο).
-Για **Vercel** το filesystem είναι εφήμερο — άλλαξε το `src/lib/db.ts` σε Postgres
-(Neon/Supabase): οι υπόλοιπες λειτουργίες δεν αγγίζονται, μόνο οι έξι συναρτήσεις του αρχείου.
+Δουλεύει σε Vercel ως έχει: όλη η κατάσταση ζει στο Supabase, οπότε το εφήμερο
+filesystem των serverless functions δεν πειράζει.
+
+1. Τρέξε το `supabase/schema.sql` στο SQL Editor του Supabase project.
+2. Βάλε στο Vercel τα τέσσερα env vars του πίνακα παραπάνω (Production + Preview).
+3. Deploy.
+
+Η επισκεψιμότητα (σελίδες, προελεύσεις, συσκευές) καταγράφεται από το Vercel Analytics
+— ενεργοποίησέ το από το tab **Analytics** του project. Τα στατιστικά του ίδιου του τεστ
+ζουν στο `/admin`.
 
 ## Έλεγχοι που έχουν τρέξει
 

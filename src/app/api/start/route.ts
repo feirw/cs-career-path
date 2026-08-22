@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     const body = (await request.json().catch(() => ({}))) as { locale?: string; mode?: string };
     const locale = body.locale === "en" ? "en" : "el";
     const id = crypto.randomBytes(9).toString("base64url");
-    recordStart(id, locale, parseMode(body.mode));
+    await recordStart(id, locale, parseMode(body.mode));
     return NextResponse.json({ id });
   } catch (error) {
     console.error("[api/start]", error);

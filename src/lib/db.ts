@@ -1,6 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
-import { DatabaseSync } from "node:sqlite";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { CareerId } from "./careers";
 import type { Locale } from "./i18n";
 import type { TestMode } from "./questions";
@@ -8,18 +6,22 @@ import type { TraitId } from "./traits";
 import type { CareerScore } from "./scoring";
 
 /**
- * Χρησιμοποιούμε το ενσωματωμένο SQLite του Node (node:sqlite, Node 22.5+).
- * Καμία native εξάρτηση, κανένα npm install που θέλει compiler.
+ * Supabase (Postgres). Ο λόγος που δεν κρατάμε αρχείο SQLite: σε serverless
+ * hosting ο δίσκος είναι εφήμερος και ανά instance, οπότε και τα αποτελέσματα
+ * και τα στατιστικά θα χάνονταν μεταξύ των requests.
+ *
+ * Τα scores/traits/answers είναι jsonb — αποθηκεύονται ως αντικείμενα, χωρίς
+ * χειροκίνητο JSON.stringify.
  *
  * Ό,τι αποθηκεύεται είναι ανώνυμο: τυχαίο id, απαντήσεις, βαθμολογίες, χρόνος.
- * Καμία IP, κανένα user-agent, κανένα cookie ταυτοποίησης.
+ * Καμία IP χρήστη, κανένα user-agent, κανένα cookie ταυτοποίησης.
  */
 
 export type StoredSubmission = {
   id: string;
   createdAt: number;
   locale: Locale;
-  /** "short" (20 ερωτήσεις) ή "full" (100). */
+  /** "short" (20 ερωτήσεις) ή "full" (50). */
   mode: TestMode;
   durationMs: number;
   topCareer: CareerId;
@@ -29,90 +31,21 @@ export type StoredSubmission = {
   answers: Record<string, string>;
 };
 
-let db: DatabaseSync | null = null;
+let client: SupabaseClient | null = null;
 
-function getDb(): DatabaseSync {
-  if (db) return db;
+function db(): SupabaseClient {
+  if (client) return client;
 
-  const file = process.env.DATABASE_PATH || path.join(process.cwd(), "data", "submissions.sqlite");
-  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    throw new Error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required.");
+  }
 
-  db = new DatabaseSync(file);
-  db.exec("PRAGMA journal_mode = WAL;");
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS submissions (
-      id          TEXT PRIMARY KEY,
-      created_at  INTEGER NOT NULL,
-      locale      TEXT NOT NULL,
-      duration_ms INTEGER NOT NULL DEFAULT 0,
-      top_career  TEXT NOT NULL,
-      top_match   INTEGER NOT NULL,
-      scores      TEXT NOT NULL,
-      traits      TEXT NOT NULL,
-      answers     TEXT NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_submissions_created ON submissions(created_at);
-
-    CREATE TABLE IF NOT EXISTS starts (
-      id         TEXT PRIMARY KEY,
-      created_at INTEGER NOT NULL,
-      locale     TEXT NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_starts_created ON starts(created_at);
-
-    CREATE TABLE IF NOT EXISTS login_attempts (
-      ip          TEXT NOT NULL,
-      attempt_at  INTEGER NOT NULL,
-      success     INTEGER NOT NULL
-    );
-    CREATE INDEX IF NOT EXISTS idx_login_attempts_ip ON login_attempts(ip);
-  `);
-
-  // Μετάβαση: οι παλιές υποβολές έγιναν πριν υπάρξουν δύο τεστ — ήταν το πλήρες
-  // της εποχής τους, οπότε τις σημειώνουμε ως "full".
-  addColumnIfMissing(db, "submissions", "mode", "TEXT NOT NULL DEFAULT 'full'");
-  addColumnIfMissing(db, "starts", "mode", "TEXT NOT NULL DEFAULT 'full'");
-
-  return db;
-}
-
-function addColumnIfMissing(
-  database: DatabaseSync,
-  table: string,
-  column: string,
-  definition: string,
-): void {
-  const columns = database.prepare(`PRAGMA table_info(${table})`).all() as unknown as {
-    name: string;
-  }[];
-  if (columns.some((c) => c.name === column)) return;
-  database.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
-}
-
-export function recordStart(id: string, locale: Locale, mode: TestMode): void {
-  getDb()
-    .prepare("INSERT OR IGNORE INTO starts (id, created_at, locale, mode) VALUES (?, ?, ?, ?)")
-    .run(id, Date.now(), locale, mode);
-}
-
-export function insertSubmission(s: StoredSubmission): void {
-  getDb()
-    .prepare(
-      `INSERT INTO submissions (id, created_at, locale, mode, duration_ms, top_career, top_match, scores, traits, answers)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    )
-    .run(
-      s.id,
-      s.createdAt,
-      s.locale,
-      s.mode,
-      s.durationMs,
-      s.topCareer,
-      s.topMatch,
-      JSON.stringify(s.scores),
-      JSON.stringify(s.traits),
-      JSON.stringify(s.answers),
-    );
+  client = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  return client;
 }
 
 type SubmissionRow = {
@@ -123,27 +56,59 @@ type SubmissionRow = {
   duration_ms: number;
   top_career: string;
   top_match: number;
-  scores: string;
-  traits: string;
-  answers: string;
+  scores: CareerScore[];
+  traits: Record<TraitId, number>;
+  answers: Record<string, string>;
 };
 
-export function getSubmission(id: string): StoredSubmission | null {
-  const row = getDb().prepare("SELECT * FROM submissions WHERE id = ?").get(id) as
-    | SubmissionRow
-    | undefined;
-  if (!row) return null;
+export async function recordStart(id: string, locale: Locale, mode: TestMode): Promise<void> {
+  const { error } = await db()
+    .from("starts")
+    .insert({ id, created_at: Date.now(), locale, mode });
+
+  // Ένα χαμένο start χαλάει μόνο το ποσοστό ολοκλήρωσης — δεν εμποδίζουμε
+  // τον χρήστη να ξεκινήσει το τεστ γι' αυτό.
+  if (error) console.error("[db.recordStart]", error.message);
+}
+
+export async function insertSubmission(s: StoredSubmission): Promise<void> {
+  const { error } = await db().from("submissions").insert({
+    id: s.id,
+    created_at: s.createdAt,
+    locale: s.locale,
+    mode: s.mode,
+    duration_ms: s.durationMs,
+    top_career: s.topCareer,
+    top_match: s.topMatch,
+    scores: s.scores,
+    traits: s.traits,
+    answers: s.answers,
+  });
+
+  if (error) throw new Error(`insertSubmission failed: ${error.message}`);
+}
+
+export async function getSubmission(id: string): Promise<StoredSubmission | null> {
+  const { data, error } = await db()
+    .from("submissions")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle<SubmissionRow>();
+
+  if (error) throw new Error(`getSubmission failed: ${error.message}`);
+  if (!data) return null;
+
   return {
-    id: row.id,
-    createdAt: Number(row.created_at),
-    locale: row.locale as Locale,
-    mode: row.mode === "short" ? "short" : "full",
-    durationMs: Number(row.duration_ms),
-    topCareer: row.top_career as CareerId,
-    topMatch: Number(row.top_match),
-    scores: JSON.parse(row.scores),
-    traits: JSON.parse(row.traits),
-    answers: JSON.parse(row.answers),
+    id: data.id,
+    createdAt: Number(data.created_at),
+    locale: data.locale as Locale,
+    mode: data.mode === "short" ? "short" : "full",
+    durationMs: Number(data.duration_ms),
+    topCareer: data.top_career as CareerId,
+    topMatch: Number(data.top_match),
+    scores: data.scores,
+    traits: data.traits,
+    answers: data.answers,
   };
 }
 
@@ -170,23 +135,40 @@ export type AdminStats = {
   answerDistribution: Record<string, Record<string, number>>; // questionId -> optionId -> count
 };
 
-export function getStats(range: Range): AdminStats {
-  const d = getDb();
+export async function getStats(range: Range): Promise<AdminStats> {
+  const supabase = db();
   const { from, to } = range;
 
-  const submissions = d
-    .prepare("SELECT * FROM submissions WHERE created_at BETWEEN ? AND ? ORDER BY created_at")
-    .all(from, to) as unknown as SubmissionRow[];
+  const [submissionsResult, startsResult, allTimeResult] = await Promise.all([
+    supabase
+      .from("submissions")
+      .select("*")
+      .gte("created_at", from)
+      .lte("created_at", to)
+      .order("created_at"),
+    supabase.from("starts").select("mode").gte("created_at", from).lte("created_at", to),
+    supabase.from("submissions").select("id", { count: "exact", head: true }),
+  ]);
 
-  const startRows = d
-    .prepare("SELECT mode, COUNT(*) AS n FROM starts WHERE created_at BETWEEN ? AND ? GROUP BY mode")
-    .all(from, to) as unknown as { mode: string; n: number }[];
-  const startsByMode = new Map(startRows.map((r) => [r.mode, Number(r.n)]));
-  const starts = startRows.reduce((sum, r) => sum + Number(r.n), 0);
+  if (submissionsResult.error) {
+    throw new Error(`getStats failed: ${submissionsResult.error.message}`);
+  }
 
-  const allTime = Number(
-    (d.prepare("SELECT COUNT(*) AS n FROM submissions").get() as { n: number } | undefined)?.n ?? 0,
-  );
+  const submissions = (submissionsResult.data ?? []) as SubmissionRow[];
+  const allTime = allTimeResult.count ?? 0;
+
+  const startsByMode = new Map<string, number>();
+  let starts = 0;
+  // Ο πίνακας starts μπορεί να μη διαβαστεί χωρίς να χαλάσουν τα υπόλοιπα:
+  // τότε το ποσοστό ολοκλήρωσης απλώς δείχνει 0 αντί να πέσει όλη η σελίδα.
+  if (startsResult.error) {
+    console.error("[db.getStats] starts:", startsResult.error.message);
+  } else {
+    for (const row of (startsResult.data ?? []) as { mode: string }[]) {
+      startsByMode.set(row.mode, (startsByMode.get(row.mode) ?? 0) + 1);
+      starts++;
+    }
+  }
 
   const localeCounts = new Map<string, number>();
   const modeCounts = new Map<string, number>();
@@ -205,13 +187,11 @@ export function getStats(range: Range): AdminStats {
     entry.matchSum += Number(row.top_match);
     topCounts.set(row.top_career, entry);
 
-    const scores = JSON.parse(row.scores) as CareerScore[];
-    for (const s of scores) {
+    for (const s of row.scores ?? []) {
       matchSums.set(s.careerId, (matchSums.get(s.careerId) ?? 0) + s.match);
     }
 
-    const answers = JSON.parse(row.answers) as Record<string, string>;
-    for (const [questionId, optionId] of Object.entries(answers)) {
+    for (const [questionId, optionId] of Object.entries(row.answers ?? {})) {
       answerDistribution[questionId] ??= {};
       answerDistribution[questionId][optionId] =
         (answerDistribution[questionId][optionId] ?? 0) + 1;
@@ -231,7 +211,7 @@ export function getStats(range: Range): AdminStats {
     totals: {
       submissions: submissions.length,
       starts,
-      completionRate: starts > 0 ? Math.round((submissions.length / starts) * 100) : 0,
+      completionRate: completionRate(submissions.length, starts),
       medianDurationMin: median(durations) / 60000,
       allTimeSubmissions: allTime,
     },
@@ -245,7 +225,7 @@ export function getStats(range: Range): AdminStats {
         mode,
         submissions: modeSubmissions,
         starts: modeStarts,
-        completionRate: modeStarts > 0 ? Math.round((modeSubmissions / modeStarts) * 100) : 0,
+        completionRate: completionRate(modeSubmissions, modeStarts),
       };
     }),
     topCareerDistribution: [...topCounts.entries()]
@@ -262,6 +242,16 @@ export function getStats(range: Range): AdminStats {
     perDay: fillDays(perDayMap, from, to),
     answerDistribution,
   };
+}
+
+/**
+ * Υποβολές προς εκκινήσεις, σε ποσοστό. Οι υποβολές μπορεί να ξεπερνούν τις
+ * εκκινήσεις — π.χ. υποβολές που έγιναν πριν αρχίσει να καταγράφεται ο πίνακας
+ * starts — οπότε κόβουμε στο 100 αντί να δείχνουμε 900%.
+ */
+function completionRate(submissions: number, starts: number): number {
+  if (starts <= 0) return 0;
+  return Math.min(100, Math.round((submissions / starts) * 100));
 }
 
 function median(values: number[]): number {
@@ -296,36 +286,48 @@ function fillDays(map: Map<string, number>, from: number, to: number) {
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 λεπτά
 const MAX_LOGIN_ATTEMPTS = 5;
 
-export function recordLoginAttempt(ip: string, success: boolean): void {
-  const db = getDb();
-  db.prepare("INSERT INTO login_attempts (ip, attempt_at, success) VALUES (?, ?, ?)")
-    .run(ip, Date.now(), success ? 1 : 0);
-  cleanupOldAttempts();
+export async function recordLoginAttempt(ip: string, success: boolean): Promise<void> {
+  const supabase = db();
+  const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
+
+  const { error } = await supabase
+    .from("login_attempts")
+    .insert({ ip, attempt_at: Date.now(), success });
+  if (error) {
+    console.error("[db.recordLoginAttempt]", error.message);
+    return;
+  }
+
+  await supabase.from("login_attempts").delete().lt("attempt_at", cutoffTime);
 
   if (!success) {
-    const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
-    const attempts = db
-      .prepare("SELECT COUNT(*) as count FROM login_attempts WHERE ip = ? AND attempt_at > ? AND success = 0")
-      .get(ip, cutoffTime) as { count: number } | undefined;
+    const { count } = await supabase
+      .from("login_attempts")
+      .select("ip", { count: "exact", head: true })
+      .eq("ip", ip)
+      .gt("attempt_at", cutoffTime)
+      .eq("success", false);
 
-    if ((attempts?.count ?? 0) > MAX_LOGIN_ATTEMPTS) {
-      console.warn(`[SECURITY] Potential brute force attack from IP: ${ip}. Attempts: ${attempts?.count}`);
+    if ((count ?? 0) > MAX_LOGIN_ATTEMPTS) {
+      console.warn(`[SECURITY] Potential brute force attack from IP: ${ip}. Attempts: ${count}`);
     }
   }
 }
 
-export function isRateLimited(ip: string): boolean {
+export async function isRateLimited(ip: string): Promise<boolean> {
   const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
-  const attempts = getDb()
-    .prepare("SELECT COUNT(*) as count FROM login_attempts WHERE ip = ? AND attempt_at > ? AND success = 0")
-    .get(ip, cutoffTime) as { count: number } | undefined;
+  const { count, error } = await db()
+    .from("login_attempts")
+    .select("ip", { count: "exact", head: true })
+    .eq("ip", ip)
+    .gt("attempt_at", cutoffTime)
+    .eq("success", false);
 
-  return (attempts?.count ?? 0) >= MAX_LOGIN_ATTEMPTS;
-}
-
-function cleanupOldAttempts(): void {
-  const cutoffTime = Date.now() - RATE_LIMIT_WINDOW;
-  getDb()
-    .prepare("DELETE FROM login_attempts WHERE attempt_at < ?")
-    .run(cutoffTime);
+  // Αν η καταμέτρηση αποτύχει, δεν κλειδώνουμε κανέναν έξω κατά λάθος — αλλά
+  // το log πρέπει να το δείξει, γιατί μένει ανοιχτή η πόρτα στο brute force.
+  if (error) {
+    console.error("[db.isRateLimited]", error.message);
+    return false;
+  }
+  return (count ?? 0) >= MAX_LOGIN_ATTEMPTS;
 }

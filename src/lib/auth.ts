@@ -34,12 +34,12 @@ function password(): string {
   return value;
 }
 
-export function isRateLimited(ip: string): boolean {
+export function isRateLimited(ip: string): Promise<boolean> {
   return dbIsRateLimited(ip);
 }
 
-export function recordLoginAttempt(ip: string, success: boolean): void {
-  dbRecordLoginAttempt(ip, success);
+export function recordLoginAttempt(ip: string, success: boolean): Promise<void> {
+  return dbRecordLoginAttempt(ip, success);
 }
 
 /** token = "<expiry>.<hmac>" */

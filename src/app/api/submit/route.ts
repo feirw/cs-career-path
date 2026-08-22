@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const top = result.ranked[0];
     const id = crypto.randomBytes(9).toString("base64url");
 
-    insertSubmission({
+    await insertSubmission({
       id,
       createdAt: Date.now(),
       locale,

@@ -218,25 +218,12 @@ button:active,
   transition-duration: 200ms;
 }
 
-/* Floating animation για cards και panels */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.group/card:hover {
-  animation: float 2s ease-in-out infinite;
-}
-
-/* Smooth scale για cards */
-.group/card {
+/* Smooth scale για cards. Η κάθετος στο όνομα της κλάσης θέλει escape — χωρίς
+   αυτό ο parser απορρίπτει τον κανόνα σιωπηλά. */
+.group\/card {
   transition: transform 200ms var(--ease-soft), box-shadow 200ms var(--ease-soft);
 }
 
-.group/card:hover {
+.group\/card:hover {
   transform: scale(1.02);
 }

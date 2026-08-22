@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
   const ip = await getClientIp(request);
 
   // Rate limiting check
-  if (isRateLimited(ip)) {
+  if (await isRateLimited(ip)) {
     console.warn(`[SECURITY] Rate limit exceeded for IP: ${ip}`);
     return NextResponse.json(
       { error: "too_many_attempts", retryAfter: 900 },
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
   // Validate CSRF token
   if (!csrfToken) {
-    recordLoginAttempt(ip, false);
+    await recordLoginAttempt(ip, false);
     console.warn(`[SECURITY] Missing CSRF token from IP: ${ip}`);
     return NextResponse.json({ error: "missing_csrf" }, { status: 403 });
   }
@@ -50,16 +50,16 @@ export async function POST(request: NextRequest) {
     const passwordValid = checkPassword(password);
 
     if (!passwordValid) {
-      recordLoginAttempt(ip, false);
+      await recordLoginAttempt(ip, false);
       // Intentional delay to prevent timing attacks
       await new Promise((resolve) => setTimeout(resolve, 500));
       return NextResponse.json({ error: "wrong_password" }, { status: 401 });
     }
 
-    recordLoginAttempt(ip, true);
+    await recordLoginAttempt(ip, true);
   } catch (error) {
     console.error("[api/admin/login]", error);
-    recordLoginAttempt(ip, false);
+    await recordLoginAttempt(ip, false);
     return NextResponse.json({ error: "misconfigured" }, { status: 500 });
   }
 

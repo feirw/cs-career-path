@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    return NextResponse.json(getStats({ from, to }));
+    return NextResponse.json(await getStats({ from, to }));
   } catch (error) {
     console.error("[api/admin/stats]", error);
     return NextResponse.json({ error: "stats_failed" }, { status: 500 });

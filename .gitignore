@@ -14,3 +14,11 @@ data/
 *.db
 
 .DS_Store
+
+#md files
+
+*.md
+!README.md
+
+
+
