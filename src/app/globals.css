@@ -243,110 +243,189 @@ button:active,
 
 /* ──────────────────────────────────────────────────────────────────────────── */
 
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  html,
-  body {
-    background: #000;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    line-height: 1.4;
-  }
+@page {
+  size: A4;
+  margin: 10mm;
+  background: white;
+}
 
-  /* Διατήρηση χρωμάτων του theme */
+@media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
   }
 
+  .no-print,
+  button,
+  [role="button"],
+  .no-print * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    background: white !important;
+    color: black !important;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.3;
+  }
+
   main {
-    padding: 12px 16px;
-    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  .print-block {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 8px !important;
-    padding: 10px !important;
-  }
-
-  section {
+  /* Αποφυγή page breaks εντός κύριων ενοτήτων */
+  .print-block,
+  section,
+  .group/row {
     page-break-inside: avoid;
     break-inside: avoid;
-    margin-bottom: 6px !important;
-    padding-top: 0 !important;
+    display: block !important;
   }
 
+  /* Αποφυγή page break πριν το footer */
   footer {
     page-break-inside: avoid;
     break-inside: avoid;
-    margin-top: 8px !important;
-    padding-top: 6px !important;
+    display: block !important;
+    page-break-before: avoid;
   }
 
-  /* Μείωση spacing */
-  .mt-10 { margin-top: 4px !important; }
-  .mt-8 { margin-top: 4px !important; }
-  .mt-6 { margin-top: 2px !important; }
-  .pt-8 { padding-top: 4px !important; }
-  .pt-5 { padding-top: 2px !important; }
-  .gap-8 { gap: 4px !important; }
-  .gap-10 { gap: 4px !important; }
-  .space-y-2\.5 > * + * { margin-top: 2px !important; }
+  /* Reset όλα τα margin/padding για compactness */
+  * {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-  /* Αποφυγή χωρισμού κειμένου */
-  p, h1, h2, h3, h4, h5, h6 {
+  .print-block,
+  section {
+    margin-bottom: 8px !important;
+    padding: 8px !important;
+  }
+
+  main {
+    padding: 8px !important;
+  }
+
+  /* Κείμενο και τυπογραφία */
+  p {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 2px !important;
+    font-size: 11px !important;
+    line-height: 1.3 !important;
     orphans: 2;
     widows: 2;
     page-break-inside: avoid;
-    break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
+    padding: 0 !important;
     margin-bottom: 4px !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
   }
 
-  /* Compressed panel styling */
-  [class*="panel"] {
-    margin-bottom: 6px !important;
-  }
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 16px !important; }
+  h3 { font-size: 14px !important; }
 
-  /* Μικρότερα fonts για εκτύπωση */
-  .text-\[30px\] { font-size: 24px !important; }
-  .text-\[42px\] { font-size: 32px !important; }
-
-  /* Εμφάνιση διαγράμματος RadarChart */
+  /* SVG Χαρτογραφήματα */
   svg {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    transform: none !important;
-    scale: 1 !important;
     max-width: 100% !important;
     height: auto !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
+  svg * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Χρώματα SVG Elements */
+  svg circle,
+  svg line,
+  svg path,
+  svg polygon,
+  svg text,
   svg g {
-    opacity: 1 !important;
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Animations απενεργοποιημένες */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Framer motion elements */
+  div[style*="transform"],
+  g[style*="transform"] {
     transform: none !important;
+    opacity: 1 !important;
   }
 
-  svg polygon {
-    opacity: 0.14 !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  /* Πίνακες και λίστες */
+  table, ol, ul {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 2px 0 !important;
   }
 
-  svg circle, svg line, svg text {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  li {
+    margin: 1px 0 !important;
+    padding: 0 0 0 12px !important;
+    font-size: 11px !important;
   }
 
-  /* Ορατότητα όλων των στοιχείων */
-  [style*="display: none"] {
+  /* Links */
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  /* Χρώμα text σε όλα τα στοιχεία */
+  .text-\[var\(--ink\)\],
+  .text-\[var\(--ink-2\)\],
+  .text-\[var\(--ink-3\)\] {
+    color: black !important;
+  }
+
+  /* Backgrounds */
+  .bg-\[var\(--panel\)\],
+  .bg-\[var\(--panel-2\)\],
+  .bg-\[var\(--accent-soft\)\] {
+    background: white !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Borders */
+  .border-\[var\(--rule\)\] {
+    border-color: #999 !important;
+  }
+
+  /* Ορατότητα όλων */
+  .hidden,
+  [hidden],
+  [style*="display: none"],
+  [style*="visibility: hidden"] {
     display: block !important;
     visibility: visible !important;
+    opacity: 1 !important;
   }
 }

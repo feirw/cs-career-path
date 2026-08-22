@@ -13,11 +13,11 @@ export const section4: Section = {
         en: "I love connecting tools to work as one fine-tuned machine"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { qa: 20, embedded: 14, security: 12 }, t: { ops: 14, adversarial: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { qa: 16, embedded: 12, backend: 10, security: 8 }, t: { ops: 12, adversarial: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { qa: 10, backend: 10, embedded: 8, frontend: 8 }, t: { ops: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, product: 12, mobile: 10 }, t: { creative: 12, product: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, product: 14, mobile: 12 }, t: { creative: 14, product: 14 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { qa: 53, embedded: 38, security: 45 }, t: { ops: 14, adversarial: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { qa: 40, embedded: 29, backend: 14, security: 34 }, t: { ops: 12, adversarial: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { qa: 40, backend: 14, embedded: 29, frontend: 17 }, t: { ops: 10, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 12, product: 7 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 14, product: 10 } }
       ]
     },
     {
@@ -28,11 +28,11 @@ export const section4: Section = {
         en: "I prefer visual diagrams over long text explanations"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 20, mobile: 14, devops: 12 }, t: { product: 14, people: 10 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { product: 16, mobile: 12, frontend: 10, backend: 8 }, t: { product: 12, people: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { product: 10, frontend: 10, mobile: 8, backend: 8 }, t: { creative: 10, product: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 14, research: 12, dataeng: 10 }, t: { research: 12, analytical: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, research: 14, ml: 12 }, t: { research: 14, analytical: 12 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 21, mobile: 19, devops: 44 }, t: { product: 10, people: 10 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { product: 16, mobile: 15, frontend: 17, backend: 14 }, t: { product: 9, people: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { product: 16, frontend: 17, mobile: 15, backend: 14 }, t: { creative: 10, product: 5 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 18, research: 46, dataeng: 35 }, t: { research: 18, analytical: 10 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, research: 46, ml: 50 }, t: { research: 21, analytical: 12 } }
       ]
     },
     {
@@ -43,11 +43,11 @@ export const section4: Section = {
         en: "I feel unsatisfied unless I'm 100% sure there are no flaws"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 20, mobile: 12, embedded: 12 }, t: { systems: 14, analytical: 14 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, devops: 12, security: 10, dataeng: 8 }, t: { systems: 12, analytical: 12 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, devops: 10, embedded: 8, frontend: 8 }, t: { systems: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, mobile: 12, product: 10 }, t: { creative: 12, product: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, product: 14, mobile: 12 }, t: { creative: 14, product: 12 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 35, mobile: 19, embedded: 38 }, t: { systems: 14, analytical: 14 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, devops: 34, security: 34, dataeng: 27 }, t: { systems: 12, analytical: 12 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 14, devops: 34, embedded: 29, frontend: 17 }, t: { systems: 10, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, mobile: 19, product: 21 }, t: { creative: 12, product: 7 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 14, product: 9 } }
       ]
     },
     {
@@ -58,11 +58,11 @@ export const section4: Section = {
         en: "I care more about why and value than technical implementation"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 20, product: 14, dataeng: 10 }, t: { creative: 14, product: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 16, mobile: 12, backend: 10, product: 8 }, t: { creative: 12, product: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 10, mobile: 10, backend: 8, product: 8 }, t: { creative: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 14, security: 12, embedded: 10 }, t: { ops: 12, adversarial: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, security: 14, qa: 12 }, t: { ops: 14, adversarial: 12 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 19, product: 21, dataeng: 35 }, t: { creative: 14, product: 9 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 17, mobile: 15, backend: 14, product: 16 }, t: { creative: 12, product: 7 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 17, mobile: 15, backend: 14, product: 16 }, t: { creative: 10, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 18, security: 45, embedded: 38 }, t: { ops: 12, adversarial: 10 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, security: 45, qa: 53 }, t: { ops: 14, adversarial: 12 } }
       ]
     },
     {
@@ -73,11 +73,11 @@ export const section4: Section = {
         en: "Fascinated by how the brain processes info, want to replicate it"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 18, qa: 14, mobile: 12 }, t: { ops: 12, analytical: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, qa: 12, devops: 10, embedded: 8 }, t: { ops: 10, analytical: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, qa: 10, devops: 8, frontend: 8 }, t: { analytical: 10, systems: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, product: 12, mobile: 10 }, t: { creative: 12, product: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, ml: 14, product: 12 }, t: { creative: 14, research: 12 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 35, qa: 53, mobile: 19 }, t: { ops: 12, analytical: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, qa: 40, devops: 34, embedded: 29 }, t: { ops: 10, analytical: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 14, qa: 40, devops: 34, frontend: 17 }, t: { analytical: 10, systems: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 12, product: 7 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, ml: 50, product: 21 }, t: { creative: 14, research: 18 } }
       ]
     },
     {
@@ -88,11 +88,11 @@ export const section4: Section = {
         en: "I prefer stability and prevention over risk and constant change"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { datasci: 20, mobile: 14, dataeng: 12 }, t: { creative: 14, analytical: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 16, datasci: 12, product: 10, ml: 8 }, t: { creative: 12, analytical: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 10, datasci: 10, product: 8, backend: 8 }, t: { creative: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 14, embedded: 12, security: 10 }, t: { systems: 10, analytical: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, embedded: 14, research: 12 }, t: { systems: 12, research: 10 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { datasci: 50, mobile: 19, dataeng: 35 }, t: { creative: 14, analytical: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { frontend: 17, datasci: 38, product: 16, ml: 38 }, t: { creative: 12, analytical: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { frontend: 17, datasci: 38, product: 16, backend: 14 }, t: { creative: 10, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 18, embedded: 38, security: 45 }, t: { systems: 10, analytical: 10 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, embedded: 38, research: 46 }, t: { systems: 12, research: 16 } }
       ]
     },
     {
@@ -103,11 +103,11 @@ export const section4: Section = {
         en: "I feel the need to protect vulnerable people and sensitive data"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 20, ml: 14, dataeng: 12 }, t: { research: 14, analytical: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { research: 16, ml: 12, datasci: 10, backend: 8 }, t: { research: 12, analytical: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { research: 10, ml: 10, backend: 8, dataeng: 8 }, t: { research: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, product: 12, mobile: 10 }, t: { creative: 12, product: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, devops: 14, embedded: 12 }, t: { creative: 14, ops: 10 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { research: 46, ml: 50, dataeng: 35 }, t: { research: 21, analytical: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { research: 36, ml: 38, datasci: 38, backend: 14 }, t: { research: 18, analytical: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { research: 36, ml: 38, backend: 14, dataeng: 27 }, t: { research: 16, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 12, product: 7 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, devops: 44, embedded: 38 }, t: { creative: 14, ops: 10 } }
       ]
     },
     {
@@ -118,11 +118,11 @@ export const section4: Section = {
         en: "I enjoy finding balance between opposing forces"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 20, frontend: 14, product: 12 }, t: { creative: 14, product: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { mobile: 16, frontend: 12, backend: 10, product: 8 }, t: { creative: 12, product: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { mobile: 10, frontend: 10, backend: 8, product: 8 }, t: { creative: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 14, qa: 12, security: 10 }, t: { ops: 12, adversarial: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, security: 14, embedded: 12 }, t: { ops: 14, adversarial: 12 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { mobile: 19, frontend: 22, product: 21 }, t: { creative: 14, product: 9 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { mobile: 15, frontend: 17, backend: 14, product: 16 }, t: { creative: 12, product: 7 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { mobile: 15, frontend: 17, backend: 14, product: 16 }, t: { creative: 10, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { backend: 18, qa: 53, security: 45 }, t: { ops: 12, adversarial: 10 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { backend: 18, security: 45, embedded: 38 }, t: { ops: 14, adversarial: 12 } }
       ]
     },
     {
@@ -133,11 +133,11 @@ export const section4: Section = {
         en: "I prefer solving complex puzzles over building from scratch"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 20, mobile: 14, datasci: 12 }, t: { systems: 14, analytical: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, devops: 12, ml: 10, security: 8 }, t: { systems: 12, analytical: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, devops: 10, frontend: 8, dataeng: 8 }, t: { systems: 10, analytical: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, mobile: 12, product: 10 }, t: { creative: 12, product: 10 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, product: 14, mobile: 12 }, t: { creative: 14, product: 12 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 35, mobile: 19, datasci: 50 }, t: { systems: 14, analytical: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, devops: 34, ml: 38, security: 34 }, t: { systems: 12, analytical: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 14, devops: 34, frontend: 17, dataeng: 27 }, t: { systems: 10, analytical: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, mobile: 19, product: 21 }, t: { creative: 12, product: 7 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 14, product: 9 } }
       ]
     },
     {
@@ -148,11 +148,11 @@ export const section4: Section = {
         en: "I love mentoring new people and sharing knowledge"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 18, dataeng: 14, mobile: 12 }, t: { systems: 14, analytical: 12 } },
-        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 16, product: 12, dataeng: 10, devops: 8 }, t: { systems: 12, analytical: 10 } },
-        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 10, product: 10, dataeng: 8, frontend: 8 }, t: { systems: 10, creative: 8 } },
-        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 14, mobile: 12, embedded: 10 }, t: { creative: 12, systems: 8 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 18, mobile: 14, qa: 12 }, t: { creative: 14, product: 10 } }
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { product: 21, dataeng: 35, mobile: 19 }, t: { systems: 14, analytical: 12 } },
+        { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, product: 16, dataeng: 27, devops: 34 }, t: { systems: 12, analytical: 10 } },
+        { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 14, product: 16, dataeng: 27, frontend: 17 }, t: { systems: 10, creative: 8 } },
+        { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, mobile: 19, embedded: 38 }, t: { creative: 12, systems: 8 } },
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, mobile: 19, qa: 53 }, t: { creative: 14, product: 7 } }
       ]
     }
   ]
