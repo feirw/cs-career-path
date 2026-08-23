@@ -39,7 +39,7 @@ export const section4: Section = {
       id: "q33",
       section: 4,
       text: {
-        el: "Νιώθω ανικανοποίητος αν δεν είμαι 100% βέβαιος ότι αυτό που παρέδωσα είναι απαλλαγμένο από κάθε ελάττωμα.",
+        el: "Νιώθω ανικανοποίητος/η αν δεν είμαι 100% βέβαιος ότι αυτό που παρέδωσα είναι απαλλαγμένο από κάθε ελάττωμα.",
         en: "I feel unsatisfied unless I'm 100% sure there are no flaws"
       },
       options: [
@@ -69,15 +69,15 @@ export const section4: Section = {
       id: "q35",
       section: 4,
       text: {
-        el: "Με γοητεύει ο τρόπος με τον οποίο ο ανθρώπινος εγκέφαλος επεξεργάζεται πληροφορίες και θέλω να τον αντιγράψω.",
+        el: "Με συναρπάζουν οι τεχνικές μάθησης που μιμούνται τη φυσική διαδικασία επεξεργασίας πληροφοριών του ανθρώπινου εγκεφάλου",
         en: "Fascinated by how the brain processes info, want to replicate it"
       },
       options: [
-        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 35, qa: 53, mobile: 19 }, t: { ops: 12, analytical: 12 } },
+        { id: "a", label: { el: "Συμφωνώ απόλυτα", en: "Strongly agree" }, c: { dataeng: 35, ml: 53, mobile: 19 }, t: { ops: 12, analytical: 12 } },
         { id: "b", label: { el: "Συμφωνώ", en: "Agree" }, c: { backend: 14, qa: 40, devops: 34, embedded: 29 }, t: { ops: 10, analytical: 10 } },
         { id: "c", label: { el: "Ουδέτερο", en: "Neutral" }, c: { backend: 14, qa: 40, devops: 34, frontend: 17 }, t: { analytical: 10, systems: 8 } },
         { id: "d", label: { el: "Διαφωνώ", en: "Disagree" }, c: { frontend: 22, product: 21, mobile: 19 }, t: { creative: 12, product: 7 } },
-        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, ml: 50, product: 21 }, t: { creative: 14, research: 18 } }
+        { id: "e", label: { el: "Διαφωνώ απόλυτα", en: "Strongly disagree" }, c: { frontend: 22, qa: 50, product: 21 }, t: { creative: 14, research: 18 } }
       ]
     },
     {
@@ -114,7 +114,7 @@ export const section4: Section = {
       id: "q38",
       section: 4,
       text: {
-        el: "Απολαμβάνω να βρίσκω την ισορροπία ανάμεσα σε δύο αντίθετες δυνάμεις (π.χ. ταχύτητα vs ποιότητα).",
+        el: "Προτιμώ να παραδώσω γρήγορα ένα λειτουργικό πρωτότυπο (MVP) παρά να αφιερώσω χρόνο για να γράψω το τέλειο, πλήρως βελτιστοποιημένο κώδικα",
         en: "I enjoy finding balance between opposing forces"
       },
       options: [

@@ -26,7 +26,7 @@ export const section6: Section = {
       id: "q52",
       section: 6,
       text: {
-        el: "Σύστημα χρεώνεται 100k requests/sec αλλά έχει latency. Πρώτη σκέψη:",
+        el: "Όταν ένα σύστημα ή μια εφαρμογή παρουσιάζει ξαφνικό πρόβλημα, η πρώτη μου σκέψη είναι:",
         en: "System gets 100k req/sec but slow. First thought:"
       },
       options: [
