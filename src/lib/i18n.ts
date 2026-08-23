@@ -117,6 +117,19 @@ export const ui = {
   linkCopied: { el: "Το link αντιγράφηκε!", en: "Link copied!" },
   retake: { el: "Ξανακάνε το τεστ", en: "Retake the test" },
 
+  // Community insights
+  communityTitle: { el: "Τι βγάζουν οι υπόλοιποι", en: "What everyone else gets" },
+  communityLead: {
+    el: "Οι 5 κατευθύνσεις που βγαίνουν πρώτες πιο συχνά, από όσους έχουν κάνει το τεστ μέχρι τώρα.",
+    en: "The 5 directions that come out on top most often, across everyone who has taken the test so far.",
+  },
+  communityBasis: { el: "με βάση {n} υποβολές", en: "based on {n} submissions" },
+  communityYours: { el: "το δικό σου", en: "yours" },
+  communityNote: {
+    el: "Το ότι μια κατεύθυνση είναι συχνή δεν την κάνει καλύτερη — ούτε το ότι η δική σου είναι σπάνια σημαίνει κάτι κακό.",
+    en: "A direction being common doesn't make it better — and yours being rare doesn't mean anything bad.",
+  },
+
   savedResults: { el: "Τα αποτελέσματά σου", en: "Your results" },
   savedResultsLead: {
     el: "Αποθηκευμένα σε αυτή τη συσκευή. Αν καθαρίσεις τα δεδομένα του browser ή ανοίξεις το site από αλλού, θα χαθούν — κράτα το link για να έχεις ένα αποτέλεσμα για πάντα.",

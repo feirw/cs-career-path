@@ -12,23 +12,76 @@ type Ctx = { theme: Theme; setTheme: (theme: Theme) => void; resolved: "light" |
 
 const ThemeContext = createContext<Ctx>({ theme: "system", setTheme: () => {}, resolved: "light" });
 
+/** Το `--paper` των δύο θεμάτων — το χρώμα της μπάρας του browser στο κινητό. */
+const THEME_COLOR = { light: "#f3f6fa", dark: "#0b0f15" } as const;
+
 /**
  * Το ίδιο script τρέχει και στο <head> (βλ. layout.tsx) ώστε να μην υπάρχει
  * αναλαμπή λευκού πριν φορτώσει η React.
+ *
+ * Το `localStorage` έχει δικό του try/catch: σε ιδιωτική περιήγηση και σε
+ * in-app browsers (LinkedIn, Instagram) η ανάγνωση πετάει, και αν την αφήναμε
+ * να ρίξει όλο το block δεν θα έμπαινε ούτε η κλάση `dark` — η σελίδα θα
+ * άνοιγε λευκή ακόμα κι όταν το λειτουργικό ζητάει σκούρο.
  */
 export const themeInitScript = `
 try {
-  var stored = localStorage.getItem("${STORAGE_KEY}");
+  var stored = null;
+  try { stored = localStorage.getItem("${STORAGE_KEY}"); } catch (e) {}
   var dark = stored === "dark" || ((!stored || stored === "system") && matchMedia("(prefers-color-scheme: dark)").matches);
   document.documentElement.classList.toggle("dark", dark);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", "theme-color");
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", dark ? "${THEME_COLOR.dark}" : "${THEME_COLOR.light}");
 } catch (e) {}
 `;
+
+/**
+ * Η μπάρα διευθύνσεων του κινητού ακολουθεί την επιλογή του χρήστη, όχι το
+ * λειτουργικό: με media-based theme-color, το σκούρο θέμα εμφανιζόταν κάτω από
+ * λευκή μπάρα όταν το τηλέφωνο ήταν σε light.
+ */
+function applyThemeColor(dark: boolean): void {
+  let meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", "theme-color");
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", dark ? THEME_COLOR.dark : THEME_COLOR.light);
+}
+
+/**
+ * Το storage είναι βοήθημα, όχι προϋπόθεση: αν δεν διαβάζεται, πέφτουμε στο
+ * "system" αντί να ρίξουμε τη σελίδα. Ίδια λογική με το `storageKeys.ts`.
+ */
+function readStoredTheme(): Theme {
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored === "light" || stored === "dark" ? stored : "system";
+  } catch {
+    return "system";
+  }
+}
+
+function writeStoredTheme(theme: Theme): void {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, theme);
+  } catch {
+    // Γεμάτο ή απενεργοποιημένο storage — η επιλογή ισχύει για τη συνεδρία.
+  }
+}
 
 function apply(theme: Theme): "light" | "dark" {
   const dark =
     theme === "dark" ||
     (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
   document.documentElement.classList.toggle("dark", dark);
+  applyThemeColor(dark);
   return dark ? "dark" : "light";
 }
 
@@ -37,8 +90,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [resolved, setResolved] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const initial: Theme = stored === "light" || stored === "dark" ? stored : "system";
+    const initial = readStoredTheme();
     setThemeState(initial);
     setResolved(apply(initial));
   }, []);
@@ -52,10 +104,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => media.removeEventListener("change", onChange);
   }, [theme]);
 
+  // Πρώτα η ορατή αλλαγή, μετά η αποθήκευση: αν το storage πετάξει, το πάτημα
+  // του κουμπιού πρέπει να έχει ήδη κάνει τη δουλειά του.
   const setTheme = useCallback((next: Theme) => {
     setThemeState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
     setResolved(apply(next));
+    writeStoredTheme(next);
   }, []);
 
   const value = useMemo(() => ({ theme, setTheme, resolved }), [theme, setTheme, resolved]);

@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { CareerId } from "./careers";
+import { CAREER_IDS, type CareerId } from "./careers";
 import type { Locale } from "./i18n";
 import type { TestMode } from "./questions";
 import type { TraitId } from "./traits";
@@ -241,6 +241,59 @@ export async function getStats(range: Range): Promise<AdminStats> {
       .sort((a, b) => b.avgMatch - a.avgMatch),
     perDay: fillDays(perDayMap, from, to),
     answerDistribution,
+  };
+}
+
+// ── Community insights ─────────────────────────────────────────────────────
+
+/**
+ * Κάτω από αυτό το όριο δεν δείχνουμε ποσοστά: με 8 υποβολές, το «38% βγάζουν
+ * backend» είναι τρεις άνθρωποι και διαβάζεται σαν εύρημα.
+ */
+export const COMMUNITY_MIN_SUBMISSIONS = 25;
+
+export type CommunityInsightsData = {
+  /** Σύνολο υποβολών που μπήκαν στον υπολογισμό. */
+  total: number;
+  /** Αν είναι false, το UI δεν δείχνει ποσοστά — δεν υπάρχουν αρκετά δεδομένα. */
+  enough: boolean;
+  top: { careerId: CareerId; count: number; share: number }[];
+};
+
+/**
+ * Ποιες καριέρες βγαίνουν πρώτες πιο συχνά σε όλες τις υποβολές.
+ *
+ * Μετράμε με `head: true` ανά καριέρα αντί να κατεβάσουμε τις γραμμές: το
+ * PostgREST κόβει στα 1000 rows, οπότε ένα `select("top_career")` θα άρχιζε να
+ * λέει ψέματα σιωπηλά μόλις περνούσαμε τις 1000 υποβολές.
+ */
+export async function getCommunityInsights(limit = 5): Promise<CommunityInsightsData> {
+  const supabase = db();
+
+  const counts = await Promise.all(
+    CAREER_IDS.map(async (careerId) => {
+      const { count, error } = await supabase
+        .from("submissions")
+        .select("id", { count: "exact", head: true })
+        .eq("top_career", careerId);
+
+      if (error) throw new Error(`getCommunityInsights failed: ${error.message}`);
+      return { careerId, count: count ?? 0 };
+    }),
+  );
+
+  const total = counts.reduce((sum, entry) => sum + entry.count, 0);
+
+  return {
+    total,
+    enough: total >= COMMUNITY_MIN_SUBMISSIONS,
+    top: counts
+      .sort((a, b) => b.count - a.count || a.careerId.localeCompare(b.careerId))
+      .slice(0, limit)
+      .map((entry) => ({
+        ...entry,
+        share: total > 0 ? Math.round((entry.count / total) * 100) : 0,
+      })),
   };
 }
 

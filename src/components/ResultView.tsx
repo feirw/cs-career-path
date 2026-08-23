@@ -348,10 +348,9 @@ export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
           </AnimatePresence>
         </section>
 
-        {/* Community Insights */}
-        <section className="pt-8">
-          <CommunityInsights />
-        </section>
+        {/* Community Insights — φέρνει το δικό του <section>, ώστε να μην αφήνει
+            κενό όταν δεν υπάρχουν αρκετές υποβολές για να δείξει κάτι. */}
+        <CommunityInsights yourCareerId={winner.id} />
 
         <section className="mt-12">
           <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">

@@ -188,3 +188,15 @@ filesystem των serverless functions δεν πειράζει.
   των φορών (ιδανικό 8,3%), ώστε το αποτέλεσμα να μην κλίνει από μόνο του κάπου.
 - Απαντήσεις του ενός τεστ υποβαλλόμενες ως το άλλο απορρίπτονται με 400.
 - `/api/admin/stats` χωρίς cookie → 401· λάθος κωδικός → 401· σωστός → 200.
+
+## Άδεια χρήσης
+
+**MIT** — βλ. [`LICENSE`](LICENSE).
+
+Μπορείς να το χρησιμοποιήσεις, να το τροποποιήσεις και να το ανεβάσεις στο δικό
+σου site, ακόμα και εμπορικά. Η μόνη υποχρέωση είναι να διατηρήσεις την αναφορά
+πνευματικών δικαιωμάτων και το κείμενο της άδειας.
+
+Licensed under the MIT License — use it, modify it, ship it on your own site,
+commercially if you like. The only condition is that the copyright notice and
+the licence text travel with the code.

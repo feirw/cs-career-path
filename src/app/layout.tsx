@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Commissioner, JetBrains_Mono, Manrope } from "next/font/google";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { ThemeProvider, themeInitScript } from "@/components/ThemeProvider";
@@ -37,12 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3f6fa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0f15" },
-  ],
-};
+/*
+ * Το `theme-color` δεν δηλώνεται εδώ: με media queries ακολουθούσε το
+ * λειτουργικό και όχι την επιλογή του χρήστη, οπότε το σκούρο θέμα έβγαινε
+ * κάτω από λευκή μπάρα διευθύνσεων στο κινητό. Το γράφει το `themeInitScript`
+ * πριν το πρώτο paint και το ενημερώνει ο `ThemeProvider` σε κάθε αλλαγή.
+ */
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
