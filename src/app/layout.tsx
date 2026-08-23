@@ -28,12 +28,39 @@ const mono = JetBrains_Mono({
   variable: "--font-mono-face",
 });
 
+const SITE_URL = "https://cscareerpath.vercel.app";
+const TITLE = "CS Career Path — Τεστ καριέρας για φοιτητές πληροφορικής";
+const DESCRIPTION =
+  "Δύο τεστ, 20 ή 60 ερωτήσεις, που δείχνουν ποιο μονοπάτι της πληροφορικής σου ταιριάζει ανάμεσα σε 12 καριέρες.";
+
+/*
+ * Το `metadataBase` είναι προϋπόθεση για το Open Graph: χωρίς αυτό το Next δεν
+ * μπορεί να φτιάξει απόλυτα URL για την εικόνα προεπισκόπησης, και το LinkedIn
+ * δείχνει την κάρτα χωρίς εικόνα.
+ *
+ * Το `og:image` δεν δηλώνεται εδώ — το παράγει το `opengraph-image.tsx` και το
+ * Next το συνδέει μόνο του.
+ */
 export const metadata: Metadata = {
-  title: "CS Career Path — Τεστ καριέρας για φοιτητές πληροφορικής",
-  description:
-    "Δύο τεστ, 20 ή 60 ερωτήσεις, που δείχνουν ποιο μονοπάτι της πληροφορικής σου ταιριάζει ανάμεσα σε 12 καριέρες.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
   icons: {
     icon: "/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "CS Career Path",
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "el_GR",
+    alternateLocale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 
