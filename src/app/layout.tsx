@@ -38,9 +38,16 @@ const DESCRIPTION =
  * μπορεί να φτιάξει απόλυτα URL για την εικόνα προεπισκόπησης, και το LinkedIn
  * δείχνει την κάρτα χωρίς εικόνα.
  *
- * Το `og:image` δεν δηλώνεται εδώ — το παράγει το `opengraph-image.tsx` και το
- * Next το συνδέει μόνο του.
+ * Η εικόνα είναι στιγμιότυπο της αρχικής σε 1200×630 (`public/og.png`) — ο
+ * λόγος διαστάσεων της οθόνης είναι ήδη 1.902, οπότε μπαίνει χωρίς κόψιμο.
  */
+const OG_IMAGE = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: "Η αρχική του CS Career Path: τα δύο τεστ και το κυκλικό διάγραμμα των 12 κατευθύνσεων",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: TITLE,
@@ -56,11 +63,13 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     locale: "el_GR",
     alternateLocale: "en_US",
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: [OG_IMAGE],
   },
 };
 
