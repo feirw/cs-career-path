@@ -174,9 +174,9 @@ export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
                     />
                     <span
                       className={cn(
-                        "w-32 shrink-0 truncate text-[14px] transition-colors duration-200 ease-out sm:w-48 sm:text-[15px]",
+                        "w-[9.5rem] shrink-0 text-[13.5px] leading-snug sm:w-52 sm:text-[15px] lg:w-64",
                         isTop3 ? "font-semibold text-[var(--ink)]" : "text-[var(--ink-2)]",
-                        "group-hover/row:text-[var(--ink)]",
+                        "transition-colors duration-200 ease-out group-hover/row:text-[var(--ink)]",
                       )}
                     >
                       {tr(career.name)}
@@ -234,7 +234,7 @@ export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
         <section className="pt-16">
           <SheetLabel>{tr(ui.roadmap)}</SheetLabel>
 
-          <div className="mt-6 inline-flex rounded-full border border-[var(--rule)] bg-[var(--panel)] p-1">
+          <div className="mt-6 flex gap-1 overflow-x-auto rounded-full border border-[var(--rule)] bg-[var(--panel)] p-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {top3.map((entry, index) => {
               const career = CAREER_BY_ID[entry.careerId];
               const active = index === tab;
@@ -244,8 +244,9 @@ export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
                   type="button"
                   onClick={() => setTab(index)}
                   aria-pressed={active}
+                  aria-label={tr(career.name)}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ease-out",
+                    "relative shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ease-out",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]",
                     active
                       ? "text-white dark:text-[var(--ink-invert)]"
@@ -260,7 +261,7 @@ export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
                       aria-hidden
                     />
                   )}
-                  <span className="relative">{tr(career.name)}</span>
+                  <span className="relative">{tr(career.shortName)}</span>
                 </button>
               );
             })}
@@ -361,12 +362,12 @@ export function ResultView({ id, scores, traits, createdAt, mode }: Props) {
           </p>
         </section>
 
-        <footer className="mt-16 border-t border-[var(--rule)] pt-8">
+        <section className="mt-16">
           <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">
             {tr(ui.disclaimer)}
           </p>
           <LocalTimestamp value={createdAt} locale={locale} />
-        </footer>
+        </section>
       </main>
     </>
   );

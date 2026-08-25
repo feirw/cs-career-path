@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { Check, CircleAlert, Info } from "lucide-react";
 import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
@@ -33,6 +34,8 @@ const toneClasses: Record<ToastTone, string> = {
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const counter = useRef(0);
+  const pathname = usePathname();
+  const aboveNav = pathname.startsWith("/test");
 
   const push = useCallback((input: ToastInput) => {
     const id = ++counter.current;
@@ -51,7 +54,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       <div
         aria-live="polite"
         aria-atomic="false"
-        className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex flex-col items-center gap-2 p-4 sm:items-end sm:p-6"
+        className={cn(
+          "pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex flex-col items-center gap-2 p-4 sm:items-end sm:p-6",
+          aboveNav && "bottom-[4.75rem] sm:bottom-[4.75rem]",
+        )}
       >
         <AnimatePresence initial={false}>
           {toasts.map((toast) => {

@@ -36,9 +36,11 @@ export const ui = {
     en: "20 quick questions you answer on instinct, in 2-3 minutes. It gives a rough read: which directions speak to you.",
   },
   fullTestLead: {
-    el: "100 σενάρια από πραγματική δουλειά: τι θα έκανες όταν κάτι σπάει, τι θυσιάζεις, τι αντέχεις. Ξεκαθαρίζει την κατεύθυνση.",
-    en: "100 scenarios from real work: what you'd do when things break, what you'd sacrifice, what you can live with. It settles the direction.",
+    el: "60 σενάρια από πραγματική δουλειά: τι θα έκανες όταν κάτι σπάει, τι θυσιάζεις, τι αντέχεις. Ξεκαθαρίζει την κατεύθυνση.",
+    en: "60 scenarios from real work: what you'd do when things break, what you'd sacrifice, what you can live with. It settles the direction.",
   },
+  seeDirections: { el: "Δες τις 12 κατευθύνσεις", en: "See the 12 directions" },
+  toHome: { el: "Στην αρχική", en: "Back to home" },
   /** Μία γραμμή προδιαγραφών κάτω από κάθε κουμπί, ώστε η διαφορά να είναι σαφής. */
   fullTestSpec: {
     el: "ξεκάθαρη κατεύθυνση",
@@ -85,7 +87,7 @@ export const ui = {
     en: "Based on the full 60-question test",
   },
   shortResultWarning: {
-    el: "Αυτό είναι μια πρώτη εικόνα, όχι συμπέρασμα. Το σύντομο τεστ ρωτάει το ένστικτό σου σε 20 ερωτήσεις, οπότε οι κοντινές καριέρες μπερδεύονται εύκολα. Το πλήρες τεστ έχει άλλες 60 ερωτήσεις, με σενάρια από πραγματική δουλειά — εκεί βγαίνει καθαρή απάντηση.",
+    el: "Αυτό είναι μια πρώτη εικόνα, όχι συμπέρασμα. Το σύντομο τεστ ρωτάει το ένστικτό σου σε 20 ερωτήσεις, οπότε οι κοντινές καριέρες μπερδεύονται εύκολα. Το πλήρες τεστ έχει 60 ερωτήσεις με σενάρια από πραγματική δουλειά — εκεί βγαίνει καθαρή απάντηση.",
     en: "This is a first impression, not a conclusion. The quick test asks your instinct across 20 questions, so neighbouring careers blur easily. The full test is a different set of 60 scenario questions — that's where a clear answer comes from.",
   },
   takeFullTest: { el: "Κάνε το πλήρες τεστ (60 ερωτήσεις)", en: "Take the full test (60 questions)" },
