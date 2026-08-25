@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { CareerSwatch } from "@/components/CareerIcon";
-import { Credit } from "@/components/Credit";
 import { useLocale } from "@/components/LocaleProvider";
 import { ProfileInstrument } from "@/components/ProfileInstrument";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -114,19 +113,12 @@ export default function HomePage() {
                 </div>
               )}
 
-              {history.length > 0 && (
-                <SavedResults
-                  entries={history}
-                  onRemove={(id) => setHistory(removeFromHistory(id))}
-                />
-              )}
-
               {/* Τρία βήματα σε μία γραμμή: τι θα συμβεί μόλις πατήσεις */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[var(--rule)] pt-5 text-[12.5px] text-[var(--ink-3)]"
+                className="mt-6 flex flex-col gap-3 border-t border-[var(--rule)] pt-5 text-[12.5px] text-[var(--ink-3)] sm:flex-row sm:items-center sm:gap-x-5"
               >
                 <ol className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   {[tr(ui.stepAnswer), tr(ui.stepSee), tr(ui.stepPlan)].map((step, index) => (
@@ -139,13 +131,13 @@ export default function HomePage() {
                   ))}
                 </ol>
 
-                {/* Βέλος δεξιά του roadmap */}
                 <button
+                  type="button"
                   onClick={scrollToCareers}
-                  className="ml-auto flex items-center gap-1.5 px-2 py-1 rounded-full transition-colors duration-200 hover:text-[var(--accent)] hover:bg-[var(--accent-soft)]"
-                  aria-label="Scroll to careers"
+                  className="flex items-center gap-1.5 self-start rounded-full px-2 py-1 transition-colors duration-200 ease-out hover:bg-[var(--accent-soft)] hover:text-[var(--accent)] sm:ml-auto"
+                  aria-label={tr(ui.seeDirections)}
                 >
-                  <span className="text-[12.5px] font-medium">Δες τις 12 κατευθύνσεις</span>
+                  <span className="text-[12.5px] font-medium">{tr(ui.seeDirections)}</span>
                   <ArrowDown aria-hidden strokeWidth={2} className="size-4" />
                 </button>
               </motion.div>
@@ -159,7 +151,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section ref={careersRef} className="border-t border-[var(--rule)] py-16">
+        {history.length > 0 && (
+          <SavedResults
+            entries={history}
+            onRemove={(id) => setHistory(removeFromHistory(id))}
+          />
+        )}
+
+        <section ref={careersRef} className="scroll-mt-16 border-t border-[var(--rule)] py-16">
           <SheetLabel>{tr({ el: "Οι 12 κατευθύνσεις", en: "The 12 directions" })}</SheetLabel>
 
           <ul className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -170,11 +169,9 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.35, delay: Math.min(index * 0.025, 0.2), ease: EASE }}
-                whileHover={{ y: -4 }}
               >
                 <Panel
-                  interactive
-                  className="group/card flex h-full items-center gap-4 p-4 pr-5"
+                  className="group/card flex h-full items-center gap-4 p-4 pr-5 hover:border-[var(--rule-strong)]"
                   style={{ ["--card-color" as string]: career.color }}
                 >
                   <CareerSwatch
@@ -196,12 +193,9 @@ export default function HomePage() {
           </ul>
         </section>
 
-        <footer className="flex flex-col gap-4 border-t border-[var(--rule)] py-8 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-[70ch] text-[13px] leading-relaxed text-[var(--ink-3)]">
-            {tr(ui.disclaimer)}
-          </p>
-          <Credit className="shrink-0" />
-        </footer>
+        <p className="max-w-[70ch] py-8 text-[13px] leading-relaxed text-[var(--ink-3)]">
+          {tr(ui.disclaimer)}
+        </p>
       </main>
     </>
   );
@@ -329,10 +323,10 @@ function SavedResults({
   const { tr, locale } = useLocale();
 
   return (
-    <div className="mt-6 border-t border-[var(--rule)] pt-5">
-      <p className="eyebrow">{tr(ui.savedResults)}</p>
+    <div className="max-w-xl border-t border-[var(--rule)] py-10">
+      <SheetLabel>{tr(ui.savedResults)}</SheetLabel>
 
-      <ul className="mt-3 space-y-1.5">
+      <ul className="mt-7 space-y-1.5">
         {entries.map((entry) => {
           const career = CAREERS.find((c) => c.id === entry.careerId);
           return (

@@ -18,7 +18,8 @@ import { progressKey } from "@/lib/storageKeys";
 type Progress = { answers: Record<string, string>; sectionIndex: number; startedAt: number };
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const MARKS = ["A", "B", "Γ", "Δ", "E", "Z"];
+const MARKS_EL = ["Α", "Β", "Γ", "Δ", "Ε", "ΣΤ"];
+const MARKS_EN = ["A", "B", "C", "D", "E", "F"];
 
 export default function TestPage() {
   return (
@@ -301,7 +302,8 @@ function Quiz({ mode }: { mode: TestMode }) {
                                     : "border-[var(--rule-strong)] text-[var(--ink-4)] group-hover:border-[var(--ink-4)]",
                                 )}
                               >
-                                {MARKS[optionIndex] ?? option.id.toUpperCase()}
+                                {(locale === "el" ? MARKS_EL : MARKS_EN)[optionIndex] ??
+                                  option.id.toUpperCase()}
                               </span>
                               <div className="flex flex-1 flex-col gap-2">
                                 {option.image && (
@@ -347,8 +349,8 @@ function Quiz({ mode }: { mode: TestMode }) {
         </AnimatePresence>
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--rule)] bg-[var(--paper)]/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-5 py-3 sm:px-8">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--rule)] bg-[var(--paper)]/90 backdrop-blur-md pb-[max(0.75rem,env(safe-area-inset-bottom,0px))]">
+        <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-5 pt-3 sm:px-8">
           <Button variant="quiet" onClick={back} disabled={sectionIndex === 0}>
             <ArrowLeft aria-hidden strokeWidth={1.75} className="size-4" />
             {tr(ui.back)}

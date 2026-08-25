@@ -12,7 +12,7 @@ export function Credit({ className }: { className?: string }) {
 
   return (
     <p className={cn("text-[13px] text-[var(--ink-4)]", className)}>
-      {tr({ el: "Developed by", en: "Developed by" })}{" "}
+      {tr({ el: "Ανάπτυξη από", en: "Developed by" })}{" "}
       <a
         href={PORTFOLIO}
         target="_blank"

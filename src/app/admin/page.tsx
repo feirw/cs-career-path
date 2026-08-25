@@ -409,7 +409,7 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: EASE }}
         onSubmit={submit}
-        className="rounded-2xl border border-[var(--rule)] bg-[var(--panel)] p-7 shadow-[var(--shadow-sm)]"
+        className="rounded-3xl border border-[var(--rule)] bg-[var(--panel)] p-7"
       >
         <h1 className="text-lg font-bold tracking-tight">{tr(ui.adminLogin)}</h1>
         <label className="mt-6 block text-sm font-medium" htmlFor="password">
@@ -481,7 +481,7 @@ function Bar({ value, color, thin = false }: { value: number; color: string; thi
   return (
     <span
       className={cn(
-        "flex-1 overflow-hidden rounded-full bg-[var(--accent)]",
+        "flex-1 overflow-hidden rounded-full bg-[var(--panel-2)]",
         thin ? "h-1.5" : "h-2",
       )}
     >

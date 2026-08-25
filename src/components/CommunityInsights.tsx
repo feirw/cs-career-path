@@ -80,10 +80,10 @@ export function CommunityInsights({ yourCareerId }: { yourCareerId?: CareerId })
                   size="sm"
                   className="transition-transform duration-200 ease-out group-hover/row:scale-110"
                 />
-                <span className="flex w-32 shrink-0 items-baseline gap-2 sm:w-56">
+                <span className="flex min-w-0 w-36 shrink-0 items-baseline gap-2 sm:w-56 lg:w-64">
                   <span
                     className={cn(
-                      "truncate text-[14px] sm:text-[15px]",
+                      "text-[13.5px] leading-snug sm:text-[15px]",
                       isYours ? "font-semibold text-[var(--ink)]" : "text-[var(--ink-2)]",
                       "transition-colors duration-200 ease-out group-hover/row:text-[var(--ink)]",
                     )}
