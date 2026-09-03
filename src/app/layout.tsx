@@ -31,7 +31,7 @@ const mono = JetBrains_Mono({
 const SITE_URL = "https://cscareerpath.vercel.app";
 const TITLE = "CS Career Path — Τεστ καριέρας για φοιτητές πληροφορικής";
 const DESCRIPTION =
-  "Δύο τεστ, 20 ή 60 ερωτήσεις, που δείχνουν ποιο μονοπάτι της πληροφορικής σου ταιριάζει ανάμεσα σε 12 καριέρες.";
+  "Δύο τεστ, 20 ή 60 ερωτήσεις, που δείχνουν ποιο μονοπάτι της πληροφορικής σου ταιριάζει ανάμεσα σε 13 καριέρες.";
 
 /*
  * Το `metadataBase` είναι προϋπόθεση για το Open Graph: χωρίς αυτό το Next δεν
@@ -45,7 +45,7 @@ const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Η αρχική του CS Career Path: τα δύο τεστ και το κυκλικό διάγραμμα των 12 κατευθύνσεων",
+  alt: "Η αρχική του CS Career Path: τα δύο τεστ και το κυκλικό διάγραμμα των 13 κατευθύνσεων",
 };
 
 export const metadata: Metadata = {

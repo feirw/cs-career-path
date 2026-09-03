@@ -2,6 +2,7 @@ import type { LS } from "./i18n";
 
 export const CAREER_IDS = [
   "frontend",
+  "uiux",
   "backend",
   "mobile",
   "dataeng",
@@ -78,6 +79,51 @@ export const CAREERS: Career[] = [
     market: {
       el: "Πολλές θέσεις junior, έντονος ανταγωνισμός. Ξεχωρίζεις με portfolio που δείχνει προσβασιμότητα και επιδόσεις, όχι μόνο ωραία χρώματα.",
       en: "Plenty of junior roles, heavy competition. You stand out with a portfolio that shows accessibility and performance, not just nice colours.",
+    },
+  },
+  {
+    id: "uiux",
+    shortName: { el: "UI/UX", en: "UI/UX" },
+    color: "#c9a227",
+    name: { el: "UI/UX Designer", en: "UI/UX Designer" },
+    tagline: {
+      el: "Αποφασίζεις πώς μοιάζει και πώς συμπεριφέρεται αυτό που χρησιμοποιεί ο κόσμος.",
+      en: "You decide how the thing people use looks and behaves.",
+    },
+    description: {
+      el: "Ξεκινάς από το πρόβλημα του χρήστη και καταλήγεις σε οθόνες: έρευνα, wireframes, prototypes, δοκιμές με πραγματικούς ανθρώπους. Δεν είναι «να το κάνεις όμορφο» — κάθε απόφαση θέλει αιτιολόγηση, γιατί θα την υπερασπιστείς μπροστά σε μηχανικούς και σε εμπορικό τμήμα.",
+      en: "You start from the user's problem and end at screens: research, wireframes, prototypes, testing with real people. It isn't \"make it pretty\" — every decision needs a reason, because you will defend it to engineers and to the business.",
+    },
+    dayToDay: {
+      el: "Συνεντεύξεις χρηστών, wireframes και prototypes σε Figma, συντήρηση του design system, usability testing, παράδοση στους developers και έλεγχος της υλοποίησης.",
+      en: "User interviews, wireframes and prototypes in Figma, maintaining the design system, usability testing, handing off to developers and reviewing what shipped.",
+    },
+    tech: ["Figma", "Design systems", "Wireframing & prototyping", "Usability testing", "Πληροφοριακή αρχιτεκτονική", "WCAG / προσβασιμότητα", "HTML/CSS (βασικό)", "Analytics"],
+    courses: [
+      { el: "Αλληλεπίδραση Ανθρώπου-Υπολογιστή (HCI)", en: "Human-Computer Interaction (HCI)" },
+      { el: "Γνωστική Ψυχολογία / Εργονομία", en: "Cognitive Psychology / Ergonomics" },
+      { el: "Προγραμματισμός Ιστού — για να ξέρεις τι είναι υλοποιήσιμο", en: "Web Technologies — so you know what is buildable" },
+      { el: "Στατιστική, για να διαβάζεις τα ευρήματα των δοκιμών σου", en: "Statistics, to read the findings of your own tests" },
+    ],
+    projects: [
+      { el: "Ανασχεδιασμός μιας πραγματικής υπηρεσίας (π.χ. της γραμματείας σου) με τεκμηρίωση πριν/μετά", en: "Redesign of a real service (your university registry, say) documented before and after" },
+      { el: "Usability test με πέντε χρήστες: ευρήματα, προτεραιότητες, διορθώσεις", en: "A usability test with five users: findings, priorities, fixes" },
+      { el: "Design system με components, καταστάσεις και κανόνες χρήσης", en: "A design system with components, states and usage rules" },
+      { el: "Case study που δείχνει τη διαδικασία, όχι μόνο τα τελικά screenshots", en: "A case study that shows the process, not just the final screenshots" },
+    ],
+    certifications: [
+      { el: "Google UX Design Professional Certificate (Coursera) — φθηνή, σωστή αφετηρία", en: "Google UX Design Professional Certificate (Coursera) — cheap, a sound starting point" },
+      { el: "Nielsen Norman Group UX Certification — ακριβή, αλλά η πιο αναγνωρίσιμη του χώρου", en: "Nielsen Norman Group UX Certification — expensive, but the most recognised in the field" },
+      { el: "IAAP CPACC ή WAS — προσβασιμότητα, σπάνια και ξεχωρίζει", en: "IAAP CPACC or WAS — accessibility, rare and memorable" },
+      { el: "Interaction Design Foundation — φθηνή συνδρομή, χρήσιμη ύλη", en: "Interaction Design Foundation — cheap membership, useful material" },
+    ],
+    certsNote: {
+      el: "Μετράνε ελάχιστα. Δύο-τρία case studies που δείχνουν πώς σκέφτηκες, τι δοκίμασες και τι άλλαξες μετά τα ευρήματα ζυγίζουν περισσότερο από κάθε τίτλο.",
+      en: "They count for very little. Two or three case studies showing how you thought, what you tested and what you changed afterwards outweigh any title.",
+    },
+    market: {
+      el: "Λιγότερες καθαρά junior θέσεις από ό,τι στο frontend, κυρίως σε product εταιρείες και agencies. Ξεχωρίζεις αν μπορείς να παραδώσεις και HTML/CSS: ο συνδυασμός σχεδιασμού και υλοποίησης είναι σπάνιος σε αρχάριους.",
+      en: "Fewer purely junior roles than frontend, mostly at product companies and agencies. You stand out if you can also ship HTML/CSS: the design-plus-implementation combination is rare in beginners.",
     },
   },
   {
